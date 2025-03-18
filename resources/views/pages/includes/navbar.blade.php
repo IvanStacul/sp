@@ -344,7 +344,7 @@
                     <div>
                       <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5">
                         <li class="menu-item">
-                          <a href="" onclick="return false;">Historia</a>
+                          <a href="" onclick="return false;" class="hover:!text-green-600">Historia</a>
                         </li>
 
                         {{-- <li class="menu-item">
@@ -352,7 +352,7 @@
                         </li> --}}
 
                         <li class="menu-item">
-                          <a href="" onclick="return false;">Turismo</a>
+                          <a href="" onclick="return false;" class="hover:!text-green-600">Turismo</a>
                         </li>
                       </ul>
                     </div>
