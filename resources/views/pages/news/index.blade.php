@@ -2,19 +2,22 @@
 
 @section('hero')
   <div
-    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8">
-    <img src="https://saenzpena.gob.ar/wp-content/uploads/2019/02/noticias.jpg" loading="lazy" alt=""
+    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
+    <img src="{{ asset('assets/img/noticias.webp') }}" loading="lazy" alt=""
       class="absolute inset-0 h-full w-full object-cover object-center" />
 
-    {{-- <div class="absolute inset-0 bg-green-400 mix-blend-multiply"></div> --}}
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
 
     <div class="relative flex flex-row gap-72 items-center min-w-screen px-16 md:px-32">
       <div>
-        <h2 class="mb-4 text-center text-7xl text-gray-50 font-bold md:mb-8">
+        <h2 class="mb-4 text-center text-5xl text-gray-50 font-bold md:mb-8 xl:text-6xl 2xl:text-7xl">
           Noticias
         </h2>
       </div>
     </div>
+
   </div>
 @endsection
 

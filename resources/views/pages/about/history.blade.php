@@ -2,23 +2,23 @@
 
 @section('hero')
   <div
-    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8">
-    <img src="https://v0.dev/placeholder.svg?height=400&width=1200" loading="lazy" alt="Photo by Fakurian Design"
+    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
+    <img src="{{ asset('assets/img/ciudad.webp') }}" loading="lazy" alt="Photo by Fakurian Design"
       class="absolute inset-0 h-full w-full object-cover object-center" />
 
-    <!-- overlay - start -->
-    <!-- <div class="absolute inset-0 bg-green-400 mix-blend-multiply"></div> -->
-    <!-- overlay - end -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      </div>
 
     <div class="relative flex flex-row gap-72 items-center min-w-screen px-16 md:px-32">
       <div>
-        <h2 class="mb-4 text-center font-bold text-7xl text-gray-800 md:mb-8">
+        <h2 class="mb-4 text-center font-bold text-7xl text-gray-50 md:mb-8">
           Ciudad
         </h2>
       </div>
 
       <div>
-        <p class="text-xl">
+        <p class="text-xl text-gray-50">
           Presidencia Roque Sáenz Peña se encuentra ubicada en el centro del Chaco, es la segunda ciudad más poblada de la
           provincia y cabecera del departamento Comandante Fernández. Es el principal centro algodonero en el país. Se
           fundó en el marco de la última campaña efectuada por el Ejército Argentino en el Chaco Austral.

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DocumentCategoryController;
+use App\Http\Controllers\Admin\DocumentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\EditorController;
@@ -22,4 +24,7 @@ use App\Http\Controllers\Admin\OrdinanceController;
     Route::resource('ordinances', OrdinanceController::class);
     Route::post('/ordinances/{ordinance}/activate', [OrdinanceController::class, 'activate'])->name('ordinances.activate');
     Route::post('/ordinances/{ordinance}/deactivate', [OrdinanceController::class, 'deactivate'])->name('ordinances.deactivate');
+
+    Route::resource('document-categories', DocumentCategoryController::class);
+    Route::resource('documents', DocumentController::class);
 // });

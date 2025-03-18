@@ -2,23 +2,23 @@
 
 @section('hero')
   <div
-    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8">
-    <img src="https://v0.dev/placeholder.svg?height=400&width=1200" loading="lazy" alt="Photo by Fakurian Design"
+    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
+    <img src="{{ asset('assets/img/funcionarios.webp') }}" loading="lazy" alt="Photo by Fakurian Design"
       class="absolute inset-0 h-full w-full object-cover object-center" />
 
-    <!-- overlay - start -->
-    <!-- <div class="absolute inset-0 bg-green-400 mix-blend-multiply"></div> -->
-    <!-- overlay - end -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
 
     <div class="relative flex flex-col md:flex-row gap-4 md:gap-72 items-center min-w-screen px-4 md:px-32">
       <div>
-        <h2 class="mb-4 text-center font-bold text-4xl text-gray-800 md:mb-8">
+        <h2 class="mb-4 text-center font-bold text-4xl text-gray-50 md:mb-8">
           Funcionarios
         </h2>
       </div>
 
       <div>
-        <p class="text-xl">
+        <p class="text-xl text-gray-50">
           Acá vas a conocer los nombres de los funcionarios y cuál es el cargo en el que están asignados. Nuestro
           objetivo es brindarte una visión general de la estructura de la administración municipal y de las
           responsabilidades de cada secretaría. De esta manera, tendrás un mayor conocimiento sobre quiénes son los
@@ -37,11 +37,9 @@
           <div class="mx-auto max-w-md">
             <div class="grid gap-4 grid-cols-1">
               <div>
-                <a href="#"
+                <a href="{{ route('pages.institutional.intendencia') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                  <img
-                    src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&amp;q=75&amp;fit=crop&amp;crop=top&amp;w=600&amp;h=700"
-                    loading="lazy" alt="Photo by Austin Wade"
+                  <img src="{{ asset('assets/img/bruno-cipolini.png') }}" loading="lazy" alt="Foto de Bruno Cipolini"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110">
 
                   <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
@@ -59,73 +57,163 @@
         <div class="bg-white py-6 sm:py-8 lg:py-12">
           <div class="mx-auto">
             <div class="grid gap-4 sm:grid-cols-1 md:gap-6 lg:grid-cols-2 xl:grid-cols-3">
-              <!-- product - start -->
+
               <div>
-                <a href="{{ route('pages.institutional.secretary-1') }}"
+                <a href="{{ route('pages.institutional.secretario-1') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                  <img
-                    src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                    loading="lazy" alt="Photo by Austin Wade"
+                  <img src="{{ asset('assets/img/diego-landriscina.png') }}" loading="lazy"
+                    alt="Foto de Diego Landriscina"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                   <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-                    <span class="text-gray-500">Secretaría de Gobierno y Modernización</span>
+                    <span class="text-gray-500">Secretario de Gobierno y Modernización</span>
                     <span class="text-lg font-bold text-gray-800 lg:text-xl">Diego Landriscina</span>
                   </div>
                 </a>
               </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
               <div>
-                <a href="#"
+                <a href="{{ route('pages.institutional.secretario-2') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                  <img
-                    src="https://images.unsplash.com/photo-1603344797033-f0f4f587ab60?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                    loading="lazy" alt="Photo by engin akyurt"
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy"
+                    alt="Foto de Germán Rearte"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                   <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-                    <span class="text-gray-500">Secretaría de Economía</span>
-                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Alejandra María Quintana</span>
-                  </div>
-                </a>
-              </div>
-              <!-- product - end -->
-
-              <!-- product - start -->
-              <div>
-                <a href="#"
-                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                  <img
-                    src="https://images.unsplash.com/photo-1552668693-d0738e00eca8?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                    loading="lazy" alt="Photo by Austin Wade"
-                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-                    <span class="text-gray-500">Secretaría de Desarrollo Humano y Deportes</span>
+                    <span class="text-gray-500">Secretario de Desarrollo Humano y Deportes</span>
                     <span class="text-lg font-bold text-gray-800 lg:text-xl">Germán Rearte</span>
                   </div>
                 </a>
               </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
               <div>
-                <a href="#"
+                <a href="{{ route('pages.institutional.secretario-3') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                  <img
-                    src="https://images.unsplash.com/photo-1560269999-cef6ebd23ad3?auto=format&q=75&fit=crop&w=600&h=700"
-                    loading="lazy" alt="Photo by Austin Wade"
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy" alt="Foto de Pedro Egea"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                   <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-                    <span class="text-gray-500">Secretaría de Servicios Públicos</span>
-                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Pablo Álvarez</span>
+                    <span class="text-gray-500">Secretario de Gestión y Promoción Educativa</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Pedro Egea</span>
                   </div>
                 </a>
               </div>
-              <!-- product - end -->
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-4') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy"
+                    alt="Foto de Javier Polentarrutti"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretario de Planificación y Control de Gestión</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Javier Polentarrutti</span>
+                  </div>
+                </a>
+              </div>
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-5') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy"
+                    alt="Foto de María Alejandra Quintana"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretaria de Economía</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">María Alejandra Quintana</span>
+                  </div>
+                </a>
+              </div>
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-6') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy" alt="Foto de Alicia Gaña"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretaria de Cultura y Educación Ciudadana</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Alicia Gaña</span>
+                  </div>
+                </a>
+              </div>
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-7') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy"
+                    alt="Foto de Pablo Alvarez"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretario de Servicios Públicos</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Pablo Alvarez</span>
+                  </div>
+                </a>
+              </div>
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-8') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img
+                    src="{{ asset('assets/img/claudio-gil.png') }}"
+                    loading="lazy" alt="Foto de Claudio Gil"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretario de Obras Públicas</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Claudio Gil</span>
+                  </div>
+                </a>
+              </div>
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-9') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img
+                    src="{{ asset('assets/img/oscar-pablo-dudik.png') }}"
+                    loading="lazy" alt="Foto de Oscar Dudik"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretario de Desarrollo Local</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Oscar Dudik</span>
+                  </div>
+                </a>
+              </div>
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-10') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img
+                    src="https://v0.dev/placeholder.svg?height=700&width=600"
+                    loading="lazy" alt="Foto de Eduardo Molina"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretario de Relaciones Institucionales</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Eduardo Molina</span>
+                  </div>
+                </a>
+              </div>
+
+              <div>
+                <a href="{{ route('pages.institutional.secretario-11') }}"
+                  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                  <img
+                    src="https://v0.dev/placeholder.svg?height=700&width=600"
+                    loading="lazy" alt="Foto de Soledad González"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                  <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                    <span class="text-gray-500">Secretaria General e Información Pública</span>
+                    <span class="text-lg font-bold text-gray-800 lg:text-xl">Soledad González</span>
+                  </div>
+                </a>
+              </div>
+
             </div>
           </div>
         </div>

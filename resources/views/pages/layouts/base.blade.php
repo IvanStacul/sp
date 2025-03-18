@@ -7,7 +7,8 @@
   <title>Municipalidad de Presidencia Roque Sáenz Peña</title>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}" />
   <link href="{{ asset('assets/css/index.css') }}" rel="stylesheet" />
   @vite(['resources/css/app.css'])
   @stack('styles')

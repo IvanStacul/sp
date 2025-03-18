@@ -6,7 +6,7 @@
 
 @section('hero')
   <div
-    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8">
+    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
     <img src="{{ $news->cover_image }}" loading="lazy" alt=""
       class="absolute inset-0 h-full w-full object-cover object-center" />
 

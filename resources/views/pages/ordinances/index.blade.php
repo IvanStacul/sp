@@ -2,15 +2,17 @@
 
 @section('hero')
   <div
-    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8">
-    <img src="https://cdn.euroinnova.edu.es/img/subidasEditor/dise%C3%B1o%20sin%20t%C3%ADtulo(5)-1617429744.webp"
-      loading="lazy" alt="" class="absolute inset-0 h-full w-full object-cover object-center" />
+    class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
+    <img src="{{ asset('assets/img/ordenanzas.webp') }}" loading="lazy" alt=""
+      class="absolute inset-0 h-full w-full object-cover object-center" />
 
-    {{-- <div class="absolute inset-0 bg-green-400 mix-blend-multiply"></div> --}}
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
 
     <div class="relative flex flex-row gap-72 items-center min-w-screen px-16 md:px-32">
       <div>
-        <h2 class="mb-4 text-center text-7xl text-gray-50 font-bold md:mb-8">
+        <h2 class="mb-4 text-center text-5xl text-gray-50 font-bold md:mb-8 xl:text-6xl 2xl:text-7xl">
           Ordenanzas
         </h2>
       </div>

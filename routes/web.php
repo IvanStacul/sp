@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdinanceController;
 // use App\Http\Controllers\ProfileController;
 use App\Models\News;
+use App\Models\Document;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -31,16 +32,33 @@ Route::get('/news', function () {
 })->name('news.index');
 
 Route::get('/docs', function () {
-    return view('pages.docs');
+    $docs = Document::with('category')->orderBy('created_at', 'desc')->get();
+    return view('pages.docs', compact('docs'));
 })->name('docs');
 
-Route::get('/servicios', function () {
+Route::get('/serviciosciudadsp', function () {
     return view('pages.services.index');
 })->name('services.index');
 
-Route::get('/luminarias', function () {
-    return view('pages.services.luminarias');
-})->name('services.luminarias');
+Route::get('/recoleccion-diferenciada', function () {
+    return view('pages.services.residuos');
+})->name('services.residuos');
+
+Route::get('/sem', function () {
+    return view('pages.services.sem');
+})->name('services.sem');
+
+Route::get('/inicio/sem', function () {
+    return redirect()->route('services.sem');
+})->name('services.sem.home');
+
+Route::get('/recorrido-de-colectivos-urbanos', function () {
+    return view('pages.services.sp-bus');
+})->name('services.sp.bus');
+
+Route::get('/compostaje-comunitario', function () {
+    return view('pages.services.compostaje');
+})->name('services.compostaje');
 
 Route::get('/historia', function () {
     return view('pages.about.history');
@@ -50,9 +68,53 @@ Route::get('/institucional', function () {
     return view('pages.institutional.index');
 })->name('pages.institutional.index');
 
-Route::get('/institucional/autoridades', function () {
-    return view('pages.institutional.secretary-1');
-})->name('pages.institutional.secretary-1');
+Route::get('/intendencia', function () {
+    return view('pages.institutional.intendente');
+})->name('pages.institutional.intendencia');
+
+Route::get('/secretaria-de-gobierno', function () {
+    return view('pages.institutional.secretario-1');
+})->name('pages.institutional.secretario-1');
+
+Route::get('/secretaria-de-desarrollo-humano-y-deportes', function () {
+    return view('pages.institutional.secretario-2');
+})->name('pages.institutional.secretario-2');
+
+Route::get('/secretaria-de-gestion-y-promocion-educativa', function () {
+    return view('pages.institutional.secretario-3');
+})->name('pages.institutional.secretario-3');
+
+Route::get('/secretaria-de-planificacion-y-control-de-gestion', function () {
+    return view('pages.institutional.secretario-4');
+})->name('pages.institutional.secretario-4');
+
+Route::get('/secretaria-de-economia', function () {
+    return view('pages.institutional.secretario-5');
+})->name('pages.institutional.secretario-5');
+
+Route::get('/secretaria-de-cultura-y-educacion-ciudadana', function () {
+    return view('pages.institutional.secretario-6');
+})->name('pages.institutional.secretario-6');
+
+Route::get('/secretaria-de-servicios-publicos-y-medio-ambiente', function () {
+    return view('pages.institutional.secretario-7');
+})->name('pages.institutional.secretario-7');
+
+Route::get('/secretaria-de-obras-publicas', function () {
+    return view('pages.institutional.secretario-8');
+})->name('pages.institutional.secretario-8');
+
+Route::get('/secretaria-de-desarrollo-local-y-economia-social', function () {
+    return view('pages.institutional.secretario-9');
+})->name('pages.institutional.secretario-9');
+
+Route::get('/secretaria-de-relaciones-institucionales', function () {
+    return view('pages.institutional.secretario-10');
+})->name('pages.institutional.secretario-10');
+
+Route::get('/secretaria-de-cooperacion-gubernamental', function () {
+    return view('pages.institutional.secretario-11');
+})->name('pages.institutional.secretario-11');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
