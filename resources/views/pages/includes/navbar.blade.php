@@ -47,7 +47,7 @@
                     <div>
                       <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="TramitesMenus">
                         <li class="menu-item">
-                          <a href="https://apps.saenzpeña.gob.ar/Autogestion" class="hover:!text-green-600">Autogetion (impuestos)</a>
+                          <a href="https://apps.saenzpeña.gob.ar/Autogestion" class="hover:!text-green-600">Autogestión (impuestos)</a>
                         </li>
                         <li class="menu-item">
                           <a href="" onclick="return false;" class="hover:!text-green-600">Guía de trámites</a>
@@ -246,19 +246,19 @@
                     <div>
                       <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5">
                         <li class="menu-item">
-                          <a href="{{ route('ordinances.index') . '?category=ordenanzas' }}">
+                          <a href="{{ route('ordinances.index') . '?category=ordenanzas' }}" class="hover:!text-green-600">
                             Ordenanzas
                           </a>
                         </li>
 
                         <li class="menu-item">
-                          <a href="{{ route('ordinances.index') . '?category=ordenanzas-impositivas-y-tarifarias' }}">
+                          <a href="{{ route('ordinances.index') . '?category=ordenanzas-impositivas-y-tarifarias' }}" class="hover:!text-green-600">
                             Ordenanzas impositivas y tributarias
                           </a>
                         </li>
 
                         <li class="menu-item">
-                          <a href="{{ route('docs') }}">
+                          <a href="{{ route('docs') }}" class="hover:!text-green-600">
                             Documentos Oficiales y resoluciones
                           </a>
                         </li>
@@ -294,13 +294,13 @@
                     <div>
                       <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5">
                         <li class="menu-item">
-                          <a href="" onclick="return false;">
+                          <a href="" onclick="return false;" class="hover:!text-green-600">
                             Guía de trámites
                           </a>
                         </li>
 
                         <li class="menu-item">
-                          <a href="" onclick="return false;">
+                          <a href="https://apps.saenzpeña.gob.ar/Autogestion" onclick="return false;" class="hover:!text-green-600">
                             Autogestión (impuestos)
                           </a>
                         </li>
