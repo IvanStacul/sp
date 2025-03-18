@@ -63,6 +63,11 @@
               {{ $docs->links('vendor.pagination.tailwind-ordenanzas', ['category' => request()->category, 'search' => request()->search, 'year' => request()->year]) }}
             </div>
           </div>
+        @else
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">¡Lo sentimos!</strong>
+            <span class="block sm:inline">No hay documentos disponibles.</span>
+          </div>
         @endif
       </div>
     </div>
