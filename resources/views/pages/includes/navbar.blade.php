@@ -50,7 +50,7 @@
                           <a href="https://apps.saenzpeña.gob.ar/Autogestion" class="hover:!text-green-600">Autogestión (impuestos)</a>
                         </li>
                         <li class="menu-item">
-                          <a href="" onclick="return false;" class="hover:!text-green-600">Guía de trámites</a>
+                          <a href="{{ route('guides.index') }}" class="hover:!text-green-600">Guía de trámites</a>
                         </li>
                       </ul>
                     </div>
@@ -294,13 +294,13 @@
                     <div>
                       <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5">
                         <li class="menu-item">
-                          <a href="" onclick="return false;" class="hover:!text-green-600">
+                          <a href="{{ route('guides.index') }}" class="hover:!text-green-600">
                             Guía de trámites
                           </a>
                         </li>
 
                         <li class="menu-item">
-                          <a href="https://apps.saenzpeña.gob.ar/Autogestion" onclick="return false;" class="hover:!text-green-600">
+                          <a href="https://apps.saenzpeña.gob.ar/Autogestion" class="hover:!text-green-600">
                             Autogestión (impuestos)
                           </a>
                         </li>

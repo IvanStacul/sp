@@ -3,7 +3,7 @@
 @section('content-title', __('documents.titles.create'))
 
 @push('styles')
-  <!-- Select2 -->
+  {{-- Select2 --}}
   <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endpush
@@ -116,14 +116,11 @@
 @endsection
 
 @push('scripts')
-  <!-- Select2 -->
+  {{-- Select2 --}}
   <script src="{{ asset('admin/plugins/select2/js/select2.full.min.js') }}"></script>
   <script>
     $(function() {
-      //Initialize Select2 Elements
-      $('.select2').select2({
-        theme: 'bootstrap4',
-      });
+      $('.select2').select2({ theme: 'bootstrap4' });
     });
   </script>
 @endpush

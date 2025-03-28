@@ -36,6 +36,10 @@ Route::get('/docs', function () {
     return view('pages.docs', compact('docs'));
 })->name('docs');
 
+Route::get('/guia-de-tramites', function () {
+    return view('pages.guides', ['guides' => \App\Models\Guide::with('category')->orderBy('created_at', 'desc')->get()]);
+})->name('guides.index');
+
 Route::get('/serviciosciudadsp', function () {
     return view('pages.services.index');
 })->name('services.index');
@@ -59,6 +63,14 @@ Route::get('/recorrido-de-colectivos-urbanos', function () {
 Route::get('/compostaje-comunitario', function () {
     return view('pages.services.compostaje');
 })->name('services.compostaje');
+
+Route::get('/estos-son-los-barrios-de-nuestra-ciudad', function () {
+    return redirect()->route('services.catastro');
+})->name('services.barrios');
+
+Route::get('/informacion-catastral', function () {
+    return view('pages.services.catastro');
+})->name('services.catastro');
 
 Route::get('/historia', function () {
     return view('pages.about.history');

@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DocumentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\EditorController;
+use App\Http\Controllers\Admin\GuideCategoryController;
+use App\Http\Controllers\Admin\GuideController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrdinanceController;
 
@@ -27,4 +29,10 @@ use App\Http\Controllers\Admin\OrdinanceController;
 
     Route::resource('document-categories', DocumentCategoryController::class);
     Route::resource('documents', DocumentController::class);
+
+    Route::resource('guide-categories', GuideCategoryController::class);
+    Route::resource('guides', GuideController::class);
+    Route::post('/guides/{guide}/activate', [GuideController::class, 'activate'])->name('guides.activate');
+    Route::post('/guides/{guide}/deactivate', [GuideController::class, 'deactivate'])->name('guides.deactivate');
+
 // });

@@ -1,14 +1,18 @@
 @extends('pages.layouts.base')
 
+@push('styles')
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+@endpush
+
 @section('hero')
   <div
     class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
     <img src="{{ asset('assets/img/ciudad.webp') }}" loading="lazy" alt="Photo by Fakurian Design"
       class="absolute inset-0 h-full w-full object-cover object-center" />
 
-      <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-      </div>
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
 
     <div class="relative flex flex-row gap-72 items-center min-w-screen px-16 md:px-32">
       <div>
@@ -209,14 +213,115 @@
           </h2>
         </div>
 
-        <figure>
-          <img class="w-full object-cover rounded-xl"
-            src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Forestal.jpg" alt="Blog Image">
-          <figcaption class="mt-3 text-xl text-center text-gray-800 ">
-            La llegada del Ferrocarril favoreció la colonización del interior chaqueño
-          </figcaption>
-        </figure>
+        <div id="image-gallery">
+          <div class="grid gap-3 lg:grid-cols-2">
+            <div class="grid grid-cols-2 gap-3 lg:grid-cols-1">
+              <figure style="  max-width: auto;"
+                data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Forestal.jpg"
+                data-caption="La llegada del Ferrocarril favoreció la colonización del interior chaqueño"
+                data-fancybox="gallery">
+                <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Forestal.jpg"
+                  alt="La llegada del Ferrocarril favoreció la colonización del interior chaqueño"
+                  class="rounded img-fluid img-thumbnail">
+                <figcaption>La llegada del Ferrocarril favoreció la colonización del interior chaqueño</figcaption>
+              </figure>
+
+              <figure style="  max-width: auto;"
+                data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Cte.Fernandez.jpg"
+                data-caption="Comandante Carlos D. Fernández fundador de Pcia. Roque Sáenz Peña" data-fancybox="gallery">
+                <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Cte.Fernandez.jpg"
+                  alt="Comandante Carlos D. Fernández fundador de Pcia. Roque Sáenz Peña"
+                  class="rounded img-fluid img-thumbnail">
+                <figcaption>Comandante Carlos D. Fernández fundador de Pcia. Roque Sáenz Peña</figcaption>
+              </figure>
+
+            </div>
+
+
+            <figure class="relative h-72 w-full sm:h-96 lg:h-full" data-fancybox="gallery"
+              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/cosechero.jpg">
+              <img class="absolute left-0 top-0 w-full h-full rounded-xl object-cover"
+                src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/cosechero.jpg" alt="Cosecha manual de algodón">
+              <figcaption class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white text-sm p-2">
+                Cosecha manual de algodón
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+            <figure style="max-width: auto;"
+              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/desmotadora.jpg"
+              data-caption="Antigua desmotadora de algodón empleada en los comienzos del ciclo algodonero Roque Sáenz Peña"
+              data-fancybox="gallery">
+              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/desmotadora.jpg"
+                alt="Antigua desmotadora de algodón empleada en los comienzos del ciclo algodonero Roque Sáenz Peña"
+                class="rounded img-fluid img-thumbnail">
+              <figcaption>Antigua desmotadora de algodón empleada en los comienzos del ciclo algodonero Roque Sáenz Peña
+              </figcaption>
+            </figure>
+
+            <figure style="max-width: auto;"
+              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/familia-de-colonos-inmigrantes.jpg"
+              data-caption="Inmigrantes procedentes de Europa Oriental arribados al Chaco" data-fancybox="gallery">
+              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/familia-de-colonos-inmigrantes.jpg"
+                alt="Inmigrantes procedentes de Europa Oriental arribados al Chaco"
+                class="rounded img-fluid img-thumbnail">
+              <figcaption>Inmigrantes procedentes de Europa Oriental arribados al Chaco</figcaption>
+            </figure>
+
+            <figure style="max-width: auto;" data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/termales.jpg"
+              data-caption="Baños termales previo a la remodelación de 1977" data-fancybox="gallery">
+              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/termales.jpg"
+                alt="Baños termales previo a la remodelación de 1977" class="rounded img-fluid img-thumbnail">
+              <figcaption>Baños termales previo a la remodelación de 1977</figcaption>
+            </figure>
+
+            <figure style="max-width: auto;"
+              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/baคos-termales.jpg"
+              data-caption="Baños termales" data-fancybox="gallery">
+              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/baคos-termales.jpg" alt="Baños termales"
+                class="rounded img-fluid img-thumbnail">
+              <figcaption>Baños termales</figcaption>
+            </figure>
+
+          </div>
+        </div>
       </div>
     </div>
   </section>
 @endsection
+
+@push('scripts')
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const options = {
+        Toolbar: {
+          items: {
+            download: {
+              tpl: `<button class="f-button"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M3 14.25C3.41421 14.25 3.75 14.5858 3.75 15C3.75 16.4354 3.75159 17.4365 3.85315 18.1919C3.9518 18.9257 4.13225 19.3142 4.40901 19.591C4.68577 19.8678 5.07435 20.0482 5.80812 20.1469C6.56347 20.2484 7.56459 20.25 9 20.25H15C16.4354 20.25 17.4365 20.2484 18.1919 20.1469C18.9257 20.0482 19.3142 19.8678 19.591 19.591C19.8678 19.3142 20.0482 18.9257 20.1469 18.1919C20.2484 17.4365 20.25 16.4354 20.25 15C20.25 14.5858 20.5858 14.25 21 14.25C21.4142 14.25 21.75 14.5858 21.75 15V15.0549C21.75 16.4225 21.75 17.5248 21.6335 18.3918C21.5125 19.2919 21.2536 20.0497 20.6517 20.6516C20.0497 21.2536 19.2919 21.5125 18.3918 21.6335C17.5248 21.75 16.4225 21.75 15.0549 21.75H8.94513C7.57754 21.75 6.47522 21.75 5.60825 21.6335C4.70814 21.5125 3.95027 21.2536 3.34835 20.6517C2.74643 20.0497 2.48754 19.2919 2.36652 18.3918C2.24996 17.5248 2.24998 16.4225 2.25 15.0549C2.25 15.0366 2.25 15.0183 2.25 15C2.25 14.5858 2.58579 14.25 3 14.25Z" fill="#ffffff"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 16.75C12.2106 16.75 12.4114 16.6615 12.5535 16.5061L16.5535 12.1311C16.833 11.8254 16.8118 11.351 16.5061 11.0715C16.2004 10.792 15.726 10.8132 15.4465 11.1189L12.75 14.0682V3C12.75 2.58579 12.4142 2.25 12 2.25C11.5858 2.25 11.25 2.58579 11.25 3V14.0682L8.55353 11.1189C8.27403 10.8132 7.79963 10.792 7.49393 11.0715C7.18823 11.351 7.16698 11.8254 7.44648 12.1311L11.4465 16.5061C11.5886 16.6615 11.7894 16.75 12 16.75Z" fill="#ffffff"></path> </g></svg></button>`,
+              click: () => {
+                const src = Fancybox.getSlide().src;
+
+                const a = document.getElementById("download");
+
+                a.href = src;
+                a.download = src.split("/").pop();
+                a.click();
+
+              },
+            },
+          },
+          display: {
+            left: ["infobar"],
+            middle: [],
+            right: ["download", "close"],
+          },
+        },
+      };
+
+      Fancybox.bind("[data-fancybox]", options);
+    });
+  </script>
+@endpush

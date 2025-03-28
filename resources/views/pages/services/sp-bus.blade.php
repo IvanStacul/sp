@@ -23,7 +23,7 @@
 @section('base')
   <section class="max-w-6xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
     <div class="max-w-4xl">
-      <h3 class="text-2xl font-bold text-gray-800">Recorrido de transporte urbano</h3>
+      <h3 class="text-2xl font-bold text-gray-800">Recorrido de Transporte Urbano</h3>
 
       {{-- 4 columnas 2 filas --}}
       <div class="grid grid-cols-2 gap-4 mt-4">

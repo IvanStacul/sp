@@ -65,6 +65,28 @@ return [
                     ],
                 ],
             ],
+            'Guías' => [
+                'url' => '#',
+                'icon' => 'fas fa-book',
+                'active' => false,
+                'submenu' => [
+                    'Categorías' => [
+                        'url' => 'admin.guide-categories.index',
+                        'icon' => 'fas fa-tags',
+                        'active' => false,
+                    ],
+                    'Guías' => [
+                        'url' => 'admin.guides.index',
+                        'icon' => 'fas fa-list',
+                        'active' => false,
+                    ],
+                    'Nueva guía' => [
+                        'url' => 'admin.guides.create',
+                        'icon' => 'fas fa-plus',
+                        'active' => false,
+                    ],
+                ],
+            ],
         ],
     ],
 ];

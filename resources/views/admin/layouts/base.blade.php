@@ -8,14 +8,20 @@
 
   <title>Admin | {{ env('APP_NAME') }} </title>
 
-  <!-- Font Awesome -->
+  {{-- Font Awesome --}}
   <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}" />
 
-  <!-- Theme style -->
+  {{-- Theme style --}}
   <link rel="stylesheet" href="{{ asset('admin/css/adminlte.min.css') }}" />
 
+  {{-- SweetAlert2 --}}
+  <link rel="stylesheet" href="{{ asset('admin/plugins/sweetalert2/sweetalert2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+
+  {{-- Vite --}}
   @vite(['resources/css/app.css'])
 
+  {{-- Custom styles --}}
   @stack('styles')
 </head>
 
@@ -24,25 +30,30 @@
     @yield('base')
   </div>
 
-  <!-- jQuery v3.6.0 -->
+  {{-- jQuery v3.6.0 --}}
   <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
 
-  <!-- jQuery UI v1.13.0 -->
+  {{-- jQuery UI v1.13.0 --}}
   <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  {{-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip --}}
   <script>
     $.widget.bridge("uibutton", $.ui.button);
   </script>
 
-  <!-- Bootstrap v4.6.1 -->
+  {{-- Bootstrap v4.6.1 --}}
   <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-  <!-- AdminLTE v3.2.0 -->
+  {{-- AdminLTE v3.2.0 --}}
   <script src="{{ asset('admin/js/adminlte.js') }}"></script>
 
+  {{-- SweetAlert2 --}}
+  <script src="{{ asset('admin/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+  {{-- Vite --}}
   @vite(['resources/js/app.js'])
 
+  {{-- Custom scripts --}}
   @stack('scripts')
 </body>
 
