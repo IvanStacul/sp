@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\ImportWordpressPostsController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrdinanceController;
 
-// Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/panel', PanelController::class)->name('panel');
 
     Route::resource('news', NewsController::class);
@@ -37,4 +37,4 @@ use App\Http\Controllers\Admin\OrdinanceController;
     Route::post('/guides/{guide}/deactivate', [GuideController::class, 'deactivate'])->name('guides.deactivate');
 
     Route::get('/import-wordpress', [ImportWordpressPostsController::class, 'create'])->name('import-wordpress');
-// });
+});
