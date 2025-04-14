@@ -23,7 +23,7 @@ class ImportWordpressPostsController extends Controller
     public function __construct()
     {
         $this->siteUrl = 'https://saenzpena.gob.ar';
-        $this->perPage = 1;
+        $this->perPage = 100;
         $this->page = 1;
         $this->categories = [];
         $this->posts = [];
@@ -37,7 +37,7 @@ class ImportWordpressPostsController extends Controller
     public function create()
     {
         // 1. Obtener las categorías de WordPress
-        // $this->getCategories();
+        $this->getCategories();
 
         // 2. Obtener los posts de WordPress
         $this->getPosts();
