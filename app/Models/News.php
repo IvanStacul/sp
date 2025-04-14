@@ -11,6 +11,7 @@ class News extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'wp_id',
         'title',
         'slug',
         'summary',
@@ -71,6 +72,11 @@ class News extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(NewsCategory::class, 'news_category_news');
     }
 
     // Query Scopes

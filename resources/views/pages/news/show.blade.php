@@ -52,8 +52,15 @@
   <div class="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
     <div class="max-w-2xl">
       <div class="space-y-5 md:space-y-8">
-        <div class="space-y-3">
+        {{-- <div class="space-y-3">
           <h2 class="text-2xl font-bold md:text-3xl"> {{ $news->summary }} </h2>
+        </div> --}}
+        <div class="space-y-3">
+          <p class="text-gray-500 text-sm">
+            <time datetime="{{ $news->news_date }}" class="text-gray-500 text-sm">
+              {{ $news->news_date }}
+            </time>
+          </p>
         </div>
 
         @foreach ($processedBlocks as $block)

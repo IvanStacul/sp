@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\Admin\GuideCategoryController;
 use App\Http\Controllers\Admin\GuideController;
+use App\Http\Controllers\Admin\ImportWordpressPostsController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\OrdinanceController;
 
@@ -35,4 +36,5 @@ use App\Http\Controllers\Admin\OrdinanceController;
     Route::post('/guides/{guide}/activate', [GuideController::class, 'activate'])->name('guides.activate');
     Route::post('/guides/{guide}/deactivate', [GuideController::class, 'deactivate'])->name('guides.deactivate');
 
+    Route::get('/import-wordpress', [ImportWordpressPostsController::class, 'create'])->name('import-wordpress');
 // });

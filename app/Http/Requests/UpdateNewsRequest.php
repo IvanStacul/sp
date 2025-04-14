@@ -31,7 +31,7 @@ class UpdateNewsRequest extends FormRequest
                 'max:255',
                 Rule::unique('news')->ignore($this->news)
             ],
-            'summary' => 'required|string|max:255',
+            'summary' => 'required|string',
             'content' => 'required',
             'cover_image' => 'nullable|image',
             'publish_date' => 'required|date',

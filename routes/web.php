@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/news/{slug}', function ($slug) {
+Route::get('/noticias/{slug}', function ($slug) {
     $news = News::where('slug', $slug)->firstOrFail();
 
     if (!$news->is_active) {
@@ -24,6 +24,14 @@ Route::get('/news/{slug}', function ($slug) {
 
     return view('pages.news.show', compact('news', 'recentNews'));
 })->name('news.show');
+
+Route::get('/{year}/{month}/{day}/{slug}', function ($year, $month, $day, $slug) {
+    return redirect()->route('news.show', $slug);
+})->name('news.show.old');
+
+Route::get('/en-construccion', function () {
+    return view('pages.under-construction');
+})->name('under-construction');
 
 Route::get('/ordenanzas', [OrdinanceController::class, 'index'])->name('ordinances.index');
 

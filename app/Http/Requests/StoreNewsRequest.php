@@ -25,7 +25,7 @@ class StoreNewsRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:news',
-            'summary' => 'required|string|max:255',
+            'summary' => 'required|string',
             'content' => 'required',
             'cover_image' => 'required|image',
             'publish_date' => 'required|date',
