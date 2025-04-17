@@ -29,7 +29,7 @@
           <div class="mx-auto">
             <div class="md:flex md:flex-row md:gap-8 md:items-center md:justify-center">
               <div class="md:flex-shrink-0 ">
-                <img src="{{ asset('assets/img/claudio-gil.png') }}" alt="Foto del funcionario"
+                <img src="https://v0.dev/placeholder.svg?height=600&width=600" alt="Foto del funcionario"
                   class="h-48 w-full object-cover md:w-48 rounded-lg">
               </div>
 

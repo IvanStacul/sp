@@ -3,7 +3,7 @@
 @section('hero')
   <div
     class="min-h-96 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 py-8 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
-    <img src="{{ asset('assets/img/funcionarios.webp') }}" loading="lazy" alt="Photo by Fakurian Design"
+    <img src="{{ asset('assets/img/funcionarios.webp') }}" loading="lazy" alt=""
       class="absolute inset-0 h-full w-full object-cover object-center" />
 
     <div class="absolute inset-0">
@@ -39,7 +39,7 @@
               <div>
                 <a href="{{ route('pages.institutional.intendencia') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                  <img src="{{ asset('assets/img/bruno-cipolini.png') }}" loading="lazy" alt="Foto de Bruno Cipolini"
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy" alt="Foto de Bruno Cipolini"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110">
 
                   <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
@@ -61,7 +61,7 @@
               <div>
                 <a href="{{ route('pages.institutional.secretario-1') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                  <img src="{{ asset('assets/img/diego-landriscina.png') }}" loading="lazy"
+                  <img src="https://v0.dev/placeholder.svg?height=700&width=600" loading="lazy"
                     alt="Foto de Diego Landriscina"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -158,7 +158,7 @@
                 <a href="{{ route('pages.institutional.secretario-8') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                   <img
-                    src="{{ asset('assets/img/claudio-gil.png') }}"
+                    src="https://v0.dev/placeholder.svg?height=700&width=600"
                     loading="lazy" alt="Foto de Claudio Gil"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -173,7 +173,7 @@
                 <a href="{{ route('pages.institutional.secretario-9') }}"
                   class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                   <img
-                    src="{{ asset('assets/img/oscar-pablo-dudik.png') }}"
+                    src="https://v0.dev/placeholder.svg?height=700&width=600"
                     loading="lazy" alt="Foto de Oscar Dudik"
                     class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
