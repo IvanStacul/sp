@@ -10,6 +10,11 @@ use Illuminate\View\View;
 
 class PasswordResetLinkController extends Controller
 {
+    public function __construct()
+    {
+        abort_if(!config('auth.reset_password'), 404);
+    }
+
     /**
      * Display the password reset link request view.
      */

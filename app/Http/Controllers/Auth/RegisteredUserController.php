@@ -15,6 +15,11 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    public function __construct()
+    {
+        abort_if(!config('auth.registration'), 404);
+    }
+    
     /**
      * Display the registration view.
      */

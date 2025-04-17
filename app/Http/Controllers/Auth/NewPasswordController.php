@@ -14,6 +14,11 @@ use Illuminate\View\View;
 
 class NewPasswordController extends Controller
 {
+    public function __construct()
+    {
+        abort_if(!config('auth.change_password'), 404);
+    }
+
     /**
      * Display the password reset view.
      */

@@ -1,16 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DocumentCategoryController;
-use App\Http\Controllers\Admin\DocumentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PanelController;
-use App\Http\Controllers\Admin\EditorController;
-use App\Http\Controllers\Admin\GuideCategoryController;
-use App\Http\Controllers\Admin\GuideController;
-use App\Http\Controllers\Admin\ImportWordpressPostsController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\OrdinanceController;
+use App\Http\Controllers\Admin\{CategoryController, DocumentCategoryController, DocumentController, PanelController, EditorController, GuideCategoryController, GuideController, ImportWordpressPostsController, NewsController, OrdinanceController};
 
 Route::middleware('auth')->group(function () {
     Route::get('/panel', PanelController::class)->name('panel');

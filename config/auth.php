@@ -112,4 +112,7 @@ return [
 
     'password_timeout' => 10800,
 
+    'registration' => env('APP_ALLOW_REGISTRATION', false),
+    'reset_password' => env('APP_ALLOW_RESET_PASSWORD', false),
+    'change_password' => env('APP_ALLOW_CHANGE_PASSWORD', false),
 ];

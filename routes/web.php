@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrdinanceController;
-// use App\Http\Controllers\ProfileController;
-use App\Models\News;
-use App\Models\Document;
+use App\Models\{News, Document};
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{HomeController, OrdinanceController};
+// use App\Http\Controllers\ProfileController;
 
 Route::get('/', HomeController::class)->name('home');
 
@@ -16,11 +14,7 @@ Route::get('/noticias/{slug}', function ($slug) {
         abort(404);
     }
 
-    $recentNews = News::orderBy('publish_date', 'desc')
-        ->where('slug', '!=', $slug)
-        ->active()
-        ->limit(3)
-        ->get();
+    $recentNews = News::orderBy('publish_date', 'desc')->where('slug', '!=', $slug)->active()->limit(3)->get();
 
     return view('pages.news.show', compact('news', 'recentNews'));
 })->name('news.show');
