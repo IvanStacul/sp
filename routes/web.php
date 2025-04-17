@@ -35,7 +35,7 @@ Route::get('/en-construccion', function () {
 
 Route::get('/ordenanzas', [OrdinanceController::class, 'index'])->name('ordinances.index');
 
-Route::get('/news', function () {
+Route::get('/noticias', function () {
     return view('pages.news.index', ['news' => News::orderBy('publish_date', 'desc')->active()->paginate(env('PER_PAGE'))]);
 })->name('news.index');
 

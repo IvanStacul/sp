@@ -16,9 +16,9 @@
         <div class="mt-3 grid space-y-3">
 
           <p class="block text-gray-50 hover:text-gray-200 focus:text-gray-200 focus:outline-none">
-            <a href="mailto:cad@resistencia.gob.ar"
+            <a href="mailto:modernizacionspciudad@gmail.com"
               class="text-gray-50 hover:text-gray-200 focus:text-gray-200 focus:outline-none">
-              <i class="far fa-envelope"></i> Correo: <span class="underline"> cad@resistencia.gob.ar </span>
+              <i class="far fa-envelope"></i> Correo: <span class="underline"> modernizacionspciudad@gmail.com </span>
             </a>
           </p>
         </div>
