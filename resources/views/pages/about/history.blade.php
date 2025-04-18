@@ -85,8 +85,8 @@
           </div>
 
           <div>
-            <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/bandera-de-la-ciudad.jpg" loading="lazy"
-              alt="Bandera de la Ciudad" class="w-full object-cover object-center rounded-lg" />
+            <img src="{{ asset('assets/img/bandera-de-la-ciudad.webp') }}" loading="lazy" alt="Bandera de la Ciudad"
+              class="w-full object-cover object-center rounded-lg" />
           </div>
         </div>
 
@@ -216,20 +216,18 @@
         <div id="image-gallery">
           <div class="grid gap-3 lg:grid-cols-2">
             <div class="grid grid-cols-2 gap-3 lg:grid-cols-1">
-              <figure style="  max-width: auto;"
-                data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Forestal.jpg"
+              <figure style="  max-width: auto;" data-src="{{ asset('assets/img/forestal.webp') }}"
                 data-caption="La llegada del Ferrocarril favoreció la colonización del interior chaqueño"
                 data-fancybox="gallery">
-                <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Forestal.jpg"
+                <img src="{{ asset('assets/img/forestal.webp') }}"
                   alt="La llegada del Ferrocarril favoreció la colonización del interior chaqueño"
                   class="rounded img-fluid img-thumbnail">
                 <figcaption>La llegada del Ferrocarril favoreció la colonización del interior chaqueño</figcaption>
               </figure>
 
-              <figure style="  max-width: auto;"
-                data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Cte.Fernandez.jpg"
+              <figure style="  max-width: auto;" data-src="{{ asset('assets/img/cte-fernandez.webp') }}"
                 data-caption="Comandante Carlos D. Fernández fundador de Pcia. Roque Sáenz Peña" data-fancybox="gallery">
-                <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/Cte.Fernandez.jpg"
+                <img src="{{ asset('assets/img/cte-fernandez.webp') }}"
                   alt="Comandante Carlos D. Fernández fundador de Pcia. Roque Sáenz Peña"
                   class="rounded img-fluid img-thumbnail">
                 <figcaption>Comandante Carlos D. Fernández fundador de Pcia. Roque Sáenz Peña</figcaption>
@@ -239,9 +237,9 @@
 
 
             <figure class="relative h-72 w-full sm:h-96 lg:h-full" data-fancybox="gallery"
-              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/cosechero.jpg">
+              data-src="{{ asset('assets/img/cosechero.webp') }}">
               <img class="absolute left-0 top-0 w-full h-full rounded-xl object-cover"
-                src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/cosechero.jpg" alt="Cosecha manual de algodón">
+                src="{{ asset('assets/img/cosechero.webp') }}" alt="Cosecha manual de algodón">
               <figcaption class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white text-sm p-2">
                 Cosecha manual de algodón
               </figcaption>
@@ -249,37 +247,34 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-            <figure style="max-width: auto;"
-              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/desmotadora.jpg"
+            <figure style="max-width: auto;" data-src="{{ asset('assets/img/desmotadora.webp') }}"
               data-caption="Antigua desmotadora de algodón empleada en los comienzos del ciclo algodonero Roque Sáenz Peña"
               data-fancybox="gallery">
-              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/desmotadora.jpg"
+              <img src="{{ asset('assets/img/desmotadora.webp') }}"
                 alt="Antigua desmotadora de algodón empleada en los comienzos del ciclo algodonero Roque Sáenz Peña"
                 class="rounded img-fluid img-thumbnail">
               <figcaption>Antigua desmotadora de algodón empleada en los comienzos del ciclo algodonero Roque Sáenz Peña
               </figcaption>
             </figure>
 
-            <figure style="max-width: auto;"
-              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/familia-de-colonos-inmigrantes.jpg"
+            <figure style="max-width: auto;" data-src="{{ asset('assets/img/familia-de-colonos-inmigrantes.webp') }}"
               data-caption="Inmigrantes procedentes de Europa Oriental arribados al Chaco" data-fancybox="gallery">
-              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/familia-de-colonos-inmigrantes.jpg"
+              <img src="{{ asset('assets/img/familia-de-colonos-inmigrantes.webp') }}"
                 alt="Inmigrantes procedentes de Europa Oriental arribados al Chaco"
                 class="rounded img-fluid img-thumbnail">
               <figcaption>Inmigrantes procedentes de Europa Oriental arribados al Chaco</figcaption>
             </figure>
 
-            <figure style="max-width: auto;" data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/termales.jpg"
+            <figure style="max-width: auto;" data-src="{{ asset('assets/img/termales.webp') }}"
               data-caption="Baños termales previo a la remodelación de 1977" data-fancybox="gallery">
-              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/termales.jpg"
-                alt="Baños termales previo a la remodelación de 1977" class="rounded img-fluid img-thumbnail">
+              <img src="{{ asset('assets/img/termales.webp') }}" alt="Baños termales previo a la remodelación de 1977"
+                class="rounded img-fluid img-thumbnail">
               <figcaption>Baños termales previo a la remodelación de 1977</figcaption>
             </figure>
 
-            <figure style="max-width: auto;"
-              data-src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/baคos-termales.jpg"
+            <figure style="max-width: auto;" data-src="{{ asset('assets/img/banios-termales.webp') }}"
               data-caption="Baños termales" data-fancybox="gallery">
-              <img src="https://saenzpena.gob.ar/wp-content/uploads/2021/07/baคos-termales.jpg" alt="Baños termales"
+              <img src="{{ asset('assets/img/banios-termales.webp') }}" alt="Baños termales"
                 class="rounded img-fluid img-thumbnail">
               <figcaption>Baños termales</figcaption>
             </figure>
