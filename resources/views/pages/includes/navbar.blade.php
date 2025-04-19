@@ -100,7 +100,7 @@
                           </a>
                         </li>
                         <li class="menu-item">
-                          <a href="{{ route('docs') }}" class="hover:!text-green-600">Documentos Oficiales y resoluciones</a>
+                          <a href="{{ route('docs') }}" class="hover:!text-green-600">Documentos Oficiales y Resoluciones</a>
                         </li>
                       </ul>
                     </div>
@@ -259,7 +259,7 @@
 
                         <li class="menu-item">
                           <a href="{{ route('docs') }}" class="hover:!text-green-600">
-                            Documentos Oficiales y resoluciones
+                            Documentos Oficiales y Resoluciones
                           </a>
                         </li>
                       </ul>
