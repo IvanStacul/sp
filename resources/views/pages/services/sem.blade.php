@@ -81,7 +81,7 @@
       </p>
 
       {{-- dos botones con un enlace a un pdf - centrados --}}
-      <div class="flex justify-around mt-8">
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4 mt-8">
         <a href="{{ asset('assets/docs/folleto-comercios-adheridos.pdf') }}" target="_blank"
           class="px-6 py-3 text-lg font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600 hover:!text-gray-50">
           Comercios Adheridos
@@ -91,8 +91,6 @@
           Comercios Adheridos (DORSO)
         </a>
       </div>
-
-
     </div>
   </section>
 @endsection

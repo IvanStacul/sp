@@ -10,9 +10,9 @@
       <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     </div>
 
-    <div class="relative flex flex-row gap-72 items-center min-w-screen px-16 md:px-32">
+    <div class="relative flex flex-col md:flex-row gap-4 md:gap-72 items-center min-w-screen px-4 md:px-32">
       <div>
-        <h2 class="mb-4 text-center font-bold text-7xl text-gray-50 md:mb-8">
+        <h2 class="mb-4 text-center font-bold text-4xl text-gray-50 md:mb-8 xl:text-6xl">
           Recolección de Residuos
         </h2>
       </div>
