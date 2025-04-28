@@ -10,7 +10,7 @@
     <tbody>
       @foreach ($content as $key => $row)
         @if ($key > 0)
-          <!-- Salta la primera fila si se usó para encabezados -->
+          {{-- Salta la primera fila si se usó para encabezados --}}
           <tr>
             @foreach ($row as $cell)
               <td>{{ $cell }}</td>

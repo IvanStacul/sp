@@ -2,7 +2,7 @@
 
 @foreach ($items as $item)
   <li class="mb-2">
-    {{ $item['content'] }}
+    {!! $item['content'] !!}
     @if (!empty($item['items']))
       <x-editorjs.nested-list :style="$style" :items="$item['items']" />
     @endif
