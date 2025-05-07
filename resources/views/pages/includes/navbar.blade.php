@@ -1,151 +1,155 @@
 <div class="hidden lg:block">
   <div class="header-navs bg-gray-50">
     <div class="container">
-      <div class="flex content-between flex-wrap lg:flex-nowrap lg:justify-between lg:items-center">
-        <div class="logos">
-          <div class="logo-item">
-            <a href="{{ route('home') }}" class="logo block mt-2">
-              <img src="{{ asset('assets/img/logo-municipalidad.webp') }}" alt="logo" class="w-52" />
-              <span class="sr-only">Logo</span>
-            </a>
+      <div class="text-gray-50 px-8 antialiased md:px-16">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+          <div class="flex content-between flex-wrap lg:flex-nowrap lg:justify-between lg:items-center">
+            <div class="logos">
+              <div class="logo-item">
+                <a href="{{ route('home') }}" class="logo block mt-2">
+                  <img src="{{ asset('assets/logo.png') }}" alt="logo" class="w-64" />
+                  <span class="sr-only">Logo</span>
+                </a>
+              </div>
+            </div>
+
+            <nav class="main-navigation" aria-label="Main navigation">
+              <div class="menu-main-menu-container">
+                <ul class="menu nav-menu lg:flex lg:items-center lg:gap-1 xl:gap-2">
+                  <li class="menu-item lg:inline-flex lg:items-center has-link-icon">
+                    <a href="{{ route('home') }}" class="hover:!text-green-600 hover:!border-green-600">
+                      <span>Inicio</span>
+                    </a>
+                  </li>
+
+                  <li class="menu-item group">
+                    <a href="{{ route('services.index') }}"
+                      class="group-hover:!text-green-600 group-hover:!border-green-600">Servicios</a>
+                  </li>
+
+                  <li class="menu-item relative lg:inline-flex lg:items-center menu-item-has-children group z-10">
+                    <a href="" onclick="return false;" data-dropdown-placement="bottom-start"
+                      data-dropdown-toggle="TramitesHover" data-dropdown-trigger="hover"
+                      class="group-hover:!text-green-600 group-hover:!border-green-600">
+                      Tramites
+                    </a>
+
+                    <button id="TramitesMenus" data-dropdown-toggle="TramitesHover"
+                      class="submenu-btn flex-shrink-0 group-hover:!text-green-600">
+                      <span><span class="sr-only">show submenu for "Our services"</span></span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                        <rect width="256" height="256" fill="none" />
+                        <polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="16" />
+                      </svg>
+                    </button>
+                    <!-- submenu start from left -->
+                    <div id="TramitesHover" class="submenu hidden lg:py-4 xl:py-5 2xl:py-6 rounded-bordered">
+                      <div class="[&>div]:p-3 [&>div]:w-72 lg:flex lg:flex-wrap">
+                        <div>
+                          <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="TramitesMenus">
+                            <li class="menu-item">
+                              <a href="https://apps.saenzpeña.gob.ar/Autogestion" class="hover:!text-green-600">Autogestión (impuestos)</a>
+                            </li>
+                            <li class="menu-item">
+                              <a href="{{ route('guides.index') }}" class="hover:!text-green-600">Guía de trámites</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="menu-item group">
+                    <a href="{{ route('news.index') }}"
+                      class="group-hover:!text-green-600 group-hover:!border-green-600">Noticias</a>
+                  </li>
+
+                  <li class="menu-item group">
+                    <a href="{{ route('pages.institutional.index') }}"
+                      class="group-hover:!text-green-600 group-hover:!border-green-600">Institucional</a>
+                  </li>
+
+                  <li class="menu-item relative lg:inline-flex lg:items-center menu-item-has-children group z-10">
+                    <a href="" onclick="return false;" data-dropdown-placement="bottom-start"
+                      data-dropdown-toggle="DocumentosHover" data-dropdown-trigger="hover"
+                      class="group-hover:!text-green-600 group-hover:!border-green-600">
+                      Documentos
+                    </a>
+
+                    <button id="DocumentosMenus" data-dropdown-toggle="DocumentosHover"
+                      class="submenu-btn flex-shrink-0 group-hover:!text-green-600">
+                      <span>
+                        <span class="sr-only">mostrar submenú para "Documentos"</span>
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                        <rect width="256" height="256" fill="none" />
+                        <polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="16" />
+                      </svg>
+                    </button>
+                    <!-- submenu start from left -->
+                    <div id="DocumentosHover" class="submenu hidden lg:py-4 xl:py-5 2xl:py-6 rounded-bordered">
+                      <div class="[&>div]:p-3 [&>div]:w-72 lg:flex lg:flex-wrap">
+                        <div>
+                          <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="DocumentosMenus">
+                            <li class="menu-item">
+                              <a href="{{ route('ordinances.index') . '?category=ordenanzas' }}" class="hover:!text-green-600">Ordenanzas</a>
+                            </li>
+                            <li class="menu-item">
+                              <a href="{{ route('ordinances.index') . '?category=ordenanzas-impositivas-y-tarifarias' }}" class="hover:!text-green-600">
+                                Ordenanzas impositivas y tributarias
+                              </a>
+                            </li>
+                            <li class="menu-item">
+                              <a href="{{ route('docs') }}" class="hover:!text-green-600">Documentos Oficiales y Resoluciones</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="menu-item relative lg:inline-flex lg:items-center menu-item-has-children group z-10">
+                    <a href="" onclick="return false;" data-dropdown-placement="bottom-start"
+                      data-dropdown-toggle="MeetHover" data-dropdown-trigger="hover"
+                      class="group-hover:!text-green-600 group-hover:!border-green-600">
+                      Conocé Sáenz Peña
+                    </a>
+
+                    <button id="MeetMenus" data-dropdown-toggle="MeetHover"
+                      class="submenu-btn flex-shrink-0 group-hover:!text-green-600">
+                      <span><span class="sr-only">show submenu for "Our services"</span></span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                        <rect width="256" height="256" fill="none" />
+                        <polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor"
+                          stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                      </svg>
+                    </button>
+
+                    <div id="MeetHover" class="submenu hidden lg:py-4 xl:py-5 2xl:py-6 rounded-bordered">
+                      <div class="[&>div]:p-3 [&>div]:w-72 lg:flex lg:flex-wrap">
+                        <div>
+                          <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="MeetMenus">
+                            <li class="menu-item">
+                              <a href="{{ route('under-construction') }}" class="hover:!text-green-600">Turismo</a>
+                            </li>
+                            {{-- <li class="menu-item">
+                              <a href="" onclick="return false;" class="hover:!text-green-600">Cultura</a>
+                            </li> --}}
+                            <li class="menu-item">
+                              <a href="{{ route('about.history') }}" class="hover:!text-green-600">Historia</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
           </div>
         </div>
-
-        <nav class="main-navigation" aria-label="Main navigation">
-          <div class="menu-main-menu-container">
-            <ul class="menu nav-menu lg:flex lg:items-center lg:gap-1 xl:gap-2">
-              <li class="menu-item lg:inline-flex lg:items-center has-link-icon">
-                <a href="{{ route('home') }}" class="hover:!text-green-600 hover:!border-green-600">
-                  <span>Inicio</span>
-                </a>
-              </li>
-
-              <li class="menu-item group">
-                <a href="{{ route('services.index') }}"
-                  class="group-hover:!text-green-600 group-hover:!border-green-600">Servicios</a>
-              </li>
-
-              <li class="menu-item relative lg:inline-flex lg:items-center menu-item-has-children group z-10">
-                <a href="" onclick="return false;" data-dropdown-placement="bottom-start"
-                  data-dropdown-toggle="TramitesHover" data-dropdown-trigger="hover"
-                  class="group-hover:!text-green-600 group-hover:!border-green-600">
-                  Tramites
-                </a>
-
-                <button id="TramitesMenus" data-dropdown-toggle="TramitesHover"
-                  class="submenu-btn flex-shrink-0 group-hover:!text-green-600">
-                  <span><span class="sr-only">show submenu for "Our services"</span></span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                    <rect width="256" height="256" fill="none" />
-                    <polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor" stroke-linecap="round"
-                      stroke-linejoin="round" stroke-width="16" />
-                  </svg>
-                </button>
-                <!-- submenu start from left -->
-                <div id="TramitesHover" class="submenu hidden lg:py-4 xl:py-5 2xl:py-6 rounded-bordered">
-                  <div class="[&>div]:p-3 [&>div]:w-72 lg:flex lg:flex-wrap">
-                    <div>
-                      <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="TramitesMenus">
-                        <li class="menu-item">
-                          <a href="https://apps.saenzpeña.gob.ar/Autogestion" class="hover:!text-green-600">Autogestión (impuestos)</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="{{ route('guides.index') }}" class="hover:!text-green-600">Guía de trámites</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li class="menu-item group">
-                <a href="{{ route('news.index') }}"
-                  class="group-hover:!text-green-600 group-hover:!border-green-600">Noticias</a>
-              </li>
-
-              <li class="menu-item group">
-                <a href="{{ route('pages.institutional.index') }}"
-                  class="group-hover:!text-green-600 group-hover:!border-green-600">Institucional</a>
-              </li>
-
-              <li class="menu-item relative lg:inline-flex lg:items-center menu-item-has-children group z-10">
-                <a href="" onclick="return false;" data-dropdown-placement="bottom-start"
-                  data-dropdown-toggle="DocumentosHover" data-dropdown-trigger="hover"
-                  class="group-hover:!text-green-600 group-hover:!border-green-600">
-                  Documentos
-                </a>
-
-                <button id="DocumentosMenus" data-dropdown-toggle="DocumentosHover"
-                  class="submenu-btn flex-shrink-0 group-hover:!text-green-600">
-                  <span>
-                    <span class="sr-only">mostrar submenú para "Documentos"</span>
-                  </span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                    <rect width="256" height="256" fill="none" />
-                    <polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor" stroke-linecap="round"
-                      stroke-linejoin="round" stroke-width="16" />
-                  </svg>
-                </button>
-                <!-- submenu start from left -->
-                <div id="DocumentosHover" class="submenu hidden lg:py-4 xl:py-5 2xl:py-6 rounded-bordered">
-                  <div class="[&>div]:p-3 [&>div]:w-72 lg:flex lg:flex-wrap">
-                    <div>
-                      <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="DocumentosMenus">
-                        <li class="menu-item">
-                          <a href="{{ route('ordinances.index') . '?category=ordenanzas' }}" class="hover:!text-green-600">Ordenanzas</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="{{ route('ordinances.index') . '?category=ordenanzas-impositivas-y-tarifarias' }}" class="hover:!text-green-600">
-                            Ordenanzas impositivas y tributarias
-                          </a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="{{ route('docs') }}" class="hover:!text-green-600">Documentos Oficiales y Resoluciones</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <li class="menu-item relative lg:inline-flex lg:items-center menu-item-has-children group z-10">
-                <a href="" onclick="return false;" data-dropdown-placement="bottom-start"
-                  data-dropdown-toggle="MeetHover" data-dropdown-trigger="hover"
-                  class="group-hover:!text-green-600 group-hover:!border-green-600">
-                  Conocé Sáenz Peña
-                </a>
-
-                <button id="MeetMenus" data-dropdown-toggle="MeetHover"
-                  class="submenu-btn flex-shrink-0 group-hover:!text-green-600">
-                  <span><span class="sr-only">show submenu for "Our services"</span></span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                    <rect width="256" height="256" fill="none" />
-                    <polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor"
-                      stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                  </svg>
-                </button>
-
-                <div id="MeetHover" class="submenu hidden lg:py-4 xl:py-5 2xl:py-6 rounded-bordered">
-                  <div class="[&>div]:p-3 [&>div]:w-72 lg:flex lg:flex-wrap">
-                    <div>
-                      <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="MeetMenus">
-                        <li class="menu-item">
-                          <a href="{{ route('under-construction') }}" class="hover:!text-green-600">Turismo</a>
-                        </li>
-                        {{-- <li class="menu-item">
-                          <a href="" onclick="return false;" class="hover:!text-green-600">Cultura</a>
-                        </li> --}}
-                        <li class="menu-item">
-                          <a href="{{ route('about.history') }}" class="hover:!text-green-600">Historia</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
       </div>
     </div>
   </div>
@@ -160,7 +164,7 @@
         <div class="logos">
           <div class="logo-item">
             <a href="{{ route('home') }}" class="logo block">
-              <img src="{{ asset('assets/img/logo-municipalidad.webp') }}" alt="logo" />
+              <img src="{{ asset('assets/logo.png') }}" alt="logo" />
               <span class="sr-only">Logo</span>
             </a>
           </div>
@@ -194,7 +198,7 @@
     <div class="w-full">
       <div class="w-full max-lg:px-4 flex items-center justify-between gap-4 mb-4">
         <a href="{{ route('home') }}">
-          <img src="{{ asset('assets/img/logo-municipalidad.webp') }}" alt="logo" width="120" />
+          <img src="{{ asset('assets/logo.png') }}" alt="logo" width="120" />
         </a>
 
         <div class="flex items-center gap-4">

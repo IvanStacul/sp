@@ -47,17 +47,17 @@
       </div>
     </div>
 
-    <div class="pt-8 text-center text-sm text-gray-50 hover:text-gray-200">
-      <p>Municipalidad de Presidencia Roque Sáenz Peña | © 2025 Ciudad Termal</p>
+    <div class="pt-8 text-center text-sm text-gray-50 hover:text-gray-200 pb-4">
+      <p>Municipalidad de Presidencia Roque Sáenz Peña | © {{ date('Y') }} Ciudad Termal</p>
     </div>
 
-    <div class="mt-4 rounded-t-3xl bg-gray-50 p-4 flex flex-col md:flex-row items-center justify-around">
+    {{-- <div class="mt-4 rounded-t-3xl bg-gray-50 p-4 flex flex-col md:flex-row items-center justify-around">
       <img alt="" src="{{ asset('assets/img/logo-municipalidad.webp') }}" loading="lazy" class="w-48 pb-4 md:pb-0">
       <img alt="" src="{{ asset('assets/img/logo-secretaria-gobierno.webp') }}" loading="lazy" class="w-48 pb-4 md:pb-0">
       <img alt="" src="{{ asset('assets/img/logo-subsecretaria-modernizacion.webp') }}" loading="lazy"
         class="w-48">
-    </div>
+    </div> --}}
 
-    <div class="bg-gray-200 py-4 text-center text-sm"></div>
+    {{-- <div class="bg-gray-200 py-4 text-center text-sm"></div> --}}
   </div>
 </footer>
