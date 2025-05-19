@@ -41,7 +41,7 @@
 
         <div
           class="mb-8 grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 md:mb-0 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6">
-          <a href="{{ route('services.residuos') }}" class="group text-center">
+          {{-- <a href="{{ route('services.residuos') }}" class="group text-center">
             <div
               class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full border-2 border-gray-500 bg-white text-gray-700 group-hover:bg-green-50 group-hover:border-green-600">
               <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 110.0"
@@ -53,7 +53,7 @@
             <p class="text-lg font-semibold text-gray-700 group-hover:underline group-hover:text-green-700">
               Recolección de Residuos
             </p>
-          </a>
+          </a> --}}
 
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0AaaCxq5tuijswiy9j3nreTAtFFNS7-pOJLng4ClgqBc0tQ/viewform"
             class="group text-center" target="_blank" rel="noopener noreferrer">
