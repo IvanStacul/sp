@@ -16,9 +16,9 @@
         <div class="mt-3 grid space-y-3">
 
           <p class="block text-gray-50 hover:text-gray-200 focus:text-gray-200 focus:outline-none">
-            <a href="mailto:modernizacionspciudad@gmail.com"
+            <a href="mailto:contacto@saenzpeña.gob.ar"
               class="text-gray-50 hover:text-gray-200 focus:text-gray-200 focus:outline-none">
-              <i class="far fa-envelope"></i> Correo: <span class="underline"> modernizacionspciudad@gmail.com </span>
+              <i class="far fa-envelope"></i> Correo: <span class="underline"> contacto@saenzpeña.gob.ar </span>
             </a>
           </p>
         </div>
