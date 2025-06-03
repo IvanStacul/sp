@@ -73,7 +73,7 @@
       <p class="text-lg !text-gray-800">
         Podés conocer todos los detalles del Plan a través de Instagram en la cuenta <a
           href="https://www.instagram.com/sustentableycircularsp"
-          class="text-green-600 hover:underline">@sustentableycircularsp</a>
+          class="text-green-600 hover:underline hover:text-green-700">@sustentableycircularsp</a>
       </p>
     </div>
   </section>

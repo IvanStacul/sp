@@ -201,6 +201,17 @@
           }
         });
       });
+
+      const links = document.querySelectorAll('section.text-gray-800.px-8.antialiased.md\\:px-16 a');
+      links.forEach(link => {
+        link.classList.add('text-green-600', 'hover:underline', 'hover:text-green-700');
+      });
+
+      // agregar un background gris claro a los h1, h2, h3, h4 dentro de div hs-accordion-group space-y-2
+      const headings = document.querySelectorAll('div.hs-accordion-group.space-y-2 h1, div.hs-accordion-group.space-y-2 h2, div.hs-accordion-group.space-y-2 h3, div.hs-accordion-group.space-y-2 h4');
+      headings.forEach(heading => {
+        heading.classList.add('bg-gray-100', 'p-2', 'rounded');
+      });
     });
   </script>
 @endpush
