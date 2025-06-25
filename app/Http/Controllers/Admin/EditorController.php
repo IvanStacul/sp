@@ -61,16 +61,38 @@ class EditorController extends Controller
         return response()->json(['success' => 0]);
     }
 
-    public function uploadAttachment(Request $request)
+        public function uploadAttachment(Request $request)
     {
-        // only allow video files
+        // Allow video files, PDFs, Excel files, Word documents
         $request->validate([
-            'file' => 'required|mimetypes:video/*',
+            'file' => 'required|mimetypes:video/*,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document|max:10240', // 10MB max
         ]);
 
         $attachment = $request->file('file');
 
-        $result = $attachment->store('news/attachments', 'public');
+        // Determine the storage path based on context and file type
+        $mimeType = $attachment->getMimeType();
+        $context = $request->input('context', 'news'); // Default to news for backwards compatibility
+
+        if ($context === 'edicts') {
+            // For edicts, organize by file type
+            if (str_contains($mimeType, 'video')) {
+                $storageFolder = 'edicts/videos';
+            } elseif (str_contains($mimeType, 'pdf')) {
+                $storageFolder = 'edicts/documents';
+            } elseif (str_contains($mimeType, 'excel') || str_contains($mimeType, 'spreadsheet')) {
+                $storageFolder = 'edicts/spreadsheets';
+            } elseif (str_contains($mimeType, 'word') || str_contains($mimeType, 'document')) {
+                $storageFolder = 'edicts/documents';
+            } else {
+                $storageFolder = 'edicts/attachments';
+            }
+        } else {
+            // For news, keep original behavior (only videos)
+            $storageFolder = 'news/attachments';
+        }
+
+        $result = $attachment->store($storageFolder, 'public');
 
         if ($result) {
             return response()->json([

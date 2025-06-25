@@ -50,7 +50,7 @@ class UpdateNewsRequest extends FormRequest
         $this->merge([
             'is_active' => $this->has('is_active'),
             'slug' => Str::slug($this->input('title')) . '-' . Str::random(5),
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
         ]);
     }
 }

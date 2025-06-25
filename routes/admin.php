@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{CategoryController, DocumentCategoryController, DocumentController, PanelController, EditorController, GuideCategoryController, GuideController, ImportWordpressPostsController, NewsController, OrdinanceController};
+use App\Http\Controllers\Admin\{CategoryController, DocumentCategoryController, DocumentController, EdictController, PanelController, EditorController, GuideCategoryController, GuideController, ImportWordpressPostsController, NewsController, OrdinanceController};
 
 Route::middleware('auth')->group(function () {
     Route::get('/panel', PanelController::class)->name('panel');
@@ -9,6 +9,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('news', NewsController::class);
     Route::post('/news/{news}/activate', [NewsController::class, 'activate'])->name('news.activate');
     Route::post('/news/{news}/deactivate', [NewsController::class, 'deactivate'])->name('news.deactivate');
+
+    Route::resource('edicts', EdictController::class);
+    Route::patch('/edicts/{edict}/activate', [EdictController::class, 'activate'])->name('edicts.activate');
+    Route::patch('/edicts/{edict}/deactivate', [EdictController::class, 'deactivate'])->name('edicts.deactivate');
 
     Route::post('upload-image', [EditorController::class, 'uploadImage'])->name('editor.uploadImage');
     Route::post('fetch-image', [EditorController::class, 'fetchImage'])->name('editor.fetchImage');

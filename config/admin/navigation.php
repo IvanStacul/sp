@@ -21,6 +21,23 @@ return [
                     ],
                 ],
             ],
+            'Edictos' => [
+                'url' => '#',
+                'icon' => 'fas fa-scroll',
+                'active' => false,
+                'submenu' => [
+                    'Listado de edictos' => [
+                        'url' => 'admin.edicts.index',
+                        'icon' => 'fas fa-list',
+                        'active' => false,
+                    ],
+                    'Nuevo edicto' => [
+                        'url' => 'admin.edicts.create',
+                        'icon' => 'fas fa-plus',
+                        'active' => false,
+                    ],
+                ],
+            ],
             'Ordenanzas' => [
                 'url' => '#',
                 'icon' => 'fas fa-gavel',

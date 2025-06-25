@@ -313,6 +313,98 @@
     </div>
   </section>
 
+  <section id="edicts" class="text-gray-50 px-8 antialiased md:px-16">
+    <div class=" pb-6 sm:pb-8 lg:pb-12">
+      <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+        @if ($edicts->count() > 0)
+          <div class="px-4 md:px-6 lg:px-8">
+            <div class="space-y-2 text-center">
+              <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-gray-800">
+                Edictos Municipales
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 lg:grid-cols-3">
+              @foreach ($edicts as $edict)
+                <a href="{{ route('edicts.show', $edict) }}">
+                <div class="max-w-xs flex flex-col bg-white border border-t-4 border-t-green-600/95 shadow-sm rounded-xl">
+                  <div class="p-4 md:p-5">
+                    <time class="text-xs text-green-600 font-semibold">{{ $edict->edict_date }}</time>
+                    <h3 class="text-lg font-bold text-gray-800 mt-2">
+                      {{ $edict->title }}
+                    </h3>
+                    <p class="mt-2 text-gray-500">
+                      @php
+                        $description = '';
+                        $content = is_array($edict->content) ? $edict->content : json_decode($edict->content, true);
+
+                        if ($content && isset($content['blocks']) && is_array($content['blocks'])) {
+                          foreach ($content['blocks'] as $block) {
+                            if (isset($block['type']) && $block['type'] === 'paragraph' && isset($block['data']['text'])) {
+                              $text = strip_tags($block['data']['text']);
+                              if (!empty(trim($text))) {
+                                $description = Str::limit($text, 100);
+                                break;
+                              }
+                            }
+                          }
+                        }
+
+                        if (empty($description)) {
+                          $description = 'Ver contenido completo del edicto...';
+                        }
+                      @endphp
+                      {{ $description }}
+                    </p>
+                    {{-- <a href="{{ route('edicts.show', $edict) }}"
+                      class="mt-3 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600/95 text-white hover:bg-green-800 hover:!text-gray-100 focus:outline-none focus:bg-green-900 disabled:opacity-50 disabled:pointer-events-none">
+                      Ver Edicto
+                      <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                      </svg>
+                    </a> --}}
+                    </div>
+                  </div>
+                </a>
+              @endforeach
+            </div>
+
+            <div class="mt-10 text-center">
+              <a href="{{ route('edicts.index') }}"
+                class="px-6 py-3 text-lg font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600 hover:!text-gray-50 transition-colors duration-300">
+                Ver todos los edictos
+              </a>
+            </div>
+          </div>
+        @else
+          <div class="bg-green-50 border border-green-200 text-sm text-green-800 rounded-lg p-4 " role="alert"
+            tabindex="-1" aria-labelledby="hs-with-description-label">
+            <div class="flex">
+              <div class="shrink-0">
+                <svg class="shrink-0 size-4 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12" y2="16" />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <p class="text-green-700">
+                  No hay edictos disponibles en este momento.
+                </p>
+              </div>
+            </div>
+          </div>
+        @endif
+
+      </div>
+    </div>
+  </section>
+
   <section id="banner-turismo" class="bg-white pb-6 sm:pb-8 lg:pb-12">
     <div class="relative h-[400px] w-full overflow-hidden">
       <div class="absolute inset-0">
@@ -354,9 +446,9 @@
   <section id="news" class="text-gray-50 px-8 antialiased md:px-16">
     <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-        <div
-          class="mb-4 items-center justify-between pb-4 text-gray-900 border-gray-800 md:mb-8 md:flex md:border-b md:pb-8">
-          <h2 class="text-center text-xl font-semibold text-gray-900 sm:mb-0 sm:text-3xl">
+
+        <div class="space-y-2 text-center mb-8">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-gray-800">
             Noticias
           </h2>
         </div>

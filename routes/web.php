@@ -2,7 +2,8 @@
 
 use App\Models\{News, Document};
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, OrdinanceController};
+use App\Http\Controllers\{EdictController, HomeController, OrdinanceController};
+use Illuminate\Support\Facades\Artisan;
 // use App\Http\Controllers\ProfileController;
 
 Route::get('/', HomeController::class)->name('home');
@@ -32,6 +33,9 @@ Route::get('/ordenanzas', [OrdinanceController::class, 'index'])->name('ordinanc
 Route::get('/noticias', function () {
     return view('pages.news.index', ['news' => News::orderBy('publish_date', 'desc')->active()->paginate(env('PER_PAGE'))]);
 })->name('news.index');
+
+Route::get('/edictos', [EdictController::class, 'index'])->name('edicts.index');
+Route::get('/edictos/{edict:slug}', [EdictController::class, 'show'])->name('edicts.show');
 
 Route::get('/docs', function () {
     $docs = Document::with('category')->orderBy('created_at', 'desc')->get();

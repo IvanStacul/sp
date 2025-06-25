@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
+use App\Models\{News, Edict};
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         $news = News::orderBy('publish_date', 'desc')->active()->limit(3)->get();
-        return view('index', compact('news'));
+        $edicts = Edict::orderBy('publish_date', 'desc')->active()->limit(3)->get();
+        return view('index', compact('news', 'edicts'));
     }
 }
