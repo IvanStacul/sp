@@ -22,7 +22,6 @@ class StoreEdictRequest extends FormRequest
      */
     public function rules(): array
     {
-        dd($this->all());
         return [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:edicts,slug',

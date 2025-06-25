@@ -35,9 +35,13 @@
     const attachmentEndpoint = '{{ $uploadAttachmentEndpoint ?? route("admin.editor.uploadAttachment") }}';
     const attachmentEndpointWithToken = attachmentEndpoint + '?_token={{ csrf_token() }}&context=edicts';
 
-    const editor = new EditorJS({
-      holder: editorElement,
-      tools: {
+    let editor;
+
+    // Inicializar el editor
+    try {
+      editor = new EditorJS({
+        holder: editorElement,
+        tools: {
         header: {
           class: Header,
           inlineToolbar: ['link'],
@@ -180,25 +184,41 @@
         }
       },
       data: editorData,
+      onReady: () => {
+        console.log('EditorJS is ready');
+      },
     });
 
+    console.log('EditorJS initialized successfully');
+
+  } catch (error) {
+    console.error('Error initializing EditorJS:', error);
+    return;
+  }
+
     // Manejar el envío del formulario
-    const form = document.querySelector('form');
-    if (form) {
+    const form = inputElement.closest('form');
+    if (form && editor) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        console.log('Form submit event captured');
 
         try {
           const outputData = await editor.save();
+          console.log('Editor data saved:', outputData); // Debug
           inputElement.value = JSON.stringify(outputData);
+          console.log('Hidden input value set:', inputElement.value); // Debug
 
           // Permitir que el formulario se envíe normalmente
-          e.target.submit();
+          form.submit();
         } catch (error) {
           console.error('Error saving editor data:', error);
           alert('Error al guardar el contenido. Por favor, intente nuevamente.');
         }
       });
+    } else {
+      if (!form) console.error('EditorJS: formulario no encontrado');
+      if (!editor) console.error('EditorJS: editor no inicializado');
     }
   });
 </script>

@@ -82,7 +82,7 @@
                       {{ __('edicts.forms.labels.content') }} <span style="color:red">*</span>
                     </label>
                     <div id="editor" class="@error('content') is-invalid @enderror"></div>
-                    <input type="hidden" name="content" id="content" value="{{ old('content', json_encode($edict->content)) }}">
+                    <input type="hidden" name="content" id="content" value="{{ old('content', json_encode($edict->content ?: [])) }}">
                     @error('content')
                       <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -122,7 +122,7 @@
   @include('admin.includes.editorjs', [
       'editorId' => '#editor',
       'inputId' => '#content',
-      'uploadAttachmentEndpoint' => route('admin.editor.upload-attachment'),
+      'uploadAttachmentEndpoint' => route('admin.editor.uploadAttachment'),
   ])
 
   <script>
