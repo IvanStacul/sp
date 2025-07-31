@@ -134,6 +134,39 @@ Route::get('/secretaria-de-cooperacion-gubernamental', function () {
     return view('pages.institutional.secretario-11');
 })->name('pages.institutional.secretario-11');
 
+Route::get('/turismo', function () {
+    return view('pages.about.tourism');
+})->name('pages.about.tourism');
+
+Route::get('/turismo/{slug}', function ($slug) {
+    switch ($slug) {
+        case 'termas':
+            return view('pages.about.tourism.termas');
+        case 'complejo-ecologico':
+            return view('pages.about.tourism.complejo-ecologico');
+        case 'ciudad-ninos':
+            return view('pages.about.tourism.ciudad-de-los-ninos');
+        case 'museos-historicos':
+            return view('pages.about.tourism.museos-historicos');
+        case 'casa-cruz':
+            return view('pages.about.tourism.casa-cruz');
+        case 'centros-salud-farmacias':
+            return view('pages.about.tourism.centros-salud-farmacias');
+        case 'hoteleria-gastronomia':
+            return view('pages.about.tourism.hoteleria-gastronomia');
+        case 'cine-municipal':
+            return view('pages.under-construction');
+        case 'camping-municipal':
+            return view('pages.under-construction');
+        default:
+            abort(404);
+    }
+})->name('pages.about.tourism.detail');
+
+// Route::get('/turismo', function () {
+//     return view('pages.about.tourism');
+// })->name('tourism.detail');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

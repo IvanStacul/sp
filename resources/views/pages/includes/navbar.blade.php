@@ -132,7 +132,7 @@
                         <div>
                           <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5" aria-labelledby="MeetMenus">
                             <li class="menu-item">
-                              <a href="{{ route('under-construction') }}" class="hover:!text-green-600">Turismo</a>
+                              <a href="{{ route('pages.about.tourism') }}" class="hover:!text-green-600">Turismo</a>
                             </li>
                             {{-- <li class="menu-item">
                               <a href="" onclick="return false;" class="hover:!text-green-600">Cultura</a>
@@ -356,7 +356,7 @@
                         </li> --}}
 
                         <li class="menu-item">
-                          <a href="{{ route('under-construction') }}" class="hover:!text-green-600">Turismo</a>
+                          <a href="{{ route('pages.about.tourism') }}" class="hover:!text-green-600">Turismo</a>
                         </li>
                       </ul>
                     </div>
