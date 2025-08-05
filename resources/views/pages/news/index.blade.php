@@ -28,13 +28,14 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           @foreach ($news as $n)
             <a href="{{ route('news.show', $n) }}"
-              class="border bg-white rounded-lg overflow-hidden shadow transition-shadow duration-300 hover:shadow-lg cursor-pointer">
-              <img src="{{ $n->cover_image }}" alt="{{ $n->title }}" class="w-full h-48 object-cover" />
+              class="group border bg-white rounded-lg overflow-hidden shadow-2xs transition-shadow duration-300 hover:shadow-lg cursor-pointer focus:outline-hidden focus:shadow-lg">
+              <img src="{{ $n->cover_image }}" alt="{{ $n->title }}"
+                class="w-full h-48 object-cover group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl" />
 
               <div class="p-4">
                 <time class="text-xs text-gray-500"> {{ $n->news_date }} </time>
                 <h3 class="font-semibold text-lg mb-2 text-gray-800"> {{ $n->title }} </h3>
-                <p class="text-sm text-gray-600 mb-2 line-clamp-3"> {{ $n->summary }} </p>
+                <p class="text-sm text-gray-600 line-clamp-3"> {{ $n->summary }} </p>
               </div>
             </a>
           @endforeach

@@ -13,7 +13,8 @@
                   <picture>
                     <source media="(min-width:650px)" srcset="{{ asset('assets/img/bienvenida.webp') }}" />
                     <source media="(min-width:465px)" srcset="{{ asset('assets/img/bienvenida.webp') }}" />
-                    <img src="{{ asset('assets/img/bienvenida.webp') }}" alt="slider image" style="height: 100% !important" />
+                    <img src="{{ asset('assets/img/bienvenida.webp') }}" alt="slider image"
+                      style="height: 100% !important" />
                   </picture>
 
                   <div class="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -290,36 +291,41 @@
             <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 lg:grid-cols-3">
               @foreach ($edicts as $edict)
                 <a href="{{ route('edicts.show', $edict) }}">
-                <div class="max-w-xs flex flex-col bg-white border border-t-4 border-t-green-600/95 shadow-sm rounded-xl">
-                  <div class="p-4 md:p-5">
-                    <time class="text-xs text-green-600 font-semibold">{{ $edict->edict_date }}</time>
-                    <h3 class="text-lg font-bold text-gray-800 mt-2">
-                      {{ $edict->title }}
-                    </h3>
-                    <p class="mt-2 text-gray-500">
-                      @php
-                        $description = '';
-                        $content = is_array($edict->content) ? $edict->content : json_decode($edict->content, true);
+                  <div
+                    class="max-w-xs flex flex-col bg-white border border-t-4 border-t-green-600/95 shadow-sm rounded-xl">
+                    <div class="p-4 md:p-5">
+                      <time class="text-xs text-green-600 font-semibold">{{ $edict->edict_date }}</time>
+                      <h3 class="text-lg font-bold text-gray-800 mt-2">
+                        {{ $edict->title }}
+                      </h3>
+                      <p class="mt-2 text-gray-500">
+                        @php
+                          $description = '';
+                          $content = is_array($edict->content) ? $edict->content : json_decode($edict->content, true);
 
-                        if ($content && isset($content['blocks']) && is_array($content['blocks'])) {
-                          foreach ($content['blocks'] as $block) {
-                            if (isset($block['type']) && $block['type'] === 'paragraph' && isset($block['data']['text'])) {
-                              $text = strip_tags($block['data']['text']);
-                              if (!empty(trim($text))) {
-                                $description = Str::limit($text, 100);
-                                break;
+                          if ($content && isset($content['blocks']) && is_array($content['blocks'])) {
+                              foreach ($content['blocks'] as $block) {
+                                  if (
+                                      isset($block['type']) &&
+                                      $block['type'] === 'paragraph' &&
+                                      isset($block['data']['text'])
+                                  ) {
+                                      $text = strip_tags($block['data']['text']);
+                                      if (!empty(trim($text))) {
+                                          $description = Str::limit($text, 100);
+                                          break;
+                                      }
+                                  }
                               }
-                            }
                           }
-                        }
 
-                        if (empty($description)) {
-                          $description = 'Ver contenido completo del edicto...';
-                        }
-                      @endphp
-                      {{ $description }}
-                    </p>
-                    {{-- <a href="{{ route('edicts.show', $edict) }}"
+                          if (empty($description)) {
+                              $description = 'Ver contenido completo del edicto...';
+                          }
+                        @endphp
+                        {{ $description }}
+                      </p>
+                      {{-- <a href="{{ route('edicts.show', $edict) }}"
                       class="mt-3 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600/95 text-white hover:bg-green-800 hover:!text-gray-100 focus:outline-none focus:bg-green-900 disabled:opacity-50 disabled:pointer-events-none">
                       Ver Edicto
                       <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -419,15 +425,27 @@
         @if ($news->count() > 0)
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+            {{-- <a class="flex flex-col group bg-white border border-gray-200 shadow-2xs rounded-xl overflow-hidden hover:shadow-lg focus:outline-hidden focus:shadow-lg transition"
+              href="#">
+              <div class="relative pt-[50%] sm:pt-[60%] lg:pt-[80%] rounded-t-xl overflow-hidden">
+                <img src="{{ $n->cover_image }}" alt="{{ $n->title }}"
+                  class="size-full absolute top-0 start-0 object-cover group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl">
+              </div>
+              <div class="p-4 md:p-5">
+                <h3 class="text-lg font-bold text-gray-800"> {{ $n->title }} </h3>
+                <p class="mt-1 text-gray-600 mb-2 line-clamp-3"> {{ $n->summary }} </p>
+              </div>
+            </a> --}}
+
             @foreach ($news as $n)
               <a href="{{ route('news.show', $n) }}"
-                class="border bg-white rounded-lg overflow-hidden shadow transition-shadow duration-300 hover:shadow-lg cursor-pointer">
-                <img src="{{ $n->cover_image }}" alt="{{ $n->title }}" class="w-full h-48 object-cover" />
+                class="group border bg-white rounded-lg overflow-hidden shadow-2xs transition-shadow duration-300 hover:shadow-lg cursor-pointer focus:outline-hidden focus:shadow-lg">
+                <img src="{{ $n->cover_image }}" alt="{{ $n->title }}" class="w-full h-48 object-cover group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl" />
 
                 <div class="p-4">
                   <time class="text-xs text-gray-500"> {{ $n->news_date }} </time>
                   <h3 class="font-semibold text-lg mb-2 text-gray-800"> {{ $n->title }} </h3>
-                  <p class="text-sm text-gray-600 mb-2 line-clamp-3"> {{ $n->summary }} </p>
+                  <p class="text-sm text-gray-600 line-clamp-3"> {{ $n->summary }} </p>
                 </div>
               </a>
             @endforeach
