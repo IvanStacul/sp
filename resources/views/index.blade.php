@@ -298,7 +298,7 @@
                       <h3 class="text-lg font-bold text-gray-800 mt-2">
                         {{ $edict->title }}
                       </h3>
-                      <p class="mt-2 text-gray-500">
+                      <p class="mt-2 text-gray-500 line-clamp-3">
                         @php
                           $description = '';
                           $content = is_array($edict->content) ? $edict->content : json_decode($edict->content, true);
@@ -325,16 +325,7 @@
                         @endphp
                         {{ $description }}
                       </p>
-                      {{-- <a href="{{ route('edicts.show', $edict) }}"
-                      class="mt-3 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600/95 text-white hover:bg-green-800 hover:!text-gray-100 focus:outline-none focus:bg-green-900 disabled:opacity-50 disabled:pointer-events-none">
-                      Ver Edicto
-                      <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                      </svg>
-                    </a> --}}
+
                     </div>
                   </div>
                 </a>

@@ -29,31 +29,46 @@
         @if ($edicts->count() > 0)
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             @foreach ($edicts as $edict)
-              <div
-                class="bg-white rounded-lg shadow-lg overflow-hidden border-l-4 border-l-green-500 hover:shadow-xl transition-shadow duration-300">
-                <div class="p-6">
-                  <div class="mb-3">
-                    <time class="text-sm text-green-600 font-semibold bg-green-50 px-2 py-1 rounded">
-                      {{ $edict->edict_date }}
-                    </time>
-                  </div>
+                <a href="{{ route('edicts.show', $edict) }}">
+                  <div
+                    class="max-w-xs flex flex-col bg-white border border-t-4 border-t-green-600/95 shadow-sm rounded-xl">
+                    <div class="p-4 md:p-5">
+                      <time class="text-xs text-green-600 font-semibold">{{ $edict->edict_date }}</time>
+                      <h3 class="text-lg font-bold text-gray-800 mt-2">
+                        {{ $edict->title }}
+                      </h3>
+                      <p class="mt-2 text-gray-500 line-clamp-3">
+                        @php
+                          $description = '';
+                          $content = is_array($edict->content) ? $edict->content : json_decode($edict->content, true);
 
-                  <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-green-600 transition-colors">
-                    <a href="{{ route('edicts.show', $edict) }}" class="hover:text-gray-900">{{ $edict->title }}</a>
-                  </h2>
+                          if ($content && isset($content['blocks']) && is_array($content['blocks'])) {
+                              foreach ($content['blocks'] as $block) {
+                                  if (
+                                      isset($block['type']) &&
+                                      $block['type'] === 'paragraph' &&
+                                      isset($block['data']['text'])
+                                  ) {
+                                      $text = strip_tags($block['data']['text']);
+                                      if (!empty(trim($text))) {
+                                          $description = Str::limit($text, 100);
+                                          break;
+                                      }
+                                  }
+                              }
+                          }
 
-                  <div class="flex items-center justify-between">
-                    <a href="{{ route('edicts.show', $edict) }}"
-                      class="inline-flex items-center px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-lg hover:bg-green-600 transition-colors duration-300 hover:text-white">
-                      Leer más
-                      <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
+                          if (empty($description)) {
+                              $description = 'Ver contenido completo del edicto...';
+                          }
+                        @endphp
+                        {{ $description }}
+                      </p>
+
+                    </div>
                   </div>
-                </div>
-              </div>
-            @endforeach
+                </a>
+              @endforeach
           </div>
 
           <div class="flex justify-center">
