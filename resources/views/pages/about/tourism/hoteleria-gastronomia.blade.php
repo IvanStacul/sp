@@ -38,17 +38,49 @@
           disponibles en la ciudad.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {{-- Tabs Navigation --}}
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+            <button onclick="showTab('gastronomia')" id="tab-gastronomia"
+              class="tab-button active border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+              <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 inline" fill="currentColor">
+                <rect x="0" fill="none" width="20" height="20" />
+                <g>
+                  <path d="M7 4.5c-.3 0-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v3.3c0 .9.7 1.6 1.5 1.7v7c0 .6.4 1 1 1s1-.4 1-1v-7c.8-.1 1.5-.8 1.5-1.7V5c0-.2-.2-.5-.5-.5zM9 5v6h1v6c0 .6.4 1 1 1s1-.4 1-1V2c-1.7 0-3 1.3-3 3zm7-1c-1.4 0-2.5 1.5-2.5 3.3-.1 1.2.5 2.3 1.5 3V17c0 .6.4 1 1 1s1-.4 1-1v-6.7c1-.7 1.6-1.8 1.5-3C18.5 5.5 17.4 4 16 4z" />
+                </g>
+              </svg>
+              Gastronomía
+            </button>
+            <button onclick="showTab('hoteles')" id="tab-hoteles"
+              class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+              <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                </path>
+              </svg>
+              Hoteles
+            </button>
+          </nav>
+        </div>
 
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">IL TANO PASTAS</h3>
-              <p class="mt-2 text-gray-500">
-                9 DE JULIO 650 - Bº CENTRO
-              </p>
-            </div>
+        {{-- Gastronomía Tab Content --}}
+        <div id="content-gastronomia" class="tab-content">
+          <div class="mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Gastronomía</h3>
+            <p class="text-gray-600">Descubre los mejores restaurantes, bares y lugares para disfrutar de la gastronomía
+              local en Sáenz Peña.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">IL TANO PASTAS</h3>
+                <p class="mt-2 text-gray-500">
+                  9 DE JULIO 650 - Bº CENTRO
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button onclick="openModal('aconcagua-modal')"
                 class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -60,17 +92,17 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">BEL Y ZAMI</h3>
-              <p class="mt-2 text-gray-500">
-                AVENIDA 33 ENTRE 26 Y 28
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">BEL Y ZAMI</h3>
+                <p class="mt-2 text-gray-500">
+                  AVENIDA 33 ENTRE 26 Y 28
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button onclick="openModal('belzami-modal')"
                 class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -82,19 +114,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                ROJO BAR
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                AVENIDA 33 ENTRE 26 Y 28
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  ROJO BAR
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  AVENIDA 33 ENTRE 26 Y 28
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -106,19 +138,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                CULLEN HARRISON
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                AV. 2 CASI AV. 1 - Bº CENTRO
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  CULLEN HARRISON
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  AV. 2 CASI AV. 1 - Bº CENTRO
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -130,19 +162,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                SHADAY
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CALLES 12 Y 23 - Bº CENTRO
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  SHADAY
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CALLES 12 Y 23 - Bº CENTRO
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -154,19 +186,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                BEER GARDEN
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CALLE 9 ESQUINA 16
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  BEER GARDEN
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CALLE 9 ESQUINA 16
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -178,19 +210,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                AMERICAN DINER
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CALLE 12 ENTRE 21 Y 23
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  AMERICAN DINER
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CALLE 12 ENTRE 21 Y 23
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -202,19 +234,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                ROQUE HOUSE RESTOBAR
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CALLE 13 ENTRE 16 Y 18 - Bº CENTRO
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  ROQUE HOUSE RESTOBAR
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CALLE 13 ENTRE 16 Y 18 - Bº CENTRO
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -226,19 +258,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                ESQUINA DORREGO
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CALLE 14 ENTRE 17 Y 19 - Bº CENTRO
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  ESQUINA DORREGO
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CALLE 14 ENTRE 17 Y 19 - Bº CENTRO
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -250,19 +282,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                PARRILLA LA TABITA
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CDTE. FERNANDEZ 604 - ENSANCHE SUR
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  PARRILLA LA TABITA
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CDTE. FERNANDEZ 604 - ENSANCHE SUR
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -274,19 +306,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                VIDA FELIZ
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CDTE. FERNANDEZ 604 - ENSANCHE SUR
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  VIDA FELIZ
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CDTE. FERNANDEZ 604 - ENSANCHE SUR
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -298,19 +330,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                CONFITERIA Y COMEDOR GUALOK
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CALLE 12 ENTRE 23 Y 25
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  CONFITERIA Y COMEDOR GUALOK
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CALLE 12 ENTRE 23 Y 25
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -322,19 +354,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                PARRILLA EL CHÚCARO
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                CALLE 9 Y AV 2 - B° MONSEÑOR DE CARLO
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  PARRILLA EL CHÚCARO
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  CALLE 9 Y AV 2 - B° MONSEÑOR DE CARLO
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -346,19 +378,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                CONFITERÍA LA ROTONDA
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                RUTA 16 Y 95
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  CONFITERÍA LA ROTONDA
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  RUTA 16 Y 95
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -370,19 +402,19 @@
                 Detalles
               </button>
             </div> --}}
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                CARRITO BAR LIDIA
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                RUTA 16 Y 95
-              </p>
             </div>
 
-            {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  CARRITO BAR LIDIA
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  RUTA 16 Y 95
+                </p>
+              </div>
+
+              {{-- <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
               <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -394,319 +426,383 @@
                 Detalles
               </button>
             </div> --}}
+            </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel Aconcagua
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Azcuénaga y Julio Roca (calle 14 esq.3) Ensanche Sur
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364 - 4428111
-              </p>
-            </div>
-
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('aconcagua-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
-                Detalles
-              </button>
-            </div>
+        {{-- Hoteles Tab Content --}}
+        <div id="content-hoteles" class="tab-content hidden">
+          <div class="mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Hoteles</h3>
+            <p class="text-gray-600">Encuentra los mejores hoteles y opciones de alojamiento en Sáenz Peña para tu
+              estadía.</p>
           </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel Aconcagua
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Azcuénaga y Julio Roca (calle 14 esq.3) Ensanche Sur
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364 - 4428111
+                </p>
+              </div>
 
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel Orel
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Saavedra (3) y San Martín (12)
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364 - 4429645 / 4662725
-              </p>
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('aconcagua-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+                  Detalles
+                </button>
+              </div>
             </div>
 
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('orel-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel Orel
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Saavedra (3) y San Martín (12)
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364 - 4429645 / 4662725
+                </p>
+              </div>
 
-                Detalles
-              </button>
-            </div>
-          </div>
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('orel-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
 
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel A.MU.DO.CH
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Belgrano 737 (calle 10 entre 15 y 17 - Centro)
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364- 4431072
-              </p>
-            </div>
-
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('amudoch-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
-
-                Detalles
-              </button>
-            </div>
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel IL Colono
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                calle 12 entre 15 y 17
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364-4666016 / 4420626
-              </p>
+                  Detalles
+                </button>
+              </div>
             </div>
 
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('ilcolono-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
-                Detalles
-              </button>
-            </div>
-          </div>
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel A.MU.DO.CH
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Belgrano 737 (calle 10 entre 15 y 17 - Centro)
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364- 4431072
+                </p>
+              </div>
 
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel Apart
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Saavedra 268 (calle 3 entre 6 y 8)
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364- 4423411
-              </p>
-            </div>
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('amudoch-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
 
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('apart-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
-
-                Detalles
-              </button>
-            </div>
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel Luz
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                San Martín 771 (calle 12 entre 15 y 17)
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                0364-4785356
-              </p>
+                  Detalles
+                </button>
+              </div>
             </div>
 
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('luz-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel IL Colono
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  calle 12 entre 15 y 17
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364-4666016 / 4420626
+                </p>
+              </div>
 
-                Detalles
-              </button>
-            </div>
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel Avenida
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Av. 2 entre 9 y 11
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364-4421392
-              </p>
-            </div>
-
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('avenida-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
-
-                Detalles
-              </button>
-            </div>
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel Riposo
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Ruta 16 km 175 (Calle 6 entre 5 y 7)
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364-4437016
-              </p>
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('ilcolono-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+                  Detalles
+                </button>
+              </div>
             </div>
 
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('riposo-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel Apart
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Saavedra 268 (calle 3 entre 6 y 8)
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364- 4423411
+                </p>
+              </div>
 
-                Detalles
-              </button>
-            </div>
-          </div>
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('apart-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
 
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Albergue La Esperanza
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Calle 51
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364-4420809
-              </p>
-            </div>
-
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('la-esperanza-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
-
-                Detalles
-              </button>
-            </div>
-          </div>
-
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Centro de la Espiritualidad
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                Ruta 16 km4
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364-743482
-              </p>
+                  Detalles
+                </button>
+              </div>
             </div>
 
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('centro-espiritualidad-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel Luz
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  San Martín 771 (calle 12 entre 15 y 17)
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  0364-4785356
+                </p>
+              </div>
 
-                Detalles
-              </button>
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('luz-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+
+                  Detalles
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                Hotel Atrium Gualok
-              </h3>
-              <p class="mt-2 text-gray-500 ">
-                San Martín 1198 ( calle 12 esq. 15)
-              </p>
-              <p class="mt-2 text-gray-500 ">
-                Teléfono: 0364-4420500 / 4430036
-              </p>
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel Avenida
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Av. 2 entre 9 y 11
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364-4421392
+                </p>
+              </div>
+
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('avenida-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+
+                  Detalles
+                </button>
+              </div>
             </div>
 
-            <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
-              <button onclick="openModal('atrium-gualok-modal')"
-                class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
-                  </path>
-                </svg>
-                Detalles
-              </button>
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel Riposo
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Ruta 16 km 175 (Calle 6 entre 5 y 7)
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364-4437016
+                </p>
+              </div>
+
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('riposo-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+
+                  Detalles
+                </button>
+              </div>
+            </div>
+
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Albergue La Esperanza
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Calle 51
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364-4420809
+                </p>
+              </div>
+
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('la-esperanza-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+
+                  Detalles
+                </button>
+              </div>
+            </div>
+
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Centro de la Espiritualidad
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  Ruta 16 km4
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364-743482
+                </p>
+              </div>
+
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('centro-espiritualidad-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+
+                  Detalles
+                </button>
+              </div>
+            </div>
+
+            <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
+              <div class="p-4 md:p-6">
+                <h3 class="text-xl font-semibold text-gray-800">
+                  Hotel Atrium Gualok
+                </h3>
+                <p class="mt-2 text-gray-500 ">
+                  San Martín 1198 ( calle 12 esq. 15)
+                </p>
+                <p class="mt-2 text-gray-500 ">
+                  Teléfono: 0364-4420500 / 4430036
+                </p>
+              </div>
+
+              <div class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200">
+                <button onclick="openModal('atrium-gualok-modal')"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-b-xl font-medium bg-gray-100 align-middle hover:bg-gray-200 text-sm sm:p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                  </svg>
+                  Detalles
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
     </div>
     </div>
+
+    {{-- JavaScript for Tabs --}}
+    <script>
+      function showTab(tabName) {
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+          content.classList.add('hidden');
+        });
+
+        // Remove active class from all tabs
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+          button.classList.remove('active');
+          button.classList.remove('border-blue-500', 'text-blue-600');
+          button.classList.add('border-transparent', 'text-gray-500');
+        });
+
+        // Show selected tab content
+        document.getElementById('content-' + tabName).classList.remove('hidden');
+
+        // Add active class to selected tab
+        const activeTab = document.getElementById('tab-' + tabName);
+        activeTab.classList.add('active');
+        activeTab.classList.remove('border-transparent', 'text-gray-500');
+        activeTab.classList.add('border-blue-500', 'text-blue-600');
+      }
+
+      // Initialize with gastronomia tab active
+      document.addEventListener('DOMContentLoaded', function() {
+        showTab('gastronomia');
+      });
+    </script>
+
+    <style>
+      .tab-button.active {
+        border-color: #3b82f6;
+        color: #2563eb;
+      }
+
+      .tab-content {
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
 
     <!-- Modales -->
     <x-simple-modal id="aconcagua-modal">

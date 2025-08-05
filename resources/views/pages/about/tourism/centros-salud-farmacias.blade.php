@@ -38,7 +38,33 @@
           ciudad.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {{-- Tabs Navigation --}}
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+            <button onclick="showTab('farmacias')" id="tab-farmacias" class="tab-button active border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+              <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+              </svg>
+              Farmacias
+            </button>
+            <button onclick="showTab('centros')" id="tab-centros" class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+              <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              Centros de Salud
+            </button>
+          </nav>
+        </div>
+
+        {{-- Farmacias Tab Content --}}
+        <div id="content-farmacias" class="tab-content">
+          <div class="mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Farmacias</h3>
+            <p class="text-gray-600">Encuentra las farmacias disponibles en Sáenz Peña para tus necesidades farmacéuticas.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
             <div class="p-4 md:p-6">
               <h3 class="text-xl font-semibold text-gray-800">FARMACIA TRANCHET S.R.L.</h3>
@@ -216,9 +242,16 @@
               </button>
             </div> --}}
           </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {{-- Centros de Salud Tab Content --}}
+        <div id="content-centros" class="tab-content hidden">
+          <div class="mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Centros de Salud</h3>
+            <p class="text-gray-600">Consulta los centros médicos y hospitales disponibles para atención médica especializada.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div class="hover:shadow-md group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl">
             <div class="p-4 md:p-6">
               <h3 class="text-xl font-semibold text-gray-800">
@@ -461,11 +494,61 @@
               </button>
             </div> --}}
           </div>
+          </div>
         </div>
       </div>
 
     </div>
     </div>
   </section>
+
+  {{-- JavaScript for Tabs --}}
+  <script>
+    function showTab(tabName) {
+      // Hide all tab contents
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+      });
+
+      // Remove active class from all tabs
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(button => {
+        button.classList.remove('active');
+        button.classList.remove('border-blue-500', 'text-blue-600');
+        button.classList.add('border-transparent', 'text-gray-500');
+      });
+
+      // Show selected tab content
+      document.getElementById('content-' + tabName).classList.remove('hidden');
+
+      // Add active class to selected tab
+      const activeTab = document.getElementById('tab-' + tabName);
+      activeTab.classList.add('active');
+      activeTab.classList.remove('border-transparent', 'text-gray-500');
+      activeTab.classList.add('border-blue-500', 'text-blue-600');
+    }
+
+    // Initialize with farmacias tab active
+    document.addEventListener('DOMContentLoaded', function() {
+      showTab('farmacias');
+    });
+  </script>
+
+  <style>
+    .tab-button.active {
+      border-color: #3b82f6;
+      color: #2563eb;
+    }
+
+    .tab-content {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 
 @endsection
