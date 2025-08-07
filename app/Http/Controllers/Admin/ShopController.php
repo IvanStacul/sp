@@ -36,7 +36,7 @@ class ShopController extends Controller
             });
         }
 
-        $shops = $query->ordered()->paginate(15);
+        $shops = $query->ordered()->get();
 
         return view('admin.shops.index', compact('shops'));
     }
