@@ -31,7 +31,7 @@
           <select id="filter-category" class="form-control">
             <option value="">Todas las categorías</option>
             @foreach (\App\Models\Shop::CATEGORIES as $key => $label)
-              <option value="{{ $key }}">{{ $label }}</option>
+              <option value="{{ $label }}">{{ $label }}</option>
             @endforeach
           </select>
         </div>
@@ -198,6 +198,8 @@
       // Filtros
       $('#filter-category').on('change', function() {
         var category = this.value;
+        console.log('Filtrando por categoría:', category);
+
         table.column(2).search(category).draw();
       });
 
