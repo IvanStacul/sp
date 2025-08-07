@@ -19,8 +19,8 @@ return new class extends Migration
             $table->date('publish_date')->nullable();
             $table->boolean('is_active')->default(true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

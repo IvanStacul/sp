@@ -2,7 +2,7 @@
 
 use App\Models\{News, Document};
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{EdictController, HomeController, OrdinanceController};
+use App\Http\Controllers\{EdictController, HomeController, OrdinanceController, PublicShopController};
 use Illuminate\Support\Facades\Artisan;
 // use App\Http\Controllers\ProfileController;
 
@@ -151,9 +151,9 @@ Route::get('/turismo/{slug}', function ($slug) {
         case 'casa-cruz':
             return view('pages.about.tourism.casa-cruz');
         case 'centros-salud-farmacias':
-            return view('pages.about.tourism.centros-salud-farmacias');
+            return app(PublicShopController::class)->farmacias();
         case 'hoteleria-gastronomia':
-            return view('pages.about.tourism.hoteleria-gastronomia');
+            return app(PublicShopController::class)->gastronomia();
         case 'cine-municipal':
             return view('pages.under-construction');
         case 'camping-municipal':
@@ -162,6 +162,13 @@ Route::get('/turismo/{slug}', function ($slug) {
             abort(404);
     }
 })->name('pages.about.tourism.detail');
+
+// Rutas para comercios dinámicos
+Route::get('/comercios/categoria/{category}', [PublicShopController::class, 'getShopsByCategory'])->name('shops.by-category');
+Route::get('/comercio/{shop:id}', [PublicShopController::class, 'show'])->name('shop.detail');
+
+// API Routes para AJAX
+Route::get('/api/shops/category/{category}', [PublicShopController::class, 'getShopsByCategory'])->name('api.shops.by-category');
 
 // Route::get('/turismo', function () {
 //     return view('pages.about.tourism');

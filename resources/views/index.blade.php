@@ -436,7 +436,7 @@
                 <div class="p-4">
                   <time class="text-xs text-gray-500"> {{ $n->news_date }} </time>
                   <h3 class="font-semibold text-lg mb-2 text-gray-800"> {{ $n->title }} </h3>
-                  <p class="text-sm text-gray-600 line-clamp-3"> {{ $n->summary }} </p>
+                  <p class="text-sm text-gray-600 line-clamp-3 !m-0"> {{ $n->summary }} </p>
                 </div>
               </a>
             @endforeach

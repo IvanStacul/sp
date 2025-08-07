@@ -38,8 +38,8 @@
         @endif
       </div>
       <div class="flex-1 min-w-0">
-        <p class="text-sm font-medium text-gray-900 truncate">{{ $title }}</p>
-        <p class="text-xs text-gray-500">
+        <p class="text-sm font-medium text-gray-900 truncate !m-0">{{ $title }}</p>
+        <p class="text-xs text-gray-500 !m-0">
           {{ strtoupper($extension) }}
           @if($size > 0)
             • {{ $size }} MB
@@ -67,8 +67,8 @@
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <p class="text-sm font-medium text-gray-900 truncate">{{ $title }}</p>
-        <p class="text-xs text-gray-500">
+        <p class="text-sm font-medium text-gray-900 truncate !m-0">{{ $title }}</p>
+        <p class="text-xs text-gray-500 !m-0">
           @if($extension)
             {{ strtoupper($extension) }}
           @endif
@@ -79,7 +79,7 @@
       </div>
       <div class="flex-shrink-0">
         <a href="{{ $url }}" target="_blank" download="{{ $title }}"
-           class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+           class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:!bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hover:!text-green-700">
           <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>

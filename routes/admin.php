@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{CategoryController, DocumentCategoryController, DocumentController, EdictController, PanelController, EditorController, GuideCategoryController, GuideController, ImportWordpressPostsController, NewsController, OrdinanceController};
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Admin\{CategoryController, DocumentCategoryController, DocumentController, EdictController, PanelController, EditorController, GuideCategoryController, GuideController, ImportWordpressPostsController, NewsController, OrdinanceController, ShopController};
 
 Route::middleware('auth')->group(function () {
     Route::get('/panel', PanelController::class)->name('panel');
@@ -31,5 +32,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/guides/{guide}/activate', [GuideController::class, 'activate'])->name('guides.activate');
     Route::post('/guides/{guide}/deactivate', [GuideController::class, 'deactivate'])->name('guides.deactivate');
 
+    // Shops (Comercios)
+    Route::resource('shops', ShopController::class);
+    Route::post('/shops/{shop}/toggle-status', [ShopController::class, 'toggleStatus'])->name('shops.toggle-status');
+
     Route::get('/import-wordpress', [ImportWordpressPostsController::class, 'create'])->name('import-wordpress');
+
+    // Ruta para ejecutar Artisan commands
+    Route::get('/deploy', function () {
+        Artisan::call('migrate', ['--force' => true]);
+        Artisan::call('db:seed', ['--class' => 'ShopSeeder']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Migraciones ejecutadas y ShopSeeder corrido exitosamente'
+        ]);
+    })->name('deploy');
 });

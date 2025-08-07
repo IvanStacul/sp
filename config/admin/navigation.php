@@ -104,6 +104,23 @@ return [
                     ],
                 ],
             ],
+            'Comercios' => [
+                'url' => '#',
+                'icon' => 'fas fa-store',
+                'active' => false,
+                'submenu' => [
+                    'Listado de comercios' => [
+                        'url' => 'admin.shops.index',
+                        'icon' => 'fas fa-list',
+                        'active' => false,
+                    ],
+                    'Nuevo comercio' => [
+                        'url' => 'admin.shops.create',
+                        'icon' => 'fas fa-plus',
+                        'active' => false,
+                    ],
+                ],
+            ],
         ],
     ],
 ];
