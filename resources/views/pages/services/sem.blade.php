@@ -58,7 +58,7 @@
 
       <h3 class="text-2xl font-bold text-gray-800 mt-8">Valor</h3>
       <p class="text-lg !text-gray-800">
-        $300 la hora
+        $350 la hora
       </p>
 
       <h3 class="text-2xl font-bold text-gray-800 mt-8">Área de estacionamiento medido</h3>
