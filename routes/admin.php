@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\Admin\{CategoryController, DocumentCategoryController, DocumentController, EdictController, PanelController, EditorController, GuideCategoryController, GuideController, ImportWordpressPostsController, NewsController, OrdinanceController, ShopController};
+use App\Http\Controllers\Admin\{CategoryController, DocumentCategoryController, DocumentController, EdictController, HistoricalCategoryController, HistoricalCommentController, HistoricalItemController, PanelController, EditorController, GuideCategoryController, GuideController, ImportWordpressPostsController, NewsController, OrdinanceController, ShopController};
 
 Route::middleware('auth')->group(function () {
     Route::get('/panel', PanelController::class)->name('panel');
@@ -35,6 +35,28 @@ Route::middleware('auth')->group(function () {
     // Shops (Comercios)
     Route::resource('shops', ShopController::class);
     Route::post('/shops/{shop}/toggle-status', [ShopController::class, 'toggleStatus'])->name('shops.toggle-status');
+
+    // Historical Items (Archivo Histórico)
+    Route::resource('historical-categories', HistoricalCategoryController::class);
+    Route::post('/historical-categories/{historicalCategory}/activate', [HistoricalCategoryController::class, 'activate'])->name('historical-categories.activate');
+    Route::post('/historical-categories/{historicalCategory}/deactivate', [HistoricalCategoryController::class, 'deactivate'])->name('historical-categories.deactivate');
+
+    Route::resource('historical-items', HistoricalItemController::class);
+    Route::post('/historical-items/{historicalItem}/activate', [HistoricalItemController::class, 'activate'])->name('historical-items.activate');
+    Route::post('/historical-items/{historicalItem}/deactivate', [HistoricalItemController::class, 'deactivate'])->name('historical-items.deactivate');
+
+    // Rutas para gestión de archivos de items históricos
+    Route::delete('/historical-items/files/{file}', [HistoricalItemController::class, 'deleteFile'])->name('historical-items.files.delete');
+    Route::post('/historical-items/files/{file}/featured', [HistoricalItemController::class, 'setFeaturedFile'])->name('historical-items.files.featured');
+    Route::patch('/historical-items/files/{file}/update-name', [HistoricalItemController::class, 'updateFileName'])->name('historical-items.files.update-name');
+
+    // Historical Comments (Moderación de Comentarios)
+    Route::get('/historical-comments', [HistoricalCommentController::class, 'index'])->name('historical-comments.index');
+    Route::patch('/historical-comments/{historicalComment}/approve', [HistoricalCommentController::class, 'approve'])->name('historical-comments.approve');
+    Route::patch('/historical-comments/{historicalComment}/reject', [HistoricalCommentController::class, 'reject'])->name('historical-comments.reject');
+    Route::delete('/historical-comments/{historicalComment}', [HistoricalCommentController::class, 'destroy'])->name('historical-comments.destroy');
+    Route::post('/historical-comments/bulk-approve', [HistoricalCommentController::class, 'bulkApprove'])->name('historical-comments.bulk-approve');
+    Route::delete('/historical-comments/bulk-delete', [HistoricalCommentController::class, 'bulkDelete'])->name('historical-comments.bulk-delete');
 
     Route::get('/import-wordpress', [ImportWordpressPostsController::class, 'create'])->name('import-wordpress');
 

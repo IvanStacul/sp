@@ -121,6 +121,33 @@ return [
                     ],
                 ],
             ],
+            'Archivo Histórico' => [
+                'url' => '#',
+                'icon' => 'fas fa-history',
+                'active' => false,
+                'submenu' => [
+                    'Categorías históricas' => [
+                        'url' => 'admin.historical-categories.index',
+                        'icon' => 'fas fa-tags',
+                        'active' => false,
+                    ],
+                    'Elementos históricos' => [
+                        'url' => 'admin.historical-items.index',
+                        'icon' => 'fas fa-list',
+                        'active' => false,
+                    ],
+                    'Nuevo elemento' => [
+                        'url' => 'admin.historical-items.create',
+                        'icon' => 'fas fa-plus',
+                        'active' => false,
+                    ],
+                    'Moderación de comentarios' => [
+                        'url' => 'admin.historical-comments.index',
+                        'icon' => 'fas fa-comments',
+                        'active' => false,
+                    ],
+                ],
+            ],
         ],
     ],
 ];

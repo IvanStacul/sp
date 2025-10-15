@@ -140,6 +140,9 @@
                             <li class="menu-item">
                               <a href="{{ route('about.history') }}" class="hover:!text-green-600">Historia</a>
                             </li>
+                            <li class="menu-item">
+                              <a href="{{ route('historical.index') }}" class="hover:!text-green-600">Archivo Histórico</a>
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -349,6 +352,10 @@
                       <ul class="space-y-1.5 xl:space-y-2 2xl:space-y-2.5">
                         <li class="menu-item">
                           <a href="{{ route('about.history') }}" class="hover:!text-green-600">Historia</a>
+                        </li>
+
+                        <li class="menu-item">
+                          <a href="{{ route('historical.index') }}" class="hover:!text-green-600">Archivo Histórico</a>
                         </li>
 
                         {{-- <li class="menu-item">

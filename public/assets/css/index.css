@@ -1186,11 +1186,11 @@ a {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-a:hover {
+/* a:hover {
   --tw-text-opacity: 1;
   color: rgb(182 138 53 / var(--tw-text-opacity));
   text-decoration-thickness: 2px;
-}
+} */
 
 a:focus {
   outline: 2px solid transparent;

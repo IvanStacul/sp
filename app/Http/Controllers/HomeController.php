@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{News, Edict};
+use App\Models\{News, Edict, HistoricalItem};
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +14,7 @@ class HomeController extends Controller
     {
         $news = News::orderBy('publish_date', 'desc')->active()->limit(3)->get();
         $edicts = Edict::orderBy('publish_date', 'desc')->active()->limit(3)->get();
-        return view('index', compact('news', 'edicts'));
+        $historicalItems = HistoricalItem::active()->orderBy('sort_order')->orderBy('title')->limit(3)->get();
+        return view('index', compact('news', 'edicts', 'historicalItems'));
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\{News, Document};
+use App\Models\{News, Document, HistoricalItem};
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{EdictController, HomeController, OrdinanceController, PublicShopController};
+use App\Http\Controllers\{EdictController, HistoricalController, HomeController, OrdinanceController, PublicShopController};
 use Illuminate\Support\Facades\Artisan;
 // use App\Http\Controllers\ProfileController;
 
@@ -45,6 +45,10 @@ Route::get('/docs', function () {
 Route::get('/guia-de-tramites', function () {
     return view('pages.guides', ['guides' => \App\Models\Guide::with('category')->orderBy('created_at', 'desc')->get()]);
 })->name('guides.index');
+
+Route::get('/archivo-historico', [HistoricalController::class, 'index'])->name('historical.index');
+Route::get('/archivo-historico/{historicalItem}', [HistoricalController::class, 'show'])->name('historical.show');
+Route::post('/archivo-historico/{historicalItem}/comentarios', [App\Http\Controllers\HistoricalCommentController::class, 'store'])->name('historical.comments.store');
 
 Route::get('/serviciosciudadsp', function () {
     return view('pages.services.index');
