@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $news = News::orderBy('publish_date', 'desc')->active()->limit(3)->get();
         $edicts = Edict::orderBy('publish_date', 'desc')->active()->limit(3)->get();
-        $historicalItems = HistoricalItem::active()->orderBy('sort_order')->orderBy('title')->limit(3)->get();
+        $historicalItems = HistoricalItem::active()->orderBy('sort_order')->orderByDesc('event_date')->limit(3)->get();
         return view('index', compact('news', 'edicts', 'historicalItems'));
     }
 }

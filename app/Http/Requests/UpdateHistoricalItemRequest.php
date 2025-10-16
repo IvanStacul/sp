@@ -24,8 +24,9 @@ class UpdateHistoricalItemRequest extends FormRequest
         return [
             'category_id' => ['nullable', 'exists:historical_categories,id'],
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
             'content' => ['nullable', 'string'],
+            'event_date' => ['nullable', 'date'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
             'pdfs.*' => ['nullable', 'mimes:pdf', 'max:10240'],
             'delete_files' => ['nullable', 'array'],
@@ -48,6 +49,7 @@ class UpdateHistoricalItemRequest extends FormRequest
             'title' => 'título',
             'description' => 'descripción',
             'content' => 'contenido',
+            'event_date' => 'fecha del evento',
             'image' => 'imagen',
             'pdfs.*' => 'archivos PDF',
             'delete_files' => 'archivos a eliminar',

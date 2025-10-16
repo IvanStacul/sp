@@ -24,8 +24,9 @@ class StoreHistoricalItemRequest extends FormRequest
         return [
             'category_id' => ['nullable', 'exists:historical_categories,id'],
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
             'content' => ['nullable', 'string'],
+            'event_date' => ['nullable', 'date'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
             'pdfs.*' => ['nullable', 'mimes:pdf', 'max:10240'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
@@ -46,6 +47,7 @@ class StoreHistoricalItemRequest extends FormRequest
             'title' => 'título',
             'description' => 'descripción',
             'content' => 'contenido',
+            'event_date' => 'fecha del evento',
             'image' => 'imagen',
             'pdfs.*' => 'archivos PDF',
             'sort_order' => 'orden',

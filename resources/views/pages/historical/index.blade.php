@@ -1,32 +1,24 @@
 @extends('pages.layouts.base')
 
-@section('base')
-  <!-- Hero Section -->
-
+@section('hero')
   <div
     class="min-h-96 relative bg-gradient-to-r from-slate-900 to-slate-700 text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
-
 
     <div class="absolute inset-0">
       <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     </div>
 
-    <div class="relative flex flex-col md:flex-row gap-4 md:gap-72 items-center min-w-screen px-4 md:px-32">
-      <div>
-        <h2 class="mb-4 text-center font-bold text-4xl text-gray-50 md:mb-8">
+    <div class="relative flex items-center justify-center min-w-screen px-4 md:px-8">
+      <div class="text-center">
+        <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold">
           Archivo Histórico Municipal
         </h2>
       </div>
-
-      <div>
-        <p class="text-xl text-gray-50">
-          Descubre la rica historia de Presidencia Roque Sáenz Peña a través de documentos, fotografías y testimonios que
-          han dado forma a nuestra identidad.
-        </p>
-      </div>
     </div>
   </div>
+@endsection
 
+@section('base')
   <div class="container mx-auto px-6 py-16">
     @if ($categories->count() > 0)
       <div class="max-w-4xl mx-auto mb-16">
@@ -51,7 +43,7 @@
 
     @if ($historicalItems->count() > 0)
       <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[200px]">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[280px] md:auto-rows-[200px]">
           @foreach ($historicalItems as $index => $item)
             @php
               // Determinar el tamaño de la tarjeta basado en si es destacado o el índice
@@ -60,16 +52,15 @@
             @endphp
 
             <a data-slot="card" href="{{ route('historical.show', $item->slug) }}"
-              class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 group cursor-pointer overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 shadow-lg relative {{ $cardClass }}">
+              class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 group cursor-pointer overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 shadow-lg relative min-h-[280px] md:min-h-0 {{ $cardClass }}">
               <div class="absolute inset-0">
-                @if($item->image_path)
+                @if ($item->image_path)
                   <img alt="{{ $item->title }}"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     src="{{ asset($item->image_path) }}"
                     onerror="this.src='https://via.placeholder.com/600x400/4a5568/ffffff?text=Sin+Imagen'">
                 @else
-                  <img alt="{{ $item->title }}"
-                    class="w-full h-full object-cover"
+                  <img alt="{{ $item->title }}" class="w-full h-full object-cover"
                     src="https://via.placeholder.com/600x400/4a5568/ffffff?text=Sin+Imagen">
                 @endif
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
@@ -78,8 +69,8 @@
                   class="absolute inset-0 backdrop-blur-[0.5px] group-hover:backdrop-blur-0 transition-all duration-300">
                 </div>
               </div>
-              <div class="relative z-10 h-full flex flex-col justify-between p-6 text-white">
-                <div class="flex justify-between items-start">
+              <div class="relative z-10 h-full flex flex-col justify-between p-4 sm:p-6 text-white">
+                <div class="flex justify-between items-start gap-2 flex-wrap">
                   @if ($item->category)
                     <div
                       class="inline-flex items-center rounded-full border px-2.5 py-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 hover:bg-secondary/80 backdrop-blur-sm text-xs font-medium text-white border-white/30"
@@ -96,19 +87,19 @@
                       Destacado
                     </div>
                   @endif
-                  <div class="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">Ver
+                  <div class="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">Ver
                     más</div>
                 </div>
-                <div class="space-y-3">
+                <div class="space-y-2 sm:space-y-3">
                   <h3
-                    class="text-lg md:text-xl font-bold text-balance leading-tight group-hover:text-white/90 transition-colors duration-300">
+                    class="text-base sm:text-lg md:text-xl font-bold text-balance leading-tight group-hover:text-white/90 transition-colors duration-300">
                     {{ $item->title }}
                   </h3>
                   <p
-                    class="text-sm text-white/90 text-pretty leading-relaxed line-clamp-3 group-hover:line-clamp-4 transition-all duration-300">
+                    class="text-xs sm:text-sm text-white/90 text-pretty leading-relaxed line-clamp-2 sm:line-clamp-3 group-hover:line-clamp-3 sm:group-hover:line-clamp-4 transition-all duration-300">
                     {{ $item->description }}
                   </p>
-                  <div class="flex items-center gap-4 text-xs text-white/80">
+                  <div class="flex items-center gap-3 sm:gap-4 text-xs text-white/80">
                     <div class="flex items-center gap-1">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -118,7 +109,7 @@
                         <rect width="18" height="18" x="3" y="4" rx="2"></rect>
                         <path d="M3 10h18"></path>
                       </svg>
-                      {{ $item->created_at->format('Y') }}
+                      {{ $item->event_date ? $item->event_date->format('d/m/Y') : $item->created_at->format('d/m/Y') }}
                     </div>
                     @if ($item->pdf_path)
                       <div class="flex items-center gap-1">
@@ -160,6 +151,13 @@
 
 @push('styles')
   <style>
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
     .line-clamp-3 {
       display: -webkit-box;
       -webkit-line-clamp: 3;

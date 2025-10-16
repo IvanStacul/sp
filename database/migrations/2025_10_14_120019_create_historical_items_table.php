@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('historical_categories')->onDelete('set null');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('description');
+            $table->date('event_date')->nullable();
+            $table->text('description')->nullable();
             $table->longText('content')->nullable();
             $table->string('image_path');
             $table->string('pdf_path')->nullable();

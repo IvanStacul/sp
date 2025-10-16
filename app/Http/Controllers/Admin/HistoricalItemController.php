@@ -47,6 +47,7 @@ class HistoricalItemController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
+            'event_date' => $request->event_date ?? now()->toDateString(),
             'image_path' => 'storage/' . $imagePath,
             'pdf_path' => null,
             'sort_order' => $request->sort_order ?? 0,
@@ -116,6 +117,7 @@ class HistoricalItemController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
+            'event_date' => $request->event_date ?? now()->toDateString(),
             'sort_order' => $request->sort_order ?? 0,
             'featured' => $request->boolean('featured'),
             'is_active' => $request->boolean('is_active', true)

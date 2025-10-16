@@ -13,7 +13,7 @@ class HistoricalController extends Controller
         $query = HistoricalItem::with(['category', 'pdfs'])
             ->active()
             ->orderBy('sort_order')
-            ->orderBy('created_at', 'desc');
+            ->orderByDesc('event_date');
 
         // Filtro por categoría si se especifica
         if ($request->has('category') && $request->category) {

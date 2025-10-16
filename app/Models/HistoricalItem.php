@@ -18,6 +18,7 @@ class HistoricalItem extends Model
         'content',
         'image_path',
         'pdf_path',
+        'event_date',
         'is_active',
         'featured',
         'sort_order'
@@ -26,6 +27,7 @@ class HistoricalItem extends Model
     protected $casts = [
         'is_active' => 'boolean',
         'featured' => 'boolean',
+        'event_date' => 'date',
     ];
 
     public function scopeActive($query)

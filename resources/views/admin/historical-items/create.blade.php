@@ -62,7 +62,7 @@
             </div>
 
             <div class="form-group row">
-              <div class="col-md-4 col-sm-12">
+              <div class="col-md-6 col-sm-12">
                 <label for="category_id" class="col-form-label">
                   Categoría
                 </label>
@@ -81,6 +81,27 @@
                   <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
+
+              <div class="col-md-6 col-sm-12">
+                <label for="event_date" class="col-form-label">
+                  Fecha del Evento
+                </label>
+
+                <input id="event_date" class="form-control @error('event_date') is-invalid @enderror"
+                  name="event_date" type="date" value="{{ old('event_date', now()->toDateString()) }}"
+                  placeholder="Seleccione la fecha del evento">
+
+                @error('event_date')
+                  <span class="text-danger">{{ $message }}</span>
+                @enderror
+
+                <small class="form-text text-muted">
+                  Fecha en que ocurrió el evento histórico. Por defecto se usa la fecha actual.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
               <div class="col-md-4 col-sm-12">
                 <label for="sort_order" class="col-form-label">
                   Orden
@@ -117,11 +138,11 @@
             <div class="form-group row">
               <div class="col-sm-12">
                 <label for="description" class="col-form-label">
-                  Descripción <span style="color:red">*</span>
+                  Descripción
                 </label>
 
-                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required
-                  rows="3" placeholder="Ingrese una descripción breve">{{ old('description') }}</textarea>
+                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description"
+                  rows="3" placeholder="Ingrese una descripción breve (opcional)">{{ old('description') }}</textarea>
 
                 @error('description')
                   <span class="text-danger">{{ $message }}</span>

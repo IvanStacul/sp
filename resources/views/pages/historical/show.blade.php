@@ -1,50 +1,53 @@
 @extends('pages.layouts.base')
 
-@section('base')
-  <!-- Hero Section with Image -->
-  <div class="relative h-96 bg-gray-900 overflow-hidden">
+@section('hero')
+  <div
+    class="min-h-96 relative bg-gradient-to-r from-slate-900 to-slate-700 text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg md:py-10 xl:py-24 px-4 md:px-8 mt-4">
+
     @if ($historicalItem->image_path)
       <img src="{{ asset($historicalItem->image_path) }}" alt="{{ $historicalItem->title }}"
-        class="w-full h-full object-cover opacity-60">
-    @else
-      <div class="w-full h-full bg-gradient-to-r from-slate-900 to-slate-700"></div>
+        class="absolute inset-0 h-full w-full object-cover object-center opacity-60">
     @endif
+
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    </div>
+
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
 
-    <div class="absolute inset-0 flex items-end">
-      <div class="max-w-screen-xl mx-auto px-4 pb-12 w-full">
-        <nav class="mb-6">
-          <ol class="flex items-center space-x-2 text-sm">
-            <li>
-              <a href="{{ route('home') }}" class="text-white hover:text-green-300 transition-colors">
-                Inicio
-              </a>
-            </li>
-            <li class="text-white/60">/</li>
-            <li>
-              <a href="{{ route('historical.index') }}" class="text-white hover:text-green-300 transition-colors">
-                Archivo Histórico
-              </a>
-            </li>
-            <li class="text-white/60">/</li>
-            <li class="text-white/80">{{ $historicalItem->title }}</li>
-          </ol>
-        </nav>
-
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="text-center px-4">
+        <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold text-white">
           {{ $historicalItem->title }}
         </h1>
-
-        <p class="text-xl text-white/90 max-w-3xl">
-          {{ $historicalItem->description }}
-        </p>
       </div>
     </div>
   </div>
+@endsection
 
+@section('base')
   <!-- Main Content -->
   <div class="py-12 bg-white">
     <div class="max-w-screen-xl mx-auto px-4">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <ol class="flex items-center space-x-2 text-sm">
+          <li>
+            <a href="{{ route('home') }}" class="text-gray-600 hover:text-green-600 transition-colors">
+              Inicio
+            </a>
+          </li>
+          <li class="text-gray-400">/</li>
+          <li>
+            <a href="{{ route('historical.index') }}" class="text-gray-600 hover:text-green-600 transition-colors">
+              Archivo Histórico
+            </a>
+          </li>
+          <li class="text-gray-400">/</li>
+          <li class="text-gray-900 font-medium">{{ $historicalItem->title }}</li>
+        </ol>
+      </nav>
+
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Content Area -->
         <div class="lg:col-span-2">
@@ -91,17 +94,19 @@
 
                   @if ($historicalItem->pdfs->count() > 0)
                     <!-- PDFs del nuevo sistema -->
-                    <div class="space-y-2">
+                    <div class="space-y-3">
                       @foreach ($historicalItem->pdfs as $pdf)
                         <a href="{{ asset($pdf->file_path) }}" target="_blank"
-                          class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200 w-full justify-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                          {{ $pdf->display_name }}
-                          <span class="ml-2 text-xs">({{ $pdf->formatted_size }})</span>
+                          class="flex flex-col sm:flex-row sm:items-center gap-2 px-4 sm:px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200 w-full text-left">
+                          <div class="flex items-center gap-2 flex-1 min-w-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span class="truncate">{{ $pdf->display_name }}</span>
+                          </div>
+                          <span class="text-xs sm:text-sm bg-green-700 px-2 py-1 rounded self-start sm:self-center whitespace-nowrap">({{ $pdf->formatted_size }})</span>
                         </a>
                       @endforeach
                     </div>
@@ -145,13 +150,13 @@
                 @if ($historicalItem->pdfs->count() > 0)
                   @foreach ($historicalItem->pdfs as $pdf)
                     <a href="{{ asset($pdf->file_path) }}" target="_blank"
-                      class="flex items-center justify-center w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                      class="flex items-center gap-2 w-full px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                      {{ $pdf->display_name }}
+                      <span class="truncate text-left flex-1">{{ $pdf->display_name }}</span>
                     </a>
                   @endforeach
                 @elseif($historicalItem->pdf_path)
@@ -262,10 +267,10 @@
 
         <!-- Comment Form -->
         <div
-          class=" bg-gray-50 rounded-2xl p-8 mb-8 shadow-sm border border-gray-100">
+          class="bg-gray-50 rounded-2xl p-4 sm:p-6 md:p-8 mb-8 shadow-sm border border-gray-100">
           <div class="mb-6">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Deja tu comentario</h3>
-            <p class="text-gray-600 text-sm">
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Deja tu comentario</h3>
+            <p class="text-gray-600 text-xs sm:text-sm">
               Tu comentario será revisado por nuestro equipo antes de ser publicado. Por favor, mantén un tono respetuoso
               y
               relacionado con el contenido histórico.
@@ -390,9 +395,9 @@
             </div>
 
             <!-- Submit Button -->
-            <div class="flex items-center gap-4 pt-2">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 pt-2">
               <button type="submit"
-                class="inline-flex items-center gap-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200">
+                class="inline-flex items-center justify-center gap-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 w-full sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -400,7 +405,7 @@
                 </svg>
                 Enviar comentario
               </button>
-              <p class="text-xs text-gray-500">
+              <p class="text-xs text-gray-500 text-center sm:text-left">
                 <span class="text-red-500">*</span> Campos obligatorios
               </p>
             </div>
@@ -408,14 +413,14 @@
         </div>
 
         <!-- Display Comments -->
-        <div class="space-y-6">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-bold text-gray-900">
+        <div class="space-y-4 sm:space-y-6">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="text-lg sm:text-2xl font-bold text-gray-900">
               Comentarios publicados
             </h3>
             <span
-              class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-100 text-green-800">
-              <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              class="inline-flex items-center gap-x-1.5 py-1.5 px-2.5 sm:px-3 rounded-full text-xs font-medium bg-green-100 text-green-800 flex-shrink-0">
+              <svg class="size-3 sm:size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
@@ -426,48 +431,48 @@
 
           @forelse($historicalItem->approvedComments as $comment)
             <div
-              class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-green-200 transition-all duration-200">
-              <div class="flex items-start gap-4">
+              class="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:shadow-lg hover:border-green-200 transition-all duration-200">
+              <div class="flex items-start gap-3 sm:gap-4">
                 <!-- Avatar -->
                 <div class="flex-shrink-0">
                   <span
-                    class="inline-flex items-center justify-center size-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-white font-bold text-lg shadow-md">
+                    class="inline-flex items-center justify-center size-10 sm:size-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-white font-bold text-base sm:text-lg shadow-md">
                     {{ strtoupper(substr($comment->author_name, 0, 1)) }}
                   </span>
                 </div>
 
                 <!-- Comment Content -->
                 <div class="flex-grow min-w-0">
-                  <div class="flex items-center justify-between mb-2">
-                    <div>
-                      <h4 class="font-semibold text-gray-900 text-base">{{ $comment->author_name }}</h4>
-                      <p class="text-sm text-gray-500 flex items-center gap-1.5 mt-0.5">
-                        <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1">
+                    <div class="min-w-0">
+                      <h4 class="font-semibold text-gray-900 text-sm sm:text-base truncate">{{ $comment->author_name }}</h4>
+                      <p class="text-xs sm:text-sm text-gray-500 flex items-center gap-1.5 mt-0.5">
+                        <svg class="size-3 sm:size-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round">
                           <circle cx="12" cy="12" r="10"></circle>
                           <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
-                        {{ $comment->created_at->diffForHumans() }}
+                        <span class="truncate">{{ $comment->created_at->diffForHumans() }}</span>
                       </p>
                     </div>
                   </div>
-                  <p class="text-gray-700 leading-relaxed">{{ $comment->comment }}</p>
+                  <p class="text-gray-700 leading-relaxed text-sm sm:text-base break-words">{{ $comment->comment }}</p>
                 </div>
               </div>
             </div>
           @empty
             <div
-              class="text-center py-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-dashed border-gray-300">
-              <div class="inline-flex items-center justify-center size-16 rounded-full bg-gray-200 text-gray-500 mb-4">
-                <svg class="size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              class="text-center py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-dashed border-gray-300 px-4">
+              <div class="inline-flex items-center justify-center size-12 sm:size-16 rounded-full bg-gray-200 text-gray-500 mb-3 sm:mb-4">
+                <svg class="size-6 sm:size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               </div>
-              <h4 class="text-lg font-semibold text-gray-900 mb-2">Aún no hay comentarios aprobados</h4>
-              <p class="text-gray-600 text-sm">¡Sé el primero en comentar sobre este contenido histórico!</p>
+              <h4 class="text-base sm:text-lg font-semibold text-gray-900 mb-2">Aún no hay comentarios aprobados</h4>
+              <p class="text-gray-600 text-xs sm:text-sm">¡Sé el primero en comentar sobre este contenido histórico!</p>
             </div>
           @endforelse
         </div>

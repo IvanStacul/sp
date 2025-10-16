@@ -17,7 +17,7 @@
     }
 
     /* Estilo para checkboxes de eliminar archivos */
-    .btn-outline-danger input[type="checkbox"]:checked + i {
+    .btn-outline-danger input[type="checkbox"]:checked+i {
       color: #dc3545;
     }
 
@@ -57,7 +57,8 @@
         <div class="card-header">
           <h3 class="card-title">Editar Elemento Histórico: {{ $historicalItem->title }}</h3>
         </div>
-        <form class="form-horizontal" method="POST" action="{{ route('admin.historical-items.update', $historicalItem) }}" enctype="multipart/form-data"
+        <form class="form-horizontal" method="POST"
+          action="{{ route('admin.historical-items.update', $historicalItem) }}" enctype="multipart/form-data"
           id="historical-item-form">
 
           @csrf
@@ -95,15 +96,17 @@
             </div>
 
             <div class="form-group row">
-              <div class="col-md-4 col-sm-12">
+              <div class="col-md-6 col-sm-12">
                 <label for="category_id" class="col-form-label">
                   Categoría
                 </label>
 
-                <select id="category_id" class="form-control @error('category_id') is-invalid @enderror" name="category_id">
+                <select id="category_id" class="form-control @error('category_id') is-invalid @enderror"
+                  name="category_id">
                   <option value="">Seleccione una categoría (opcional)</option>
-                  @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id', $historicalItem->category_id) == $category->id ? 'selected' : '' }}>
+                  @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"
+                      {{ old('category_id', $historicalItem->category_id) == $category->id ? 'selected' : '' }}>
                       {{ $category->name }}
                     </option>
                   @endforeach
@@ -113,6 +116,28 @@
                   <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
+
+              <div class="col-md-6 col-sm-12">
+                <label for="event_date" class="col-form-label">
+                  Fecha del Evento
+                </label>
+
+                <input id="event_date" class="form-control @error('event_date') is-invalid @enderror"
+                  name="event_date" type="date"
+                  value="{{ old('event_date', $historicalItem->event_date ? $historicalItem->event_date->format('Y-m-d') : now()->toDateString()) }}"
+                  placeholder="Seleccione la fecha del evento">
+
+                @error('event_date')
+                  <span class="text-danger">{{ $message }}</span>
+                @enderror
+
+                <small class="form-text text-muted">
+                  Fecha en que ocurrió el evento histórico.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
               <div class="col-md-4 col-sm-12">
                 <label for="sort_order" class="col-form-label">
                   Orden
@@ -131,7 +156,7 @@
                 <label class="col-form-label">Estado y Opciones</label>
                 <div class="icheck-success">
                   <input type="checkbox" name="featured" id="featured" value="1"
-                         {{ old('featured', $historicalItem->featured) ? 'checked' : '' }}>
+                    {{ old('featured', $historicalItem->featured) ? 'checked' : '' }}>
                   <label for="featured">
                     Elemento destacado
                   </label>
@@ -139,7 +164,7 @@
 
                 <div class="icheck-primary">
                   <input type="checkbox" name="is_active" id="is_active" value="1"
-                         {{ old('is_active', $historicalItem->is_active) ? 'checked' : '' }}>
+                    {{ old('is_active', $historicalItem->is_active) ? 'checked' : '' }}>
                   <label for="is_active">
                     Activo
                   </label>
@@ -149,12 +174,10 @@
 
             <div class="form-group row">
               <div class="col-sm-12">
-                <label for="description" class="col-form-label">
-                  Descripción <span style="color:red">*</span>
-                </label>
+                <label for="description" class="col-form-label"> Descripción </label>
 
                 <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description"
-                  required rows="3" placeholder="Ingrese una descripción breve">{{ old('description', $historicalItem->description) }}</textarea>
+                  rows="3" placeholder="Ingrese una descripción breve (opcional)">{{ old('description', $historicalItem->description) }}</textarea>
 
                 @error('description')
                   <span class="text-danger">{{ $message }}</span>
@@ -168,16 +191,16 @@
                   Imagen de Portada <span style="color:red">*</span>
                 </label>
 
-                @if($historicalItem->image_path)
+                @if ($historicalItem->image_path)
                   <div class="mb-2">
                     <img src="{{ asset($historicalItem->image_path) }}" alt="{{ $historicalItem->title }}"
-                         style="width: 200px; height: 150px; object-fit: cover;" class="rounded">
+                      style="width: 200px; height: 150px; object-fit: cover;" class="rounded">
                     <p class="text-muted small mt-1">Imagen actual</p>
                   </div>
                 @endif
 
-                <input id="image" class="form-control @error('image') is-invalid @enderror"
-                  name="image" type="file" accept="image/*">
+                <input id="image" class="form-control @error('image') is-invalid @enderror" name="image"
+                  type="file" accept="image/*">
 
                 @error('image')
                   <span class="text-danger">{{ $message }}</span>
@@ -195,94 +218,99 @@
             </div>
 
             {{-- PDFs existentes --}}
-            @if($historicalItem->pdfs->count() > 0)
-            <div class="form-group row">
-              <div class="col-12">
-                <label class="col-form-label">
-                  <strong>PDFs Actuales</strong>
-                </label>
+            @if ($historicalItem->pdfs->count() > 0)
+              <div class="form-group row">
+                <div class="col-12">
+                  <label class="col-form-label">
+                    <strong>PDFs Actuales</strong>
+                  </label>
 
-                <div class="row">
-                  @foreach($historicalItem->pdfs as $pdf)
-                    <div class="col-md-4 col-sm-6 mb-3">
-                      <div class="card">
-                        <div class="card-body p-3">
-                          <div class="text-center p-3 bg-light rounded mb-2" style="height: 100px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-file-pdf fa-3x text-danger"></i>
-                          </div>
+                  <div class="row">
+                    @foreach ($historicalItem->pdfs as $pdf)
+                      <div class="col-md-4 col-sm-6 mb-3">
+                        <div class="card">
+                          <div class="card-body p-3">
+                            <div class="text-center p-3 bg-light rounded mb-2"
+                              style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                              <i class="fas fa-file-pdf fa-3x text-danger"></i>
+                            </div>
 
-                          {{-- Nombre editable --}}
-                          <div class="mb-1">
-                            <div class="editable-name-container" data-file-id="{{ $pdf->id }}">
-                              <p class="mb-0 small text-truncate file-display-name" title="{{ $pdf->display_name }}">
-                                <strong>{{ $pdf->display_name }}</strong>
-                              </p>
-                              <div class="edit-name-form" style="display: none;">
-                                <div class="input-group input-group-sm">
-                                  <input type="text" class="form-control form-control-sm edit-name-input"
-                                         value="{{ $pdf->display_name }}" maxlength="255">
-                                  <div class="input-group-append">
-                                    <button type="button" class="btn btn-success btn-sm save-name-btn" title="Guardar">
-                                      <i class="fas fa-check"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-secondary btn-sm cancel-edit-btn" title="Cancelar">
-                                      <i class="fas fa-times"></i>
-                                    </button>
+                            {{-- Nombre editable --}}
+                            <div class="mb-1">
+                              <div class="editable-name-container" data-file-id="{{ $pdf->id }}">
+                                <p class="mb-0 small text-truncate file-display-name" title="{{ $pdf->display_name }}">
+                                  <strong>{{ $pdf->display_name }}</strong>
+                                </p>
+                                <div class="edit-name-form" style="display: none;">
+                                  <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control form-control-sm edit-name-input"
+                                      value="{{ $pdf->display_name }}" maxlength="255">
+                                    <div class="input-group-append">
+                                      <button type="button" class="btn btn-success btn-sm save-name-btn"
+                                        title="Guardar">
+                                        <i class="fas fa-check"></i>
+                                      </button>
+                                      <button type="button" class="btn btn-secondary btn-sm cancel-edit-btn"
+                                        title="Cancelar">
+                                        <i class="fas fa-times"></i>
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
+                              <button type="button" class="btn btn-link btn-sm p-0 edit-name-trigger"
+                                data-file-id="{{ $pdf->id }}" title="Editar nombre">
+                                <i class="fas fa-edit"></i> Editar nombre
+                              </button>
                             </div>
-                            <button type="button" class="btn btn-link btn-sm p-0 edit-name-trigger"
-                                    data-file-id="{{ $pdf->id }}" title="Editar nombre">
-                              <i class="fas fa-edit"></i> Editar nombre
-                            </button>
-                          </div>
 
-                          <p class="mb-1 small text-muted text-truncate" title="{{ $pdf->original_name }}">
-                            Archivo: {{ $pdf->original_name }}
-                          </p>
-                          <p class="mb-2 small text-muted">
-                            {{ $pdf->formatted_size }}
-                          </p>
+                            <p class="mb-1 small text-muted text-truncate" title="{{ $pdf->original_name }}">
+                              Archivo: {{ $pdf->original_name }}
+                            </p>
+                            <p class="mb-2 small text-muted">
+                              {{ $pdf->formatted_size }}
+                            </p>
 
-                          <div class="btn-group btn-group-sm d-flex" role="group">
-                            <a href="{{ asset($pdf->file_path) }}" target="_blank"
-                               class="btn btn-outline-info flex-fill" title="Ver PDF">
-                              <i class="fas fa-eye"></i>
-                            </a>
+                            <div class="btn-group btn-group-sm d-flex" role="group">
+                              <a href="{{ asset($pdf->file_path) }}" target="_blank"
+                                class="btn btn-outline-info flex-fill" title="Ver PDF">
+                                <i class="fas fa-eye"></i>
+                              </a>
 
-                            <label class="btn btn-outline-danger flex-fill mb-0" title="Marcar para eliminar">
-                              <input type="checkbox" name="delete_files[]" value="{{ $pdf->id }}" class="d-none">
-                              <i class="fas fa-trash"></i>
-                            </label>
+                              <label class="btn btn-outline-danger flex-fill mb-0" title="Marcar para eliminar">
+                                <input type="checkbox" name="delete_files[]" value="{{ $pdf->id }}"
+                                  class="d-none">
+                                <i class="fas fa-trash"></i>
+                              </label>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  @endforeach
-                </div>
+                    @endforeach
+                  </div>
 
-                <small class="form-text text-muted">
-                  Marca los PDFs que deseas eliminar. Los archivos no marcados se mantendrán.
-                </small>
-              </div>
-            </div>
-            @elseif($historicalItem->pdf_path)
-            {{-- PDF legacy --}}
-            <div class="form-group row">
-              <div class="col-12">
-                <label class="col-form-label">
-                  <strong>PDF Actual (Sistema Antiguo)</strong>
-                </label>
-                <div class="alert alert-info">
-                  <i class="fas fa-file-pdf mr-2"></i>
-                  <a href="{{ asset($historicalItem->pdf_path) }}" target="_blank" class="alert-link">
-                    Ver PDF actual
-                  </a>
-                  <small class="d-block mt-1">Este PDF está en el sistema antiguo. Al agregar nuevos PDFs abajo, este seguirá disponible.</small>
+                  <small class="form-text text-muted">
+                    Marca los PDFs que deseas eliminar. Los archivos no marcados se mantendrán.
+                  </small>
                 </div>
               </div>
-            </div>
+            @elseif($historicalItem->pdf_path)
+              {{-- PDF legacy --}}
+              <div class="form-group row">
+                <div class="col-12">
+                  <label class="col-form-label">
+                    <strong>PDF Actual (Sistema Antiguo)</strong>
+                  </label>
+                  <div class="alert alert-info">
+                    <i class="fas fa-file-pdf mr-2"></i>
+                    <a href="{{ asset($historicalItem->pdf_path) }}" target="_blank" class="alert-link">
+                      Ver PDF actual
+                    </a>
+                    <small class="d-block mt-1">Este PDF está en el sistema antiguo. Al agregar nuevos PDFs abajo, este
+                      seguirá disponible.</small>
+                  </div>
+                </div>
+              </div>
             @endif
 
             {{-- Agregar nuevos PDFs --}}
@@ -293,8 +321,9 @@
                   Agregar Nuevos PDFs
                 </label>
 
-                <input id="pdfs" class="form-control @error('pdfs') @error('pdfs.*') is-invalid @enderror @enderror"
-                  name="pdfs[]" type="file" accept=".pdf" multiple>
+                <input id="pdfs"
+                  class="form-control @error('pdfs') @error('pdfs.*') is-invalid @enderror @enderror" name="pdfs[]"
+                  type="file" accept=".pdf" multiple>
 
                 @error('pdfs')
                   <span class="text-danger">{{ $message }}</span>
