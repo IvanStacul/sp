@@ -27,14 +27,24 @@ class HistoricalCategoryController extends Controller
 
     public function store(StoreHistoricalCategoryRequest $request)
     {
-        HistoricalCategory::create([
+        $data = [
             'name' => $request->name,
             'description' => $request->description,
             'color' => '#16a34a', // Color verde fijo del sitio
             'icon' => $request->icon,
             'sort_order' => $request->sort_order ?? 0,
             'is_active' => $request->boolean('is_active', true)
-        ]);
+        ];
+
+        // Manejar la subida de la imagen de fondo
+        if ($request->hasFile('background_image')) {
+            $image = $request->file('background_image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('categories/backgrounds'), $imageName);
+            $data['background_image'] = 'categories/backgrounds/' . $imageName;
+        }
+
+        HistoricalCategory::create($data);
 
         return redirect()->route('admin.historical-categories.index')
             ->with('success', 'Categoría histórica creada exitosamente.');
@@ -53,14 +63,29 @@ class HistoricalCategoryController extends Controller
 
     public function update(UpdateHistoricalCategoryRequest $request, HistoricalCategory $historicalCategory)
     {
-        $historicalCategory->update([
+        $data = [
             'name' => $request->name,
             'description' => $request->description,
             'color' => '#16a34a', // Color verde fijo del sitio
             'icon' => $request->icon,
             'sort_order' => $request->sort_order ?? 0,
             'is_active' => $request->boolean('is_active', true)
-        ]);
+        ];
+
+        // Manejar la subida de la imagen de fondo
+        if ($request->hasFile('background_image')) {
+            // Eliminar la imagen anterior si existe
+            if ($historicalCategory->background_image && file_exists(public_path($historicalCategory->background_image))) {
+                unlink(public_path($historicalCategory->background_image));
+            }
+
+            $image = $request->file('background_image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('categories/backgrounds'), $imageName);
+            $data['background_image'] = 'categories/backgrounds/' . $imageName;
+        }
+
+        $historicalCategory->update($data);
 
         return redirect()->route('admin.historical-categories.index')
             ->with('success', 'Categoría histórica actualizada exitosamente.');
@@ -72,6 +97,11 @@ class HistoricalCategoryController extends Controller
         if ($historicalCategory->historicalItems()->count() > 0) {
             return redirect()->route('admin.historical-categories.index')
                 ->with('error', 'No se puede eliminar la categoría porque tiene elementos históricos asociados.');
+        }
+
+        // Eliminar la imagen de fondo si existe
+        if ($historicalCategory->background_image && file_exists(public_path($historicalCategory->background_image))) {
+            unlink(public_path($historicalCategory->background_image));
         }
 
         $historicalCategory->delete();

@@ -16,6 +16,7 @@ class HistoricalCategory extends Model
         'description',
         'color',
         'icon',
+        'background_image',
         'is_active',
         'sort_order'
     ];

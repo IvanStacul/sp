@@ -106,7 +106,6 @@
                             </svg>
                             <span class="truncate">{{ $pdf->display_name }}</span>
                           </div>
-                          <span class="text-xs sm:text-sm bg-green-700 px-2 py-1 rounded self-start sm:self-center whitespace-nowrap">({{ $pdf->formatted_size }})</span>
                         </a>
                       @endforeach
                     </div>
@@ -123,6 +122,69 @@
                     </a>
                   @endif
                 </div>
+              </div>
+            </div>
+          @endif
+
+          @if ($historicalItem->activeMedia->count() > 0)
+            <!-- Multimedia Section -->
+            <div class="mt-12">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                Contenido Multimedia
+              </h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @foreach ($historicalItem->activeMedia as $media)
+                  <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    @if($media->media_type === 'youtube')
+                      <!-- YouTube Video Embed -->
+                      <div class="aspect-video bg-gray-900">
+                        <iframe 
+                          class="w-full h-full" 
+                          src="{{ $media->getYoutubeEmbedUrl() }}" 
+                          title="{{ $media->title ?? 'Video de YouTube' }}"
+                          frameborder="0" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                          allowfullscreen>
+                        </iframe>
+                      </div>
+                    @elseif($media->media_type === 'vimeo')
+                      <!-- Vimeo Video - Puedes personalizar más adelante -->
+                      <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                        <a href="{{ $media->url }}" target="_blank" class="text-white hover:text-blue-400 transition-colors">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </a>
+                      </div>
+                    @else
+                      <!-- Otros enlaces externos -->
+                      <div class="aspect-video bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                        <a href="{{ $media->url }}" target="_blank" class="text-white hover:text-green-100 transition-colors text-center p-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          <span class="text-sm font-medium">Abrir enlace externo</span>
+                        </a>
+                      </div>
+                    @endif
+
+                    @if($media->title || $media->description)
+                      <div class="p-4 bg-gray-50">
+                        @if($media->title)
+                          <h4 class="font-semibold text-gray-900 mb-1">{{ $media->title }}</h4>
+                        @endif
+                        @if($media->description)
+                          <p class="text-sm text-gray-600">{{ $media->description }}</p>
+                        @endif
+                      </div>
+                    @endif
+                  </div>
+                @endforeach
               </div>
             </div>
           @endif
@@ -172,15 +234,6 @@
                   </a>
                 @endif
 
-                <button onclick="window.print()"
-                  class="flex items-center justify-center w-full px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                  </svg>
-                  Imprimir
-                </button>
 
                 <button
                   onclick="navigator.share ? navigator.share({title: '{{ $historicalItem->title }}', url: window.location.href}) : copyToClipboard()"

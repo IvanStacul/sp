@@ -70,7 +70,7 @@
           <h3 class="card-title">Editar Categoría: {{ $historicalCategory->name }}</h3>
         </div>
         <form class="form-horizontal" method="POST" action="{{ route('admin.historical-categories.update', $historicalCategory) }}"
-          id="category-form">
+          id="category-form" enctype="multipart/form-data">
 
           @csrf
           @method('PUT')
@@ -158,6 +158,39 @@
                   </span>
                 </div>
                 <small class="form-text text-muted">Así se verá la categoría en el sitio web.</small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label for="background_image" class="col-form-label">
+                  Imagen de Fondo
+                </label>
+
+                <input type="file" id="background_image" class="form-control @error('background_image') is-invalid @enderror" name="background_image"
+                  accept="image/*" onchange="previewImage(event)">
+
+                @if ($historicalCategory->background_image)
+                  <div class="mt-2">
+                    <small class="text-muted">Imagen actual:</small>
+                    <br>
+                    <img src="{{ asset($historicalCategory->background_image) }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 200px; max-height: 150px; object-fit: cover;">
+                    <br>
+                    <small class="text-muted">{{ $historicalCategory->background_image }}</small>
+                  </div>
+                @endif
+
+                <div id="image-preview" class="mt-2" style="display: none;">
+                  <small class="text-muted">Nueva imagen:</small>
+                  <br>
+                  <img id="preview-img" src="#" alt="Vista previa" class="img-thumbnail" style="max-width: 200px; max-height: 150px; object-fit: cover;">
+                </div>
+
+                @error('background_image')
+                  <span class="text-danger">{{ $message }}</span>
+                @enderror
+
+                <small class="form-text text-muted">Seleccione una imagen de fondo que se mostrará en la página principal cuando se seleccione esta categoría. Formatos recomendados: JPG, PNG, WebP. Tamaño máximo: 2MB. Deje vacío para mantener la imagen actual.</small>
               </div>
             </div>
 
@@ -260,6 +293,20 @@
 
         $('#preview-name').text(name);
         $('#preview-icon').attr('class', iconClass);
+      }
+
+      function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            $('#preview-img').attr('src', e.target.result);
+            $('#image-preview').show();
+          }
+          reader.readAsDataURL(file);
+        } else {
+          $('#image-preview').hide();
+        }
       }
 
       // Inicializar preview

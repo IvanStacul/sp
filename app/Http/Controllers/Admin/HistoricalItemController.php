@@ -7,6 +7,7 @@ use App\Http\Requests\StoreHistoricalItemRequest;
 use App\Http\Requests\UpdateHistoricalItemRequest;
 use App\Models\HistoricalItem;
 use App\Models\HistoricalItemFile;
+use App\Models\HistoricalItemMedia;
 use App\Models\HistoricalCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +17,7 @@ class HistoricalItemController extends Controller
 {
     public function index()
     {
-        $historicalItems = HistoricalItem::with(['category', 'files'])
+        $historicalItems = HistoricalItem::with(['category', 'files', 'media'])
             ->orderBy('sort_order')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -60,6 +61,11 @@ class HistoricalItemController extends Controller
             $this->processFiles($request->file('pdfs'), $historicalItem, 'pdf');
         }
 
+        // Procesar enlaces multimedia
+        if ($request->has('media_urls') && is_array($request->media_urls)) {
+            $this->processMediaLinks($request->media_urls, $request->media_titles ?? [], $historicalItem);
+        }
+
         return redirect()->route('admin.historical-items.index')
             ->with('success', 'Elemento histórico creado exitosamente.');
     }
@@ -99,13 +105,13 @@ class HistoricalItemController extends Controller
         }
     }    public function show(HistoricalItem $historicalItem)
     {
-        $historicalItem->load(['category', 'files']);
+        $historicalItem->load(['category', 'files', 'media']);
         return view('admin.historical-items.show', compact('historicalItem'));
     }
 
     public function edit(HistoricalItem $historicalItem)
     {
-        $historicalItem->load('files');
+        $historicalItem->load(['files', 'media']);
         $categories = HistoricalCategory::active()->orderBy('sort_order')->get();
         return view('admin.historical-items.edit', compact('historicalItem', 'categories'));
     }
@@ -155,6 +161,21 @@ class HistoricalItemController extends Controller
         // Agregar nuevos PDFs
         if ($request->hasFile('pdfs')) {
             $this->processFiles($request->file('pdfs'), $historicalItem, 'pdf');
+        }
+
+        // Eliminar enlaces multimedia seleccionados
+        if ($request->has('delete_media')) {
+            foreach ($request->delete_media as $mediaId) {
+                $media = HistoricalItemMedia::find($mediaId);
+                if ($media && $media->historical_item_id === $historicalItem->id) {
+                    $media->delete();
+                }
+            }
+        }
+
+        // Agregar nuevos enlaces multimedia
+        if ($request->has('media_urls') && is_array($request->media_urls)) {
+            $this->processMediaLinks($request->media_urls, $request->media_titles ?? [], $historicalItem);
         }
 
         return redirect()->route('admin.historical-items.index')
@@ -259,5 +280,42 @@ class HistoricalItemController extends Controller
 
         return redirect()->back()
             ->with('success', 'Nombre del archivo actualizado exitosamente.');
+    }
+
+    /**
+     * Procesar y guardar enlaces multimedia
+     */
+    private function processMediaLinks($urls, $titles, $historicalItem)
+    {
+        $sortOrder = $historicalItem->media()->count();
+
+        foreach ($urls as $index => $url) {
+            // Saltar URLs vacías
+            if (empty(trim($url))) {
+                continue;
+            }
+
+            $mediaType = 'youtube'; // Por defecto YouTube
+            
+            // Detectar tipo de media basado en la URL
+            if (strpos($url, 'youtube.com') !== false || strpos($url, 'youtu.be') !== false) {
+                $mediaType = 'youtube';
+            } elseif (strpos($url, 'vimeo.com') !== false) {
+                $mediaType = 'vimeo';
+            } else {
+                $mediaType = 'external_link';
+            }
+
+            HistoricalItemMedia::create([
+                'historical_item_id' => $historicalItem->id,
+                'media_type' => $mediaType,
+                'url' => trim($url),
+                'title' => $titles[$index] ?? null,
+                'sort_order' => $sortOrder,
+                'is_active' => true
+            ]);
+
+            $sortOrder++;
+        }
     }
 }

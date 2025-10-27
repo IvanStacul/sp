@@ -354,6 +354,86 @@
               </div>
             </div>
 
+            {{-- Enlaces multimedia existentes --}}
+            @if ($historicalItem->media->count() > 0)
+              <div class="form-group row">
+                <div class="col-12">
+                  <label class="col-form-label">
+                    <i class="fas fa-video mr-1"></i> <strong>Contenido Multimedia Actual</strong>
+                  </label>
+
+                  <div class="row">
+                    @foreach ($historicalItem->media as $media)
+                      <div class="col-md-4 col-sm-6 mb-3">
+                        <div class="card">
+                          <div class="card-body p-3">
+                            @if($media->media_type === 'youtube' && $media->getYoutubeThumbnail())
+                              <div class="mb-2">
+                                <img src="{{ $media->getYoutubeThumbnail() }}" alt="Thumbnail" 
+                                     class="img-fluid rounded" style="width: 100%; height: 120px; object-fit: cover;">
+                              </div>
+                            @else
+                              <div class="text-center p-3 bg-light rounded mb-2"
+                                style="height: 120px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-video fa-3x text-primary"></i>
+                              </div>
+                            @endif
+
+                            @if($media->title)
+                              <p class="mb-1 small font-weight-bold text-truncate" title="{{ $media->title }}">
+                                {{ $media->title }}
+                              </p>
+                            @endif
+                            
+                            <p class="mb-2 small text-muted text-truncate" title="{{ $media->url }}">
+                              <i class="fas fa-link mr-1"></i> {{ $media->media_type }}
+                            </p>
+
+                            <div class="btn-group btn-group-sm d-flex" role="group">
+                              <a href="{{ $media->url }}" target="_blank"
+                                class="btn btn-outline-info flex-fill" title="Ver enlace">
+                                <i class="fas fa-external-link-alt"></i>
+                              </a>
+
+                              <label class="btn btn-outline-danger flex-fill mb-0" title="Marcar para eliminar">
+                                <input type="checkbox" name="delete_media[]" value="{{ $media->id }}"
+                                  class="d-none">
+                                <i class="fas fa-trash"></i>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+
+                  <small class="form-text text-muted">
+                    Marca los enlaces multimedia que deseas eliminar. Los no marcados se mantendrán.
+                  </small>
+                </div>
+              </div>
+            @endif
+
+            <!-- Agregar nuevos enlaces multimedia -->
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label class="col-form-label">
+                  <i class="fas fa-video mr-1"></i> Agregar Nuevo Contenido Multimedia
+                </label>
+                <p class="text-muted small mb-3">
+                  Agrega enlaces de videos de YouTube u otros contenidos multimedia relacionados con este elemento histórico.
+                </p>
+
+                <div id="media-links-container">
+                  <!-- Los campos de enlaces se agregarán aquí dinámicamente -->
+                </div>
+
+                <button type="button" class="btn btn-sm btn-outline-primary" id="add-media-link">
+                  <i class="fas fa-plus mr-1"></i> Agregar enlace multimedia
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <div class="card-footer">
@@ -670,6 +750,43 @@
           e.preventDefault();
           $(this).closest('.editable-name-container').find('.cancel-edit-btn').click();
         }
+      });
+
+      // ===== Funcionalidad para enlaces multimedia =====
+      let mediaLinkIndex = 0;
+
+      // Agregar campo de enlace multimedia
+      $('#add-media-link').on('click', function() {
+        const mediaField = `
+          <div class="media-link-item mb-3 p-3 border rounded" data-index="${mediaLinkIndex}">
+            <div class="row">
+              <div class="col-md-6">
+                <label class="small">URL del video/enlace <span class="text-danger">*</span></label>
+                <input type="url" name="media_urls[]" class="form-control form-control-sm" 
+                       placeholder="https://www.youtube.com/watch?v=..." required>
+                <small class="form-text text-muted">Ejemplo: https://www.youtube.com/watch?v=dQw4w9WgXcQ</small>
+              </div>
+              <div class="col-md-5">
+                <label class="small">Título (opcional)</label>
+                <input type="text" name="media_titles[]" class="form-control form-control-sm" 
+                       placeholder="Título descriptivo del video">
+              </div>
+              <div class="col-md-1 d-flex align-items-end">
+                <button type="button" class="btn btn-sm btn-danger remove-media-link w-100" title="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        $('#media-links-container').append(mediaField);
+        mediaLinkIndex++;
+      });
+
+      // Eliminar campo de enlace multimedia
+      $(document).on('click', '.remove-media-link', function() {
+        $(this).closest('.media-link-item').remove();
       });
     });
   </script>

@@ -15,25 +15,26 @@ class HistoricalController extends Controller
             ->orderBy('sort_order')
             ->orderByDesc('event_date');
 
+        $selectedCategory = null;
+        
         // Filtro por categoría si se especifica
         if ($request->has('category') && $request->category) {
-            $category = HistoricalCategory::where('slug', $request->category)->first();
-            if ($category) {
-                $query->where('category_id', $category->id);
+            $selectedCategory = HistoricalCategory::where('slug', $request->category)->first();
+            if ($selectedCategory) {
+                $query->where('category_id', $selectedCategory->id);
             }
         }
 
         $historicalItems = $query->get();
         $featured = $historicalItems->where('featured', true);
         $categories = HistoricalCategory::active()->orderBy('sort_order')->get();
-        $selectedCategory = $request->category;
 
         return view('pages.historical.index', compact('historicalItems', 'featured', 'categories', 'selectedCategory'));
     }
 
     public function show($slug)
     {
-        $historicalItem = HistoricalItem::with(['category', 'pdfs', 'approvedComments.user'])
+        $historicalItem = HistoricalItem::with(['category', 'pdfs', 'activeMedia', 'approvedComments.user'])
             ->where('slug', $slug)
             ->where('is_active', true)
             ->firstOrFail();

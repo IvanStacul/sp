@@ -205,6 +205,26 @@
               </div>
             </div>
 
+            <!-- Sección Multimedia -->
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label class="col-form-label">
+                  <i class="fas fa-video mr-1"></i> Contenido Multimedia (Opcional)
+                </label>
+                <p class="text-muted small mb-3">
+                  Agrega enlaces de videos de YouTube u otros contenidos multimedia relacionados con este elemento histórico.
+                </p>
+
+                <div id="media-links-container">
+                  <!-- Los campos de enlaces se agregarán aquí dinámicamente -->
+                </div>
+
+                <button type="button" class="btn btn-sm btn-outline-primary" id="add-media-link">
+                  <i class="fas fa-plus mr-1"></i> Agregar enlace multimedia
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <div class="card-footer">
@@ -410,6 +430,45 @@
         document.getElementById('content-input').value = JSON.stringify(outputData);
 
         e.target.submit();
+      });
+    });
+
+    // Manejo de enlaces multimedia
+    $(document).ready(function() {
+      let mediaLinkIndex = 0;
+
+      // Agregar campo de enlace multimedia
+      $('#add-media-link').on('click', function() {
+        const mediaField = `
+          <div class="media-link-item mb-3 p-3 border rounded" data-index="${mediaLinkIndex}">
+            <div class="row">
+              <div class="col-md-6">
+                <label class="small">URL del video/enlace <span class="text-danger">*</span></label>
+                <input type="url" name="media_urls[]" class="form-control form-control-sm" 
+                       placeholder="https://www.youtube.com/watch?v=..." required>
+                <small class="form-text text-muted">Ejemplo: https://www.youtube.com/watch?v=dQw4w9WgXcQ</small>
+              </div>
+              <div class="col-md-5">
+                <label class="small">Título (opcional)</label>
+                <input type="text" name="media_titles[]" class="form-control form-control-sm" 
+                       placeholder="Título descriptivo del video">
+              </div>
+              <div class="col-md-1 d-flex align-items-end">
+                <button type="button" class="btn btn-sm btn-danger remove-media-link w-100" title="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        $('#media-links-container').append(mediaField);
+        mediaLinkIndex++;
+      });
+
+      // Eliminar campo de enlace multimedia
+      $(document).on('click', '.remove-media-link', function() {
+        $(this).closest('.media-link-item').remove();
       });
     });
   </script>

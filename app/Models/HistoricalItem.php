@@ -74,6 +74,24 @@ class HistoricalItem extends Model
     }
 
     /**
+     * Relación con contenido multimedia
+     */
+    public function media()
+    {
+        return $this->hasMany(HistoricalItemMedia::class)->orderBy('sort_order');
+    }
+
+    /**
+     * Obtener solo multimedia activa
+     */
+    public function activeMedia()
+    {
+        return $this->hasMany(HistoricalItemMedia::class)
+            ->where('is_active', true)
+            ->orderBy('sort_order');
+    }
+
+    /**
      * Obtener la imagen destacada (principal)
      */
     public function featuredImage()

@@ -2,7 +2,14 @@
 
 @section('hero')
   <div
-    class="min-h-96 relative bg-gradient-to-r from-slate-900 to-slate-700 text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
+    class="min-h-96 relative text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 md:py-10 xl:py-24 px-4 md:px-8 mt-4"
+    style="@if($selectedCategory && $selectedCategory->background_image) 
+            background-image: url('{{ asset($selectedCategory->background_image) }}');
+            background-size: cover;
+            background-position: center;
+          @else 
+            background: linear-gradient(to right, rgb(15 23 42), rgb(51 65 85));
+          @endif">
 
     <div class="absolute inset-0">
       <div class="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -10,9 +17,18 @@
 
     <div class="relative flex items-center justify-center min-w-screen px-4 md:px-8">
       <div class="text-center">
-        <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold">
-          Archivo Histórico Municipal
-        </h2>
+        @if($selectedCategory)
+          <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold mb-4">
+            {{ $selectedCategory->name }}
+          </h2>
+          <p class="text-xl md:text-2xl text-gray-200">
+            Archivo Histórico Municipal
+          </p>
+        @else
+          <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold">
+            Archivo Histórico Municipal
+          </h2>
+        @endif
       </div>
     </div>
   </div>
@@ -29,8 +45,8 @@
           </a>
           @foreach ($categories as $category)
             <a href="{{ route('historical.index', ['category' => $category->slug]) }}"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border {{ $selectedCategory === $category->slug ? 'bg-primary shadow-xs hover:bg-primary/90' : 'bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50' }} h-9 px-4 py-2 has-[>svg]:px-3 rounded-full"
-              style="{{ $selectedCategory === $category->slug ? 'background-color: ' . $category->color . '; border-color: ' . $category->color . '; color: white;' : '' }}">
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border {{ $selectedCategory && $selectedCategory->slug === $category->slug ? 'bg-primary shadow-xs hover:bg-primary/90' : 'bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50' }} h-9 px-4 py-2 has-[>svg]:px-3 rounded-full"
+              style="{{ $selectedCategory && $selectedCategory->slug === $category->slug ? 'background-color: ' . $category->color . '; border-color: ' . $category->color . '; color: white;' : '' }}">
               @if ($category->icon)
                 <i class="{{ $category->icon }} w-3 h-3"></i>
               @endif
