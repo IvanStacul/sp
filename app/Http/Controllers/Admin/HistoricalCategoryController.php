@@ -44,6 +44,14 @@ class HistoricalCategoryController extends Controller
             $data['background_image'] = 'categories/backgrounds/' . $imageName;
         }
 
+        // Manejar la subida de la imagen móvil
+        if ($request->hasFile('mobile_image')) {
+            $mobileImage = $request->file('mobile_image');
+            $mobileImageName = time() . '_mobile_' . $mobileImage->getClientOriginalName();
+            $mobileImage->move(public_path('categories/backgrounds'), $mobileImageName);
+            $data['mobile_image'] = 'categories/backgrounds/' . $mobileImageName;
+        }
+
         HistoricalCategory::create($data);
 
         return redirect()->route('admin.historical-categories.index')
@@ -85,6 +93,19 @@ class HistoricalCategoryController extends Controller
             $data['background_image'] = 'categories/backgrounds/' . $imageName;
         }
 
+        // Manejar la subida de la imagen móvil
+        if ($request->hasFile('mobile_image')) {
+            // Eliminar la imagen móvil anterior si existe
+            if ($historicalCategory->mobile_image && file_exists(public_path($historicalCategory->mobile_image))) {
+                unlink(public_path($historicalCategory->mobile_image));
+            }
+
+            $mobileImage = $request->file('mobile_image');
+            $mobileImageName = time() . '_mobile_' . $mobileImage->getClientOriginalName();
+            $mobileImage->move(public_path('categories/backgrounds'), $mobileImageName);
+            $data['mobile_image'] = 'categories/backgrounds/' . $mobileImageName;
+        }
+
         $historicalCategory->update($data);
 
         return redirect()->route('admin.historical-categories.index')
@@ -102,6 +123,11 @@ class HistoricalCategoryController extends Controller
         // Eliminar la imagen de fondo si existe
         if ($historicalCategory->background_image && file_exists(public_path($historicalCategory->background_image))) {
             unlink(public_path($historicalCategory->background_image));
+        }
+
+        // Eliminar la imagen móvil si existe
+        if ($historicalCategory->mobile_image && file_exists(public_path($historicalCategory->mobile_image))) {
+            unlink(public_path($historicalCategory->mobile_image));
         }
 
         $historicalCategory->delete();

@@ -26,6 +26,7 @@ class StoreHistoricalCategoryRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'icon' => ['nullable', 'string', 'max:255'],
             'background_image' => ['nullable', 'image', 'max:2048'], // Max 2MB
+            'mobile_image' => ['nullable', 'image', 'max:2048'], // Max 2MB
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['boolean'],
         ];

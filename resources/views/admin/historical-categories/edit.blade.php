@@ -168,7 +168,7 @@
                 </label>
 
                 <input type="file" id="background_image" class="form-control @error('background_image') is-invalid @enderror" name="background_image"
-                  accept="image/*" onchange="previewImage(event)">
+                  accept="image/*" onchange="previewImage(event, 'background')">
 
                 @if ($historicalCategory->background_image)
                   <div class="mt-2">
@@ -180,10 +180,10 @@
                   </div>
                 @endif
 
-                <div id="image-preview" class="mt-2" style="display: none;">
+                <div id="background-image-preview" class="mt-2" style="display: none;">
                   <small class="text-muted">Nueva imagen:</small>
                   <br>
-                  <img id="preview-img" src="#" alt="Vista previa" class="img-thumbnail" style="max-width: 200px; max-height: 150px; object-fit: cover;">
+                  <img id="background-preview-img" src="#" alt="Vista previa" class="img-thumbnail" style="max-width: 200px; max-height: 150px; object-fit: cover;">
                 </div>
 
                 @error('background_image')
@@ -191,6 +191,39 @@
                 @enderror
 
                 <small class="form-text text-muted">Seleccione una imagen de fondo que se mostrará en la página principal cuando se seleccione esta categoría. Formatos recomendados: JPG, PNG, WebP. Tamaño máximo: 2MB. Deje vacío para mantener la imagen actual.</small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label for="mobile_image" class="col-form-label">
+                  Imagen para Móvil (Opcional)
+                </label>
+
+                <input type="file" id="mobile_image" class="form-control @error('mobile_image') is-invalid @enderror" name="mobile_image"
+                  accept="image/*" onchange="previewImage(event, 'mobile')">
+
+                @if ($historicalCategory->mobile_image)
+                  <div class="mt-2">
+                    <small class="text-muted">Imagen móvil actual:</small>
+                    <br>
+                    <img src="{{ asset($historicalCategory->mobile_image) }}" alt="Imagen móvil actual" class="img-thumbnail" style="max-width: 200px; max-height: 150px; object-fit: cover;">
+                    <br>
+                    <small class="text-muted">{{ $historicalCategory->mobile_image }}</small>
+                  </div>
+                @endif
+
+                <div id="mobile-image-preview" class="mt-2" style="display: none;">
+                  <small class="text-muted">Nueva imagen móvil:</small>
+                  <br>
+                  <img id="mobile-preview-img" src="#" alt="Vista previa móvil" class="img-thumbnail" style="max-width: 200px; max-height: 150px; object-fit: cover;">
+                </div>
+
+                @error('mobile_image')
+                  <span class="text-danger">{{ $message }}</span>
+                @enderror
+
+                <small class="form-text text-muted">Seleccione una imagen optimizada para dispositivos móviles. Si no se proporciona, se usará la imagen de fondo principal. Formatos recomendados: JPG, PNG, WebP. Tamaño máximo: 2MB. Deje vacío para mantener la imagen actual.</small>
               </div>
             </div>
 
@@ -295,17 +328,26 @@
         $('#preview-icon').attr('class', iconClass);
       }
 
-      function previewImage(event) {
+      function previewImage(event, type) {
         const file = event.target.files[0];
         if (file) {
           const reader = new FileReader();
           reader.onload = function(e) {
-            $('#preview-img').attr('src', e.target.result);
-            $('#image-preview').show();
+            if (type === 'background') {
+              $('#background-preview-img').attr('src', e.target.result);
+              $('#background-image-preview').show();
+            } else if (type === 'mobile') {
+              $('#mobile-preview-img').attr('src', e.target.result);
+              $('#mobile-image-preview').show();
+            }
           }
           reader.readAsDataURL(file);
         } else {
-          $('#image-preview').hide();
+          if (type === 'background') {
+            $('#background-image-preview').hide();
+          } else if (type === 'mobile') {
+            $('#mobile-image-preview').hide();
+          }
         }
       }
 

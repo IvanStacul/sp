@@ -10,12 +10,30 @@
              alt="Archivo Histórico Municipal"
              class="w-full h-full object-cover"
              onerror="this.src='{{ asset('assets/img/archivo_historico.webp') }}'">
-        {{-- <div class="absolute inset-0 bg-black bg-opacity-50"></div> --}}
       </div>
     @endif
 
-    {{-- Banner para desktop o con categoría seleccionada --}}
-    <div class="absolute inset-0 {{ !$selectedCategory ? 'hidden md:block' : '' }}"
+    {{-- Banner para mobile (con categoría seleccionada) --}}
+    @if ($selectedCategory)
+      <div class="absolute inset-0 md:hidden">
+        @php
+          // Usar imagen móvil si existe, sino usar la imagen de fondo, sino usar la por defecto
+          $mobileImage = $selectedCategory->mobile_image
+            ? asset($selectedCategory->mobile_image)
+            : ($selectedCategory->background_image
+              ? asset($selectedCategory->background_image)
+              : asset('assets/img/archivo_historico_mobile.webp'));
+        @endphp
+        <img src="{{ $mobileImage }}"
+             alt="{{ $selectedCategory->name }}"
+             class="w-full h-full object-cover"
+             onerror="this.src='{{ asset('assets/img/archivo_historico_mobile.webp') }}'">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      </div>
+    @endif
+
+    {{-- Banner para desktop --}}
+    <div class="absolute inset-0 {{ !$selectedCategory ? 'hidden md:block' : 'hidden md:block' }}"
          style="@if ($selectedCategory && $selectedCategory->background_image) background-image: url('{{ asset($selectedCategory->background_image) }}');
             @else
               background-image: url('{{ asset('assets/img/archivo_historico.webp') }}');
@@ -36,10 +54,6 @@
           <p class="text-xl md:text-2xl text-gray-200">
             Archivo Histórico Municipal
           </p>
-        @else
-          {{-- <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold">
-            Archivo Histórico Municipal
-          </h2> --}}
         @endif
       </div>
     </div>
