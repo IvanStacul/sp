@@ -1,23 +1,35 @@
 @extends('pages.layouts.base')
 
 @section('hero')
-  <div
-    class="min-h-96 relative text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 md:py-10 xl:py-24 px-4 md:px-8 mt-4"
-    style="@if($selectedCategory && $selectedCategory->background_image) 
-            background-image: url('{{ asset($selectedCategory->background_image) }}');
-            background-size: cover;
-            background-position: center;
-          @else 
-            background: linear-gradient(to right, rgb(15 23 42), rgb(51 65 85));
-          @endif">
+  <div class="min-h-96 relative text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
 
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    {{-- Banner para mobile (sin categoría seleccionada) --}}
+    @if (!$selectedCategory)
+      <div class="absolute inset-0 md:hidden">
+        <img src="{{ asset('assets/img/archivo_historico_mobile.webp') }}"
+             alt="Archivo Histórico Municipal"
+             class="w-full h-full object-cover"
+             onerror="this.src='{{ asset('assets/img/archivo_historico.webp') }}'">
+        {{-- <div class="absolute inset-0 bg-black bg-opacity-50"></div> --}}
+      </div>
+    @endif
+
+    {{-- Banner para desktop o con categoría seleccionada --}}
+    <div class="absolute inset-0 {{ !$selectedCategory ? 'hidden md:block' : '' }}"
+         style="@if ($selectedCategory && $selectedCategory->background_image) background-image: url('{{ asset($selectedCategory->background_image) }}');
+            @else
+              background-image: url('{{ asset('assets/img/archivo_historico.webp') }}');
+            @endif
+            background-size: cover;
+            background-position: center;">
+      @if ($selectedCategory && $selectedCategory->background_image)
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      @endif
     </div>
 
     <div class="relative flex items-center justify-center min-w-screen px-4 md:px-8">
       <div class="text-center">
-        @if($selectedCategory)
+        @if ($selectedCategory)
           <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold mb-4">
             {{ $selectedCategory->name }}
           </h2>
@@ -25,9 +37,9 @@
             Archivo Histórico Municipal
           </p>
         @else
-          <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold">
+          {{-- <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold">
             Archivo Histórico Municipal
-          </h2>
+          </h2> --}}
         @endif
       </div>
     </div>
@@ -103,7 +115,9 @@
                       Destacado
                     </div>
                   @endif
-                  <div class="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">Ver
+                  <div
+                    class="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                    Ver
                     más</div>
                 </div>
                 <div class="space-y-2 sm:space-y-3">
