@@ -103,7 +103,9 @@ class HistoricalItemController extends Controller
 
             $sortOrder++;
         }
-    }    public function show(HistoricalItem $historicalItem)
+    }
+
+    public function show(HistoricalItem $historicalItem)
     {
         $historicalItem->load(['category', 'files', 'media']);
         return view('admin.historical-items.show', compact('historicalItem'));
@@ -296,7 +298,7 @@ class HistoricalItemController extends Controller
             }
 
             $mediaType = 'youtube'; // Por defecto YouTube
-            
+
             // Detectar tipo de media basado en la URL
             if (strpos($url, 'youtube.com') !== false || strpos($url, 'youtu.be') !== false) {
                 $mediaType = 'youtube';

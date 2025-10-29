@@ -70,7 +70,7 @@ class HistoricalItem extends Model
     {
         return $this->hasMany(HistoricalItemFile::class)
             ->where('file_type', 'pdf')
-            ->orderBy('sort_order');
+            ->orderBy('created_at', 'asc');
     }
 
     /**
