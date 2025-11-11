@@ -17,41 +17,48 @@
     @if ($selectedCategory)
       <div class="absolute inset-0 md:hidden">
         @php
-          // Usar imagen móvil si existe, sino usar la imagen de fondo, sino usar la por defecto
+          // Usar imagen móvil si existe, sino usar la imagen de fondo
+          $hasMobileImage = $selectedCategory->mobile_image || $selectedCategory->background_image;
           $mobileImage = $selectedCategory->mobile_image
             ? asset($selectedCategory->mobile_image)
             : ($selectedCategory->background_image
               ? asset($selectedCategory->background_image)
-              : asset('assets/img/archivo_historico_mobile.webp'));
+              : null);
         @endphp
-        <img src="{{ $mobileImage }}"
-             alt="{{ $selectedCategory->name }}"
-             class="w-full h-full object-cover"
-             onerror="this.src='{{ asset('assets/img/archivo_historico_mobile.webp') }}'">
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        @if ($hasMobileImage)
+          <img src="{{ $mobileImage }}"
+               alt="{{ $selectedCategory->name }}"
+               class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        @else
+          {{-- Gradiente cuando no hay imagen --}}
+          <div class="absolute inset-0" style="background: linear-gradient(135deg, {{ $selectedCategory->color ?? '#4a5568' }} 0%, {{ $selectedCategory->color ?? '#2d3748' }}dd 50%, #1a202cee 100%);"></div>
+        @endif
       </div>
     @endif
 
     {{-- Banner para desktop --}}
-    <div class="absolute inset-0 {{ !$selectedCategory ? 'hidden md:block' : 'hidden md:block' }}"
-         style="@if ($selectedCategory && $selectedCategory->background_image) background-image: url('{{ asset($selectedCategory->background_image) }}');
-            @else
-              background-image: url('{{ asset('assets/img/archivo_historico.webp') }}');
-            @endif
-            background-size: cover;
-            background-position: center;">
+    <div class="absolute inset-0 {{ !$selectedCategory ? 'hidden md:block' : 'hidden md:block' }}">
       @if ($selectedCategory && $selectedCategory->background_image)
+        {{-- Categoría con imagen de fondo --}}
+        <div class="absolute inset-0" style="background-image: url('{{ asset($selectedCategory->background_image) }}'); background-size: cover; background-position: center;"></div>
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      @elseif ($selectedCategory)
+        {{-- Categoría sin imagen: mostrar gradiente --}}
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, {{ $selectedCategory->color ?? '#4a5568' }} 0%, {{ $selectedCategory->color ?? '#2d3748' }}dd 50%, #1a202cee 100%);"></div>
+      @else
+        {{-- Vista general: mostrar imagen por defecto --}}
+        <div class="absolute inset-0" style="background-image: url('{{ asset('assets/img/archivo_historico.webp') }}'); background-size: cover; background-position: center;"></div>
       @endif
     </div>
 
     <div class="relative flex items-center justify-center min-w-screen px-4 md:px-8">
       <div class="text-center">
         @if ($selectedCategory)
-          <h2 class="text-4xl md:text-5xl xl:text-6xl text-gray-50 font-bold mb-4">
+          <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gray-50 font-bold mb-4 leading-tight">
             {{ $selectedCategory->name }}
           </h2>
-          <p class="text-xl md:text-2xl text-gray-200">
+          <p class="text-xl sm:text-2xl md:text-3xl text-gray-200">
             Archivo Histórico Municipal
           </p>
         @endif
