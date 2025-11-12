@@ -7,6 +7,7 @@ use App\Http\Requests\StoreHistoricalCategoryRequest;
 use App\Http\Requests\UpdateHistoricalCategoryRequest;
 use App\Models\HistoricalCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HistoricalCategoryController extends Controller
 {
@@ -40,16 +41,16 @@ class HistoricalCategoryController extends Controller
         if ($request->hasFile('background_image')) {
             $image = $request->file('background_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('categories/backgrounds'), $imageName);
-            $data['background_image'] = 'categories/backgrounds/' . $imageName;
+            $path = $image->storeAs('categories/backgrounds', $imageName, 'public');
+            $data['background_image'] = $path;
         }
 
         // Manejar la subida de la imagen móvil
         if ($request->hasFile('mobile_image')) {
             $mobileImage = $request->file('mobile_image');
             $mobileImageName = time() . '_mobile_' . $mobileImage->getClientOriginalName();
-            $mobileImage->move(public_path('categories/backgrounds'), $mobileImageName);
-            $data['mobile_image'] = 'categories/backgrounds/' . $mobileImageName;
+            $path = $mobileImage->storeAs('categories/backgrounds', $mobileImageName, 'public');
+            $data['mobile_image'] = $path;
         }
 
         HistoricalCategory::create($data);
@@ -83,27 +84,27 @@ class HistoricalCategoryController extends Controller
         // Manejar la subida de la imagen de fondo
         if ($request->hasFile('background_image')) {
             // Eliminar la imagen anterior si existe
-            if ($historicalCategory->background_image && file_exists(public_path($historicalCategory->background_image))) {
-                unlink(public_path($historicalCategory->background_image));
+            if ($historicalCategory->background_image && Storage::disk('public')->exists($historicalCategory->background_image)) {
+                Storage::disk('public')->delete($historicalCategory->background_image);
             }
 
             $image = $request->file('background_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('categories/backgrounds'), $imageName);
-            $data['background_image'] = 'categories/backgrounds/' . $imageName;
+            $path = $image->storeAs('categories/backgrounds', $imageName, 'public');
+            $data['background_image'] = $path;
         }
 
         // Manejar la subida de la imagen móvil
         if ($request->hasFile('mobile_image')) {
             // Eliminar la imagen móvil anterior si existe
-            if ($historicalCategory->mobile_image && file_exists(public_path($historicalCategory->mobile_image))) {
-                unlink(public_path($historicalCategory->mobile_image));
+            if ($historicalCategory->mobile_image && Storage::disk('public')->exists($historicalCategory->mobile_image)) {
+                Storage::disk('public')->delete($historicalCategory->mobile_image);
             }
 
             $mobileImage = $request->file('mobile_image');
             $mobileImageName = time() . '_mobile_' . $mobileImage->getClientOriginalName();
-            $mobileImage->move(public_path('categories/backgrounds'), $mobileImageName);
-            $data['mobile_image'] = 'categories/backgrounds/' . $mobileImageName;
+            $path = $mobileImage->storeAs('categories/backgrounds', $mobileImageName, 'public');
+            $data['mobile_image'] = $path;
         }
 
         $historicalCategory->update($data);
@@ -121,13 +122,13 @@ class HistoricalCategoryController extends Controller
         }
 
         // Eliminar la imagen de fondo si existe
-        if ($historicalCategory->background_image && file_exists(public_path($historicalCategory->background_image))) {
-            unlink(public_path($historicalCategory->background_image));
+        if ($historicalCategory->background_image && Storage::disk('public')->exists($historicalCategory->background_image)) {
+            Storage::disk('public')->delete($historicalCategory->background_image);
         }
 
         // Eliminar la imagen móvil si existe
-        if ($historicalCategory->mobile_image && file_exists(public_path($historicalCategory->mobile_image))) {
-            unlink(public_path($historicalCategory->mobile_image));
+        if ($historicalCategory->mobile_image && Storage::disk('public')->exists($historicalCategory->mobile_image)) {
+            Storage::disk('public')->delete($historicalCategory->mobile_image);
         }
 
         $historicalCategory->delete();
