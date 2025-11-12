@@ -42,7 +42,7 @@ class HistoricalCategoryController extends Controller
             $image = $request->file('background_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $path = $image->storeAs('categories/backgrounds', $imageName, 'public');
-            $data['background_image'] = $path;
+            $data['background_image'] = '/storage/' . $path;
         }
 
         // Manejar la subida de la imagen móvil
@@ -50,7 +50,7 @@ class HistoricalCategoryController extends Controller
             $mobileImage = $request->file('mobile_image');
             $mobileImageName = time() . '_mobile_' . $mobileImage->getClientOriginalName();
             $path = $mobileImage->storeAs('categories/backgrounds', $mobileImageName, 'public');
-            $data['mobile_image'] = $path;
+            $data['mobile_image'] = '/storage/' . $path;
         }
 
         HistoricalCategory::create($data);
@@ -91,7 +91,7 @@ class HistoricalCategoryController extends Controller
             $image = $request->file('background_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $path = $image->storeAs('categories/backgrounds', $imageName, 'public');
-            $data['background_image'] = $path;
+            $data['background_image'] = '/storage/' . $path;
         }
 
         // Manejar la subida de la imagen móvil
@@ -104,7 +104,7 @@ class HistoricalCategoryController extends Controller
             $mobileImage = $request->file('mobile_image');
             $mobileImageName = time() . '_mobile_' . $mobileImage->getClientOriginalName();
             $path = $mobileImage->storeAs('categories/backgrounds', $mobileImageName, 'public');
-            $data['mobile_image'] = $path;
+            $data['mobile_image'] = '/storage/' . $path;
         }
 
         $historicalCategory->update($data);
