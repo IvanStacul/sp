@@ -63,10 +63,10 @@ Route::middleware('auth')->group(function () {
     // Ruta para ejecutar Artisan commands
     Route::get('/deploy', function () {
         Artisan::call('migrate', ['--force' => true]);
-        Artisan::call('db:seed', ['--class' => 'ShopSeeder']);
+        Artisan::call('db:seed', ['--class' => 'HistoricalCategorySeeder']);
         return response()->json([
             'success' => true,
-            'message' => 'Migraciones ejecutadas y ShopSeeder corrido exitosamente'
+            'message' => 'Migraciones ejecutadas y HistoricalCategorySeeder corrido exitosamente'
         ]);
     })->name('deploy');
 });

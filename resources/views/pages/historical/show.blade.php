@@ -73,20 +73,20 @@
 
           @if ($historicalItem->pdfs->count() > 0 || $historicalItem->pdf_path)
             <!-- PDF Download Section -->
-            <div class="mt-12 p-8 bg-green-50 border border-green-200 rounded-xl">
-              <div class="flex items-start space-x-4">
+            <div class="mt-12 p-8 bg-gray-100 border border-gray-300 rounded-xl overflow-hidden">
+              <div class="flex items-start space-x-4 min-w-0">
                 <div class="flex-shrink-0">
-                  <svg class="h-12 w-12 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  <svg class="h-12 w-12 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <div class="flex-grow">
-                  <h3 class="text-lg font-semibold text-green-900 mb-2">
+                <div class="flex-grow min-w-0">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-2">
                     {{ $historicalItem->pdfs->count() > 1 ? 'Documentos Disponibles' : 'Documento Completo' }}
                   </h3>
-                  <p class="text-green-800 mb-4">
+                  <p class="text-gray-700 mb-4">
                     Accede
                     {{ $historicalItem->pdfs->count() > 1 ? 'a los documentos completos' : 'al documento completo' }} en
                     formato PDF con información detallada y recursos adicionales.
@@ -97,23 +97,21 @@
                     <div class="space-y-3">
                       @foreach ($historicalItem->pdfs as $pdf)
                         <a href="{{ asset($pdf->file_path) }}" target="_blank"
-                          class="flex flex-col sm:flex-row sm:items-center gap-2 px-4 sm:px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200 w-full text-left">
-                          <div class="flex items-center gap-2 flex-1 min-w-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
-                              stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <span class="truncate">{{ $pdf->display_name }}</span>
-                          </div>
+                          class="flex items-center gap-2 px-4 sm:px-6 py-3 bg-white hover:bg-gray-100 text-gray-700 font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200 w-full text-left min-w-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-gray-600" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                          <span class="truncate flex-1 min-w-0">{{ $pdf->display_name }}</span>
                         </a>
                       @endforeach
                     </div>
                   @elseif($historicalItem->pdf_path)
                     <!-- Fallback para PDF legacy -->
                     <a href="{{ asset($historicalItem->pdf_path) }}" target="_blank"
-                      class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                      class="inline-flex items-center px-6 py-3 bg-white hover:bg-gray-100 text-gray-700 font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-600" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -138,7 +136,7 @@
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($historicalItem->activeMedia as $media)
-                  <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     @if($media->media_type === 'youtube')
                       <!-- YouTube Video Embed -->
                       <div class="aspect-video bg-gray-900">
@@ -174,7 +172,7 @@
                     @endif
 
                     @if($media->title || $media->description)
-                      <div class="p-4 bg-gray-50">
+                      <div class="p-4 bg-gray-100">
                         @if($media->title)
                           <h4 class="font-semibold text-gray-900 mb-1">{{ $media->title }}</h4>
                         @endif
@@ -204,40 +202,40 @@
             @endif
 
             <!-- Quick Actions -->
-            <div class="bg-gray-50 rounded-xl p-6 mb-8">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Acciones</h3>
+            <div class="bg-gray-100 rounded-xl p-6 mb-8">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Documentos Disponibles</h3>
 
               <div class="space-y-3">
                 <!-- PDFs del nuevo sistema -->
                 @if ($historicalItem->pdfs->count() > 0)
                   @foreach ($historicalItem->pdfs as $pdf)
                     <a href="{{ asset($pdf->file_path) }}" target="_blank"
-                      class="flex items-center gap-2 w-full px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                      class="flex items-center gap-2 w-full px-4 py-2.5 bg-white hover:bg-gray-100 text-gray-700 text-sm font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-gray-600" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                      <span class="truncate text-left flex-1">{{ $pdf->display_name }}</span>
+                      <span class="truncate text-left flex-1 font-medium">{{ $pdf->display_name }}</span>
                     </a>
                   @endforeach
                 @elseif($historicalItem->pdf_path)
                   <!-- Fallback para PDF legacy -->
                   <a href="{{ asset($historicalItem->pdf_path) }}" target="_blank"
-                    class="flex items-center justify-center w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    class="flex items-center justify-center w-full px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 text-sm font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-gray-600" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    Ver PDF
+                    <span class="font-medium">Ver PDF</span>
                   </a>
                 @endif
 
 
                 <button
                   onclick="navigator.share ? navigator.share({title: '{{ $historicalItem->title }}', url: window.location.href}) : copyToClipboard()"
-                  class="flex items-center justify-center w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                  class="flex items-center justify-center w-full px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white text-sm font-medium rounded-lg transition-colors duration-200">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -320,7 +318,7 @@
 
         <!-- Comment Form -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 sm:p-6 md:p-8 mb-8 shadow-sm border border-gray-100">
+          class="bg-gray-100 rounded-2xl p-4 sm:p-6 md:p-8 mb-8 shadow-sm border border-gray-100">
           <div class="mb-6">
             <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Deja tu comentario</h3>
             <p class="text-gray-600 text-xs sm:text-sm">
@@ -374,7 +372,7 @@
                       <p class="text-sm text-red-600">{{ $message }}</p>
                     </div>
                   @else
-                    <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                    <p class="text-xs text-gray-1000 mt-2 flex items-center gap-1">
                       <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -410,7 +408,7 @@
             <div>
               <div class="flex justify-between items-center mb-2">
                 <label for="comment" class="block text-sm font-semibold text-gray-900">Tu comentario *</label>
-                <span class="text-xs text-gray-500">
+                <span class="text-xs text-gray-1000">
                   <span id="charCount" class="font-medium">0</span><span class="text-gray-400">/1000</span>
                 </span>
               </div>
@@ -429,7 +427,7 @@
                   <p class="text-sm text-red-600">{{ $message }}</p>
                 </div>
               @else
-                <p class="text-xs text-gray-500 mt-2">
+                <p class="text-xs text-gray-1000 mt-2">
                   Mínimo 10 caracteres, máximo 1000.
                 </p>
               @enderror
@@ -458,7 +456,7 @@
                 </svg>
                 Enviar comentario
               </button>
-              <p class="text-xs text-gray-500 text-center sm:text-left">
+              <p class="text-xs text-gray-1000 text-center sm:text-left">
                 <span class="text-red-500">*</span> Campos obligatorios
               </p>
             </div>
@@ -499,7 +497,7 @@
                   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1">
                     <div class="min-w-0">
                       <h4 class="font-semibold text-gray-900 text-sm sm:text-base truncate">{{ $comment->author_name }}</h4>
-                      <p class="text-xs sm:text-sm text-gray-500 flex items-center gap-1.5 mt-0.5">
+                      <p class="text-xs sm:text-sm text-gray-1000 flex items-center gap-1.5 mt-0.5">
                         <svg class="size-3 sm:size-3.5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round">
@@ -516,8 +514,8 @@
             </div>
           @empty
             <div
-              class="text-center py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-dashed border-gray-300 px-4">
-              <div class="inline-flex items-center justify-center size-12 sm:size-16 rounded-full bg-gray-200 text-gray-500 mb-3 sm:mb-4">
+              class="text-center py-12 sm:py-16 bg-gradient-to-br from-gray-100 to-gray-100 rounded-2xl border-2 border-dashed border-gray-300 px-4">
+              <div class="inline-flex items-center justify-center size-12 sm:size-16 rounded-full bg-gray-200 text-gray-1000 mb-3 sm:mb-4">
                 <svg class="size-6 sm:size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -565,25 +563,25 @@
           // Visual feedback based on character count
           if (length > maxLength) {
             charCount.classList.add('text-red-600', 'font-bold');
-            charCount.classList.remove('text-gray-500', 'text-yellow-600', 'text-green-600');
+            charCount.classList.remove('text-gray-1000', 'text-yellow-600', 'text-green-600');
             charCount.parentElement.classList.add('text-red-600');
-            charCount.parentElement.classList.remove('text-gray-500', 'text-yellow-600');
+            charCount.parentElement.classList.remove('text-gray-1000', 'text-yellow-600');
           } else if (length >= maxLength - 100) {
             charCount.classList.add('text-yellow-600', 'font-semibold');
-            charCount.classList.remove('text-gray-500', 'text-red-600', 'text-green-600');
+            charCount.classList.remove('text-gray-1000', 'text-red-600', 'text-green-600');
             charCount.parentElement.classList.add('text-yellow-600');
-            charCount.parentElement.classList.remove('text-gray-500', 'text-red-600');
+            charCount.parentElement.classList.remove('text-gray-1000', 'text-red-600');
           } else if (length >= minLength) {
             charCount.classList.add('text-green-600');
-            charCount.classList.remove('text-gray-500', 'text-red-600', 'text-yellow-600', 'font-bold',
+            charCount.classList.remove('text-gray-1000', 'text-red-600', 'text-yellow-600', 'font-bold',
               'font-semibold');
             charCount.parentElement.classList.remove('text-yellow-600', 'text-red-600');
-            charCount.parentElement.classList.add('text-gray-500');
+            charCount.parentElement.classList.add('text-gray-1000');
           } else {
             charCount.classList.remove('text-red-600', 'text-yellow-600', 'text-green-600', 'font-bold',
               'font-semibold');
-            charCount.classList.add('text-gray-500');
-            charCount.parentElement.classList.add('text-gray-500');
+            charCount.classList.add('text-gray-1000');
+            charCount.parentElement.classList.add('text-gray-1000');
             charCount.parentElement.classList.remove('text-yellow-600', 'text-red-600');
           }
         }

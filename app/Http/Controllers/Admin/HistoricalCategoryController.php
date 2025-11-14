@@ -31,7 +31,7 @@ class HistoricalCategoryController extends Controller
         $data = [
             'name' => $request->name,
             'description' => $request->description,
-            'color' => '#16a34a', // Color verde fijo del sitio
+            'color' => '#d08700', // Color verde fijo del sitio
             'icon' => $request->icon,
             'sort_order' => $request->sort_order ?? 0,
             'is_active' => $request->boolean('is_active', true)
@@ -75,7 +75,7 @@ class HistoricalCategoryController extends Controller
         $data = [
             'name' => $request->name,
             'description' => $request->description,
-            'color' => '#16a34a', // Color verde fijo del sitio
+            'color' => '#d08700', // Color verde fijo del sitio
             'icon' => $request->icon,
             'sort_order' => $request->sort_order ?? 0,
             'is_active' => $request->boolean('is_active', true)

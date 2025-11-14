@@ -52,7 +52,7 @@
       @endif
     </div>
 
-    <div class="relative flex items-center justify-center min-w-screen px-4 md:px-8">
+    {{-- <div class="relative flex items-center justify-center min-w-screen px-4 md:px-8">
       <div class="text-center">
         @if ($selectedCategory)
           <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gray-50 font-bold mb-4 leading-tight">
@@ -63,7 +63,7 @@
           </p>
         @endif
       </div>
-    </div>
+    </div> --}}
   </div>
 @endsection
 
@@ -73,12 +73,12 @@
       <div class="max-w-4xl mx-auto mb-16">
         <div class="flex flex-wrap gap-2 mb-12 justify-center">
           <a href="{{ route('historical.index') }}"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-primary shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 rounded-full">
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border shadow-xs h-9 px-4 py-2 has-[>svg]:px-3 rounded-full">
             Todos
           </a>
           @foreach ($categories as $category)
             <a href="{{ route('historical.index', ['category' => $category->slug]) }}"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border {{ $selectedCategory && $selectedCategory->slug === $category->slug ? 'bg-primary shadow-xs hover:bg-primary/90' : 'bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50' }} h-9 px-4 py-2 has-[>svg]:px-3 rounded-full"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border {{ $selectedCategory && $selectedCategory->slug === $category->slug ? 'shadow-xs' : 'bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50' }} h-9 px-4 py-2 has-[>svg]:px-3 rounded-full"
               style="{{ $selectedCategory && $selectedCategory->slug === $category->slug ? 'background-color: ' . $category->color . '; border-color: ' . $category->color . '; color: white;' : '' }}">
               @if ($category->icon)
                 <i class="{{ $category->icon }} w-3 h-3"></i>
@@ -197,7 +197,6 @@
       </div>
     @endif
   </div>
-
 @endsection
 
 @push('styles')
