@@ -73,20 +73,20 @@
 
           @if ($historicalItem->pdfs->count() > 0 || $historicalItem->pdf_path)
             <!-- PDF Download Section -->
-            <div class="mt-12 p-8 bg-gray-100 border border-gray-300 rounded-xl overflow-hidden">
+            <div class="mt-12 p-8 bg-amber-50 border border-amber-200 rounded-xl overflow-hidden">
               <div class="flex items-start space-x-4 min-w-0">
                 <div class="flex-shrink-0">
-                  <svg class="h-12 w-12 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  <svg class="h-12 w-12 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
                 <div class="flex-grow min-w-0">
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 class="text-lg font-semibold text-amber-900 mb-2">
                     {{ $historicalItem->pdfs->count() > 1 ? 'Documentos Disponibles' : 'Documento Completo' }}
                   </h3>
-                  <p class="text-gray-700 mb-4">
+                  <p class="text-amber-800 mb-4">
                     Accede
                     {{ $historicalItem->pdfs->count() > 1 ? 'a los documentos completos' : 'al documento completo' }} en
                     formato PDF con información detallada y recursos adicionales.
@@ -97,8 +97,8 @@
                     <div class="space-y-3">
                       @foreach ($historicalItem->pdfs as $pdf)
                         <a href="{{ asset($pdf->file_path) }}" target="_blank"
-                          class="flex items-center gap-2 px-4 sm:px-6 py-3 bg-white hover:bg-gray-100 text-gray-700 font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200 w-full text-left min-w-0">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-gray-600" fill="none" viewBox="0 0 24 24"
+                          class="flex items-center gap-2 px-4 sm:px-6 py-3 bg-white hover:bg-amber-50 text-amber-800 font-medium rounded-lg border-2 border-amber-300 hover:border-amber-400 transition-all duration-200 w-full text-left min-w-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 text-amber-600" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -110,8 +110,8 @@
                   @elseif($historicalItem->pdf_path)
                     <!-- Fallback para PDF legacy -->
                     <a href="{{ asset($historicalItem->pdf_path) }}" target="_blank"
-                      class="inline-flex items-center px-6 py-3 bg-white hover:bg-gray-100 text-gray-700 font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-600" fill="none" viewBox="0 0 24 24"
+                      class="inline-flex items-center px-6 py-3 bg-white hover:bg-amber-50 text-amber-800 font-medium rounded-lg border-2 border-amber-300 hover:border-amber-400 transition-all duration-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-600" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -202,16 +202,16 @@
             @endif
 
             <!-- Quick Actions -->
-            <div class="bg-gray-100 rounded-xl p-6 mb-8">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Documentos Disponibles</h3>
+            <div class="bg-amber-50 rounded-xl p-6 mb-8">
+              <h3 class="text-lg font-semibold text-amber-900 mb-4">Documentos Disponibles</h3>
 
               <div class="space-y-3">
                 <!-- PDFs del nuevo sistema -->
                 @if ($historicalItem->pdfs->count() > 0)
                   @foreach ($historicalItem->pdfs as $pdf)
                     <a href="{{ asset($pdf->file_path) }}" target="_blank"
-                      class="flex items-center gap-2 w-full px-4 py-2.5 bg-white hover:bg-gray-100 text-gray-700 text-sm font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-gray-600" fill="none" viewBox="0 0 24 24"
+                      class="flex items-center gap-2 w-full px-4 py-2.5 bg-white hover:bg-amber-50 text-amber-800 text-sm font-medium rounded-lg border-2 border-amber-300 hover:border-amber-400 transition-all duration-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 text-amber-600" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -222,8 +222,8 @@
                 @elseif($historicalItem->pdf_path)
                   <!-- Fallback para PDF legacy -->
                   <a href="{{ asset($historicalItem->pdf_path) }}" target="_blank"
-                    class="flex items-center justify-center w-full px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 text-sm font-medium rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-gray-600" fill="none" viewBox="0 0 24 24"
+                    class="flex items-center justify-center w-full px-4 py-2 bg-white hover:bg-amber-50 text-amber-800 text-sm font-medium rounded-lg border-2 border-amber-300 hover:border-amber-400 transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-amber-600" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -235,7 +235,7 @@
 
                 <button
                   onclick="navigator.share ? navigator.share({title: '{{ $historicalItem->title }}', url: window.location.href}) : copyToClipboard()"
-                  class="flex items-center justify-center w-full px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                  class="flex items-center justify-center w-full px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors duration-200">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -249,7 +249,7 @@
             <!-- Back to Archive -->
             <div class="text-center">
               <a href="{{ route('historical.index') }}"
-                class="inline-flex items-center text-green-600 hover:text-green-700 font-medium">
+                class="inline-flex items-center text-amber-600 hover:text-amber-700 font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -448,7 +448,7 @@
             <!-- Submit Button -->
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 pt-2">
               <button type="submit"
-                class="inline-flex items-center justify-center gap-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 w-full sm:w-auto">
+                class="inline-flex items-center justify-center gap-x-2 px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-all duration-200 w-full sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -470,7 +470,7 @@
               Comentarios publicados
             </h3>
             <span
-              class="inline-flex items-center gap-x-1.5 py-1.5 px-2.5 sm:px-3 rounded-full text-xs font-medium bg-green-100 text-green-800 flex-shrink-0">
+              class="inline-flex items-center gap-x-1.5 py-1.5 px-2.5 sm:px-3 rounded-full text-xs font-medium bg-amber-100 text-amber-800 flex-shrink-0">
               <svg class="size-3 sm:size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">

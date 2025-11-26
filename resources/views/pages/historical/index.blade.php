@@ -1,15 +1,14 @@
 @extends('pages.layouts.base')
 
 @section('hero')
-  <div class="min-h-96 relative text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 md:py-10 xl:py-24 px-4 md:px-8 mt-4">
+  <div
+    class="min-h-96 relative text-white py-16 flex flex-1 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-100 md:py-10 xl:py-24 px-4 md:px-8 mt-4 h-64 md:h-96 lg:h-[32rem]">
 
     {{-- Banner para mobile (sin categoría seleccionada) --}}
     @if (!$selectedCategory)
       <div class="absolute inset-0 md:hidden">
-        <img src="{{ asset('assets/img/archivo_historico_mobile.webp') }}"
-             alt="Archivo Histórico Municipal"
-             class="w-full h-full object-cover"
-             onerror="this.src='{{ asset('assets/img/archivo_historico.webp') }}'">
+        <img src="{{ asset('assets/img/archivo_historico_mobile.webp') }}" alt="Archivo Histórico Municipal"
+          class="w-full h-full object-cover" onerror="this.src='{{ asset('assets/img/archivo_historico.webp') }}'">
       </div>
     @endif
 
@@ -20,19 +19,19 @@
           // Usar imagen móvil si existe, sino usar la imagen de fondo
           $hasMobileImage = $selectedCategory->mobile_image || $selectedCategory->background_image;
           $mobileImage = $selectedCategory->mobile_image
-            ? asset($selectedCategory->mobile_image)
-            : ($selectedCategory->background_image
-              ? asset($selectedCategory->background_image)
-              : null);
+              ? asset($selectedCategory->mobile_image)
+              : ($selectedCategory->background_image
+                  ? asset($selectedCategory->background_image)
+                  : null);
         @endphp
         @if ($hasMobileImage)
-          <img src="{{ $mobileImage }}"
-               alt="{{ $selectedCategory->name }}"
-               class="w-full h-full object-cover">
+          <img src="{{ $mobileImage }}" alt="{{ $selectedCategory->name }}" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         @else
           {{-- Gradiente cuando no hay imagen --}}
-          <div class="absolute inset-0" style="background: linear-gradient(135deg, {{ $selectedCategory->color ?? '#4a5568' }} 0%, {{ $selectedCategory->color ?? '#2d3748' }}dd 50%, #1a202cee 100%);"></div>
+          <div class="absolute inset-0"
+            style="background: linear-gradient(135deg, {{ $selectedCategory->color ?? '#4a5568' }} 0%, {{ $selectedCategory->color ?? '#2d3748' }}dd 50%, #1a202cee 100%);">
+          </div>
         @endif
       </div>
     @endif
@@ -40,15 +39,21 @@
     {{-- Banner para desktop --}}
     <div class="absolute inset-0 {{ !$selectedCategory ? 'hidden md:block' : 'hidden md:block' }}">
       @if ($selectedCategory && $selectedCategory->background_image)
-        {{-- Categoría con imagen de fondo --}}
-        <div class="absolute inset-0" style="background-image: url('{{ asset($selectedCategory->background_image) }}'); background-size: cover; background-position: center;"></div>
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <!-- Categoría con imagen de fondo -->
+        <div class="absolute inset-0"
+          style="background-image: url('{{ asset($selectedCategory->background_image) }}'); background-size: cover; background-position: center;">
+        </div>
+        {{-- <div class="absolute inset-0 bg-black bg-opacity-50"></div> --}}
       @elseif ($selectedCategory)
-        {{-- Categoría sin imagen: mostrar gradiente --}}
-        <div class="absolute inset-0" style="background: linear-gradient(135deg, {{ $selectedCategory->color ?? '#4a5568' }} 0%, {{ $selectedCategory->color ?? '#2d3748' }}dd 50%, #1a202cee 100%);"></div>
+        <!-- Categoría sin imagen: mostrar gradiente -->
+        <div class="absolute inset-0"
+          style="background: linear-gradient(135deg, {{ $selectedCategory->color ?? '#4a5568' }} 0%, {{ $selectedCategory->color ?? '#2d3748' }}dd 50%, #1a202cee 100%);">
+        </div>
       @else
-        {{-- Vista general: mostrar imagen por defecto --}}
-        <div class="absolute inset-0" style="background-image: url('{{ asset('assets/img/archivo_historico.webp') }}'); background-size: cover; background-position: center;"></div>
+        <!-- Vista general: mostrar imagen por defecto -->
+        <div class="absolute inset-0"
+          style="background-image: url('{{ asset('assets/img/archivo_historico.webp') }}'); background-size: cover; background-position: center;">
+        </div>
       @endif
     </div>
 
