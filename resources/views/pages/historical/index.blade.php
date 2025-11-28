@@ -26,7 +26,7 @@
         @endphp
         @if ($hasMobileImage)
           <img src="{{ $mobileImage }}" alt="{{ $selectedCategory->name }}" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+          {{-- <div class="absolute inset-0 bg-black bg-opacity-50"></div> --}}
         @else
           {{-- Gradiente cuando no hay imagen --}}
           <div class="absolute inset-0"
